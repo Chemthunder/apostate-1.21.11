@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "apostate",
+  "version": "${version}",
+  "name": "Apostate",
+  "description": "General server utilities for Apostasy SMP Season Two.",
+  "authors": [
+    "Not_assher",
+    "Chemthunder"
+  ],
+  "contact": {
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "ARR",
+  "icon": "assets/apostate/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.not_assher.apostate.core.Apostate"
+    ],
+    "client": [
+      "net.not_assher.apostate.core.ApostateClient"
+    ],
+
+    "fabric-datagen": [
+      "net.not_assher.apostate.datagen.ApostateDataGenerator"
+    ],
+
+    "cardinal-components": [
+      "net.not_assher.apostate.core.cca.ModCCA"
+    ]
+  },
+  "mixins": [
+    "apostate.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "custom": {
+    "cardinal-components": [
+      "apostate:bounty_manager"
+    ]
+  }
+}
