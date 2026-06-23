@@ -1,0 +1,5 @@
+// 1.21.11	-999999999-01-01T00:00:00	Apostate/Model Definitions
+cc835c776fe336f1a8d8867229f488dfb5e2c849 assets/apostate/items/bounty_poster.json
+60e929ebd2ddf67b3df815a7359ee4edef7f654a assets/apostate/models/bounty_poster_alive.json
+b0a019459448c252823722454d17e01a4e2d25f3 assets/apostate/models/bounty_poster_dead.json
+2b69410063c8708bfc215729cfe3a70aa85ef8fc assets/apostate/models/bounty_poster_either.json

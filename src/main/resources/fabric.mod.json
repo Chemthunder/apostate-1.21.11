@@ -41,7 +41,6 @@
   },
   "custom": {
     "cardinal-components": [
-      "apostate:bounty_manager"
     ]
   }
 }

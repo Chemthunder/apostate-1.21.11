@@ -2,9 +2,7 @@ package net.not_assher.apostate.core;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
-import net.not_assher.apostate.core.index.ModItemGroups;
-import net.not_assher.apostate.core.index.ModItems;
+import net.not_assher.apostate.core.index.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +17,8 @@ public class Apostate implements ModInitializer {
         ModItems.init();
         ModDataComponentTypes.init();
         ModItemGroups.init();
+        ModBlocks.init();
+        ModBlockEntityTypes.init();
 	}
 
 	public static Identifier id(String path) {

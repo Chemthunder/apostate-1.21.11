@@ -1,7 +1,9 @@
 package net.not_assher.apostate.core.index;
 
+import com.mojang.serialization.Codec;
 import net.acoyt.acornlib.api.registrants.DataComponentTypeRegistrant;
 import net.minecraft.component.ComponentType;
+import net.minecraft.network.codec.PacketCodecs;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.utilities.Contract;
 import net.not_assher.apostate.core.utilities.bounty.Bounty;
@@ -18,6 +20,12 @@ public interface ModDataComponentTypes {
             "stored_bounty",
             Bounty.CODEC,
             Bounty.PACKET
+    );
+
+    ComponentType<Boolean> COMPLETED_BOUNTY = DCT.register(
+            "completed_bounty",
+            Codec.BOOL,
+            PacketCodecs.BOOLEAN
     );
 
     ComponentType<Contract> STORED_CONTRACT = DCT.register(
