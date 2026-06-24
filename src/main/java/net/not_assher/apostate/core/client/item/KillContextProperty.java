@@ -16,7 +16,11 @@ import org.jspecify.annotations.Nullable;
 
 public record KillContextProperty() implements SelectProperty<KillContext> {
     public static final Identifier ID = Apostate.id("kill_context");
-    public static final Type<KillContextProperty, KillContext> TYPE = Type.create(MapCodec.unit(KillContextProperty::new), KillContext.CODEC);
+
+    public static final Type<KillContextProperty, KillContext> TYPE = Type.create(
+            MapCodec.unit(KillContextProperty::new),
+            KillContext.CODEC
+    );
 
     public @Nullable KillContext getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
         return stack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY).ctx();

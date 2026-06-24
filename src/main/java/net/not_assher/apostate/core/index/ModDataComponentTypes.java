@@ -22,12 +22,6 @@ public interface ModDataComponentTypes {
             Bounty.PACKET
     );
 
-    ComponentType<Boolean> COMPLETED_BOUNTY = DCT.register(
-            "completed_bounty",
-            Codec.BOOL,
-            PacketCodecs.BOOLEAN
-    );
-
     ComponentType<Contract> STORED_CONTRACT = DCT.register(
             "stored_contract",
             Contract.CODEC,

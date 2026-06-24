@@ -19,7 +19,6 @@ public interface ModItems {
     Item BOUNTY_POSTER = ITEMS.register("bounty_poster", BountyPosterItem::new, new Item.Settings()
             .maxCount(1)
             .component(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY)
-            .component(ModDataComponentTypes.COMPLETED_BOUNTY, false)
     );
 
     Item CONTRACT = ITEMS.register("contract", ContractItem::new, new Item.Settings()

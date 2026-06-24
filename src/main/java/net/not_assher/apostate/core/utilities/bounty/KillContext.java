@@ -9,9 +9,9 @@ import net.minecraft.util.StringIdentifiable;
  * @author Chemthunder
  */
 public enum KillContext implements StringIdentifiable {
-    DEAD("dead", Text.literal("wanted dead.").formatted(Formatting.RED)),
-    ALIVE("alive", Text.literal("wanted alive.").formatted(Formatting.YELLOW)),
-    EITHER("either", Text.literal("wanted dead or alive.").formatted(Formatting.GREEN));
+    DEAD("dead", Text.literal("dead.").formatted(Formatting.RED)),
+    ALIVE("alive", Text.literal("alive.").formatted(Formatting.GREEN)),
+    EITHER("either", Text.literal("dead or alive.").formatted(Formatting.YELLOW));
 
     public final String id;
     public final Text txt;

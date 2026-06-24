@@ -5,21 +5,21 @@
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostate:bounty_poster_dead"
+          "model": "apostate:item/bounty_poster_dead_complete"
         },
         "when": "dead"
       },
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostate:bounty_poster_alive"
+          "model": "apostate:item/bounty_poster_alive_complete"
         },
         "when": "alive"
       },
       {
         "model": {
           "type": "minecraft:model",
-          "model": "apostate:bounty_poster_either"
+          "model": "apostate:item/bounty_poster_either_complete"
         },
         "when": "either"
       }

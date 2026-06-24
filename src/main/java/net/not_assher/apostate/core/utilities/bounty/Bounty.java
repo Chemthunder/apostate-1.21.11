@@ -9,17 +9,15 @@ import net.minecraft.network.codec.PacketCodecs;
 /**
  * @author Chemthunder
  */
-public record Bounty(String targetName, String ownerName, String targetUUID, String ownerUUID, KillContext ctx) {
-    public static final Bounty EMPTY = new Bounty("", "", "", "", KillContext.EITHER);
+public record Bounty(String targetName, String ownerName, KillContext ctx, boolean completed) {
+    public static final Bounty EMPTY = new Bounty("", "", KillContext.EITHER, false);
 
     public static final Codec<Bounty> CODEC = RecordCodecBuilder.create(codec -> codec.group(
             Codec.STRING.optionalFieldOf("targetName", "").forGetter(Bounty::targetName),
             Codec.STRING.optionalFieldOf("ownerName", "").forGetter(Bounty::ownerName),
 
-            Codec.STRING.optionalFieldOf("targetUUID", "").forGetter(Bounty::targetUUID),
-            Codec.STRING.optionalFieldOf("ownerUUID", "").forGetter(Bounty::ownerUUID),
-
-            KillContext.CODEC.optionalFieldOf("killContext", KillContext.EITHER).forGetter(Bounty::ctx)
+            KillContext.CODEC.optionalFieldOf("killContext", KillContext.EITHER).forGetter(Bounty::ctx),
+            Codec.BOOL.optionalFieldOf("completed", false).forGetter(Bounty::completed)
     ).apply(codec, Bounty::new));
 
     public static final PacketCodec<ByteBuf, Bounty> PACKET = PacketCodecs.codec(CODEC);

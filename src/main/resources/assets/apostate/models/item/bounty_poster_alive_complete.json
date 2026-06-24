@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "apostate:bounty_poster_dead"
+    "layer0": "apostate:item/bounty_poster_alive_complete"
   }
 }
