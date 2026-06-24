@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "apostate:root"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "apostate:gui/advancements/backgrounds/apostate",
+    "description": {
+      "translate": "advancements.apostate.root.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostate:bounty_poster"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.apostate.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ]
+}

@@ -1,6 +1,29 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "apostate:item/bounty_unwrapped"
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/unwrapped/bounty_poster_dead"
+        },
+        "when": "dead"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/unwrapped/bounty_poster_alive"
+        },
+        "when": "alive"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/unwrapped/bounty_poster_either"
+        },
+        "when": "either"
+      }
+    ],
+    "property": "apostate:kill_context"
   }
 }

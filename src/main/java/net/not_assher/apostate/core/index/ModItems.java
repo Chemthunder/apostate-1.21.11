@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.item.BountyPosterItem;
 import net.not_assher.apostate.core.item.ContractItem;
-import net.not_assher.apostate.core.utilities.Contract;
-import net.not_assher.apostate.core.utilities.bounty.Bounty;
+import net.not_assher.apostate.core.utilities.records.Bounty;
+import net.not_assher.apostate.core.utilities.records.Contract;
 
 import static net.not_assher.apostate.core.Apostate.LOGGER;
 
@@ -24,6 +24,10 @@ public interface ModItems {
     Item CONTRACT = ITEMS.register("contract", ContractItem::new, new Item.Settings()
             .maxCount(1)
             .component(ModDataComponentTypes.STORED_CONTRACT, Contract.EMPTY)
+    );
+
+    Item PARCHMENT = ITEMS.register("parchment", Item::new, new Item.Settings()
+            .maxCount(16)
     );
 
     static void init() {

@@ -1,14 +1,20 @@
 {
-	"required": true,
-	"package": "net.not_assher.apostate.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "net.not_assher.apostate.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "LivingEntityMixin",
+    "PlayerEntityMixin",
+    "ServerPlayerEntityMixin",
+    "SugarcaneBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "client.ItemFrameEntityRendererMixin"
+  ]
 }

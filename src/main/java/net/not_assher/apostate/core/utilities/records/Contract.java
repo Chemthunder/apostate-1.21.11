@@ -1,4 +1,4 @@
-package net.not_assher.apostate.core.utilities;
+package net.not_assher.apostate.core.utilities.records;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -9,12 +9,14 @@ import net.minecraft.network.codec.PacketCodecs;
 /**
  * @author Chemthunder
  */
-public record Contract(String signer, String bearer) {
-    public static final Contract EMPTY = new Contract("", "");
+public record Contract(String signer, String bearer, boolean signed) {
+    public static final Contract EMPTY = new Contract("", "", false);
 
     public static final Codec<Contract> CODEC = RecordCodecBuilder.create(codec -> codec.group(
             Codec.STRING.optionalFieldOf("signer", "").forGetter(Contract::signer),
-            Codec.STRING.optionalFieldOf("bearer", "").forGetter(Contract::bearer)
+            Codec.STRING.optionalFieldOf("bearer", "").forGetter(Contract::bearer),
+
+            Codec.BOOL.optionalFieldOf("signed", false).forGetter(Contract::signed)
     ).apply(codec, Contract::new));
 
     public static final PacketCodec<ByteBuf, Contract> PACKET = PacketCodecs.codec(CODEC);

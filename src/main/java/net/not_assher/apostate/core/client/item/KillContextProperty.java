@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
-import net.not_assher.apostate.core.utilities.bounty.Bounty;
-import net.not_assher.apostate.core.utilities.bounty.KillContext;
+import net.not_assher.apostate.core.utilities.enums.KillContext;
+import net.not_assher.apostate.core.utilities.records.Bounty;
 import org.jspecify.annotations.Nullable;
 
 public record KillContextProperty() implements SelectProperty<KillContext> {

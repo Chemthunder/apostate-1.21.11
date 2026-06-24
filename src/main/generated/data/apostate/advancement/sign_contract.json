@@ -1,0 +1,25 @@
+{
+  "parent": "apostate:root",
+  "criteria": {
+    "e": {
+      "trigger": "apostate:sign_contract"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.sign_contract.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostate:contract"
+    },
+    "title": {
+      "translate": "advancements.apostate.sign_contract.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

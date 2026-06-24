@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": "minecraft:feather",
+    "p": "apostate:parchment",
+    "r": "minecraft:red_dye"
+  },
+  "pattern": [
+    "pf",
+    "r "
+  ],
+  "result": {
+    "count": 1,
+    "id": "apostate:contract"
+  }
+}

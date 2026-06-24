@@ -1,12 +1,10 @@
 package net.not_assher.apostate.core.index;
 
-import com.mojang.serialization.Codec;
 import net.acoyt.acornlib.api.registrants.DataComponentTypeRegistrant;
 import net.minecraft.component.ComponentType;
-import net.minecraft.network.codec.PacketCodecs;
 import net.not_assher.apostate.core.Apostate;
-import net.not_assher.apostate.core.utilities.Contract;
-import net.not_assher.apostate.core.utilities.bounty.Bounty;
+import net.not_assher.apostate.core.utilities.records.Bounty;
+import net.not_assher.apostate.core.utilities.records.Contract;
 
 import static net.not_assher.apostate.core.Apostate.LOGGER;
 

@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
+import net.not_assher.apostate.core.utilities.enums.KillContext;
+import net.not_assher.apostate.core.utilities.records.Bounty;
 
 import static net.not_assher.apostate.core.Apostate.*;
 
@@ -19,7 +21,7 @@ public interface ModItemGroups {
 
     RegistryKey<ItemGroup> GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, id(MOD_ID));
     ItemGroup ITEM_GROUP = GROUPS.register(GROUP_KEY.getValue().getPath(), FabricItemGroup.builder()
-            .icon(() -> new ItemStack(ModItems.CONTRACT))
+            .icon(ModItemGroups::createIcon)
             .displayName(Text.translatable("itemGroup." + MOD_ID).withColor(0xFF621414))
             .build());
 
@@ -29,5 +31,20 @@ public interface ModItemGroups {
         );
 
         LOGGER.info("Registered Item Groups");
+    }
+
+    private static ItemStack createIcon() {
+        ItemStack stack = new ItemStack(ModItems.BOUNTY_POSTER);
+
+        stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+                "",
+                "",
+                KillContext.EITHER,
+                true,
+                false,
+                true
+        ));
+
+        return stack;
     }
 }

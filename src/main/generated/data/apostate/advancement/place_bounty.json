@@ -1,0 +1,31 @@
+{
+  "parent": "apostate:root",
+  "criteria": {
+    "e": {
+      "trigger": "apostate:place_bounty"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.place_bounty.desc"
+    },
+    "icon": {
+      "components": {
+        "apostate:stored_bounty": {
+          "killContext": "dead",
+          "signed": true
+        }
+      },
+      "count": 1,
+      "id": "apostate:bounty_poster"
+    },
+    "title": {
+      "translate": "advancements.apostate.place_bounty.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

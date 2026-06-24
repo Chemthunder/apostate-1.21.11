@@ -1,0 +1,14 @@
+{
+  "format_version": "1.21.11",
+  "credit": "Made with Blockbench",
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "apostate:item/bounty_poster/display/poster_dead"
+  },
+  "display": {
+    "fixed": {
+      "translation": [-1, 0, -0.75],
+      "scale": [2.1, 2.1, 2.1]
+    }
+  }
+}

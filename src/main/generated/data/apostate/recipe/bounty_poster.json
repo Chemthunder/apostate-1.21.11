@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "d": "minecraft:yellow_dye",
+    "p": "apostate:parchment"
+  },
+  "pattern": [
+    "d",
+    "p",
+    "d"
+  ],
+  "result": {
+    "count": 1,
+    "id": "apostate:bounty_poster"
+  }
+}

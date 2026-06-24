@@ -1,5 +1,19 @@
 {
+  "advancements.apostate.collect_bounty.desc": "Collect a Bounty.",
+  "advancements.apostate.collect_bounty.title": "A Pretty Penny",
+  "advancements.apostate.place_bounty.desc": "Place a Bounty on someone's head.",
+  "advancements.apostate.place_bounty.title": "Never Forget a Grudge...",
+  "advancements.apostate.root.desc": "Have fun!",
+  "advancements.apostate.root.title": "Apostate",
+  "advancements.apostate.sign_contract.desc": "Sign a Contract, doesn't this feel familiar?",
+  "advancements.apostate.sign_contract.title": "Fettered & Chained",
+  "apostate.midnightconfig.showDisplays": "Show Bounty Poster Displays",
+  "apostate.midnightconfig.title": "Apostate",
+  "bounty.collect": "%s has collected a Bounty on %s's head",
   "item.apostate.bounty_poster": "Bounty Poster",
   "item.apostate.bounty_poster.0": "%s is wanted by %s, ",
-  "item.apostate.contract": "Contract"
+  "item.apostate.bounty_poster.1": "You have failed this Bounty.",
+  "item.apostate.contract": "Contract",
+  "item.apostate.parchment": "Parchment",
+  "itemGroup.apostate": "Apostate"
 }

@@ -1,0 +1,31 @@
+{
+  "parent": "apostate:place_bounty",
+  "criteria": {
+    "e": {
+      "trigger": "apostate:collect_bounty"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.collect_bounty.desc"
+    },
+    "icon": {
+      "components": {
+        "apostate:stored_bounty": {
+          "completed": true,
+          "signed": true
+        }
+      },
+      "count": 1,
+      "id": "apostate:bounty_poster"
+    },
+    "title": {
+      "translate": "advancements.apostate.collect_bounty.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

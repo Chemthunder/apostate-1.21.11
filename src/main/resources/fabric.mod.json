@@ -9,7 +9,7 @@
     "Chemthunder"
   ],
   "contact": {
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Chemthunder/apostate-1.21.11"
   },
   "license": "ARR",
   "icon": "assets/apostate/icon.png",
@@ -28,6 +28,10 @@
 
     "cardinal-components": [
       "net.not_assher.apostate.core.cca.ModCCA"
+    ],
+
+    "modmenu": [
+      "net.not_assher.apostate.ext.ModMenuCompat"
     ]
   },
   "mixins": [
@@ -41,6 +45,7 @@
   },
   "custom": {
     "cardinal-components": [
+      "apostate:player"
     ]
   }
 }

@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "apostate:item/contract"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "apostate:item/contract_signed"
+    },
+    "property": "apostate:signed_contract"
+  }
+}

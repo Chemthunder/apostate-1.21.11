@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "apostate:item/bounty_poster/unwrapped/poster_unwrapped_dead"
+  }
+}
