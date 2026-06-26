@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.item.BountyPosterItem;
 import net.not_assher.apostate.core.item.ContractItem;
+import net.not_assher.apostate.core.item.PactCrystalItem;
 import net.not_assher.apostate.core.utilities.records.Bounty;
 import net.not_assher.apostate.core.utilities.records.Contract;
 
@@ -28,6 +29,10 @@ public interface ModItems {
 
     Item PARCHMENT = ITEMS.register("parchment", Item::new, new Item.Settings()
             .maxCount(16)
+    );
+
+    Item PACT_CRYSTAL = ITEMS.register("pact_crystal", PactCrystalItem::new, new Item.Settings()
+            .maxCount(1)
     );
 
     static void init() {
