@@ -5,6 +5,8 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
+import net.not_assher.apostate.core.Apostate;
+import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.client.item.SignedContractProperty;
 import net.not_assher.apostate.core.index.ModItems;
 
@@ -17,6 +19,7 @@ public class ModModelProvider extends FabricModelProvider {
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         createContract(itemModelGenerator);
+        createPactCrystal(itemModelGenerator);
 
         itemModelGenerator.register(ModItems.PARCHMENT, Models.GENERATED);
     }
@@ -27,7 +30,7 @@ public class ModModelProvider extends FabricModelProvider {
 
         generator.output.accept(item,
                 ItemModels.condition(
-                    new SignedContractProperty(),
+                        new SignedContractProperty(),
                         ItemModels.basic(Models.GENERATED.upload(
                                 baseId.withSuffixedPath("_signed"),
                                 TextureMap.layer0(baseId.withSuffixedPath("_signed")),
@@ -41,22 +44,47 @@ public class ModModelProvider extends FabricModelProvider {
                 )
         );
     }
-}
 
-//     public static void createSimpleGuiVarying(ItemModelGenerator generator, Item item, Model inHandModel) {
-//        Identifier id = Registries.ITEM.getId(item);
-//        Identifier inHandId = id.withPath(st -> "item/" + st + "_in_hand");
-//
-//        generator.upload(item, Models.GENERATED);
-//        inHandModel.upload(inHandId, TextureMap.layer0(inHandId), generator.modelCollector);
-//        generator.output.method_75343(item,
-//                ItemModels.select(
-//                        new DisplayContextProperty(),
-//                        ItemModels.basic(id.withPath(st -> "item/" + st + "_in_hand")),
-//                        ItemModels.switchCase(
-//                                Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED),
-//                                ItemModels.basic(id.withPath(st -> "item/" + st))
-//                        )
-//                )
-//        );
-//    }
+    private void createPactCrystal(ItemModelGenerator generator) {
+        Item item = ModItems.PACT_CRYSTAL;
+        Identifier baseId = ModelIds.getItemModelId(item);
+
+        Identifier CLEAR = Models.GENERATED.upload(
+                baseId.withSuffixedPath("_clear"),
+                TextureMap.layer0(baseId.withSuffixedPath("_clear")),
+                generator.modelCollector
+        );
+
+        generator.output.accept(item,
+                ItemModels.select(
+                        new PactCrystalProperty(),
+                        ItemModels.switchCase(
+                                "pact_clear",
+                                ItemModels.basic(Models.GENERATED.upload(
+                                        baseId.withSuffixedPath("_clear"),
+                                        TextureMap.layer0(baseId.withSuffixedPath("_clear")),
+                                        generator.modelCollector
+                                ))
+                        ),
+                        ItemModels.switchCase(
+                                "pact_half",
+                                ItemModels.basic(Models.GENERATED.upload(
+                                                baseId.withSuffixedPath("_half"),
+                                                TextureMap.layer0(baseId.withSuffixedPath("_half")),
+                                                generator.modelCollector
+                                        )
+                                )
+                        ),
+                        ItemModels.switchCase(
+                                "pact_full",
+                                ItemModels.basic(Models.GENERATED.upload(
+                                                baseId.withSuffixedPath("_full"),
+                                                TextureMap.layer0(baseId.withSuffixedPath("_full")),
+                                                generator.modelCollector
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+}

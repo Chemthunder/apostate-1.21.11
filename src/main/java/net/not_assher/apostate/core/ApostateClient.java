@@ -6,6 +6,7 @@ import net.minecraft.client.render.item.property.bool.BooleanProperties;
 import net.minecraft.client.render.item.property.select.SelectProperties;
 import net.not_assher.apostate.core.client.event.BountyDisplayEvent;
 import net.not_assher.apostate.core.client.item.KillContextProperty;
+import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.client.item.SignedContractProperty;
 
 import static net.not_assher.apostate.core.Apostate.id;
@@ -21,6 +22,7 @@ public class ApostateClient implements ClientModInitializer {
 
     private void bootstrapData() {
         SelectProperties.ID_MAPPER.put(KillContextProperty.ID, KillContextProperty.TYPE);
+        SelectProperties.ID_MAPPER.put(PactCrystalProperty.ID, PactCrystalProperty.TYPE);
         BooleanProperties.ID_MAPPER.put(SignedContractProperty.ID, SignedContractProperty.CODEC);
     }
 

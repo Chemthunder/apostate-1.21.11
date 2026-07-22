@@ -1,6 +1,10 @@
 // 1.21.11	-999999999-01-01T00:00:00	Apostate/Model Definitions
 7bed8bd75993acc615bf6ed07d66e7b48401ec2c assets/apostate/items/contract.json
+3d7dd7b77aa81c6b131f6f3e6ca9f0c20377c09c assets/apostate/items/pact_crystal.json
 a7f4a8edc8369a96fdf8d7c67c305bcee2216a5a assets/apostate/items/parchment.json
 0b23929936c9e52d847c37f622b7b8df93f9f8d5 assets/apostate/models/item/contract.json
 b13bb04410327c79e5f5caff63c35c2532fbe701 assets/apostate/models/item/contract_signed.json
+7bef2941300ff7749bfc33871b97184502980b1e assets/apostate/models/item/pact_crystal_clear.json
+276a7b34edd2ab9a5b4f69a79cde8bab7fda4339 assets/apostate/models/item/pact_crystal_full.json
+023355a34feb3effac8abc3ff9f57141523cbb42 assets/apostate/models/item/pact_crystal_half.json
 c1d9fc7586d09656998f5c0a7aa51b42d08a2d63 assets/apostate/models/item/parchment.json
