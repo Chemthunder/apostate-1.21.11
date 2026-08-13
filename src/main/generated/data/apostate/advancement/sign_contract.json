@@ -11,7 +11,7 @@
     },
     "icon": {
       "count": 1,
-      "id": "apostate:contract"
+      "id": "apostate:pact_crystal"
     },
     "title": {
       "translate": "advancements.apostate.sign_contract.title"

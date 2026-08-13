@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "d": "minecraft:yellow_dye",
-    "p": "apostate:parchment"
+    "p": "minecraft:paper"
   },
   "pattern": [
     "d",

@@ -104,7 +104,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         AdvancementEntry signContract = Advancement.Builder.createUntelemetered()
                 .parent(root)
                 .display(
-                        ModItems.CONTRACT,
+                        ModItems.PACT_CRYSTAL,
                         Text.translatable("advancements.apostate.sign_contract.title"),
                         Text.translatable("advancements.apostate.sign_contract.desc"),
                         null,

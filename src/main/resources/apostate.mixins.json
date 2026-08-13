@@ -5,8 +5,7 @@
   "mixins": [
     "LivingEntityMixin",
     "PlayerEntityMixin",
-    "ServerPlayerEntityMixin",
-    "SugarcaneBlockMixin"
+    "ServerPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

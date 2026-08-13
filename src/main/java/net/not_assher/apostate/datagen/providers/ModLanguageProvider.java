@@ -1,8 +1,10 @@
 package net.not_assher.apostate.datagen.providers;
 
+import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.not_assher.apostate.core.index.ModDamageTypes;
 import net.not_assher.apostate.core.index.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -31,7 +33,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("advancements.apostate.collect_bounty.desc", "Collect a Bounty.");
 
         translationBuilder.add("advancements.apostate.sign_contract.title", "Fettered & Chained");
-        translationBuilder.add("advancements.apostate.sign_contract.desc", "Sign a Contract, doesn't this feel familiar?");
+        translationBuilder.add("advancements.apostate.sign_contract.desc", "Complete a Pact Crystal, doesn't this feel familiar?");
 
         translationBuilder.add("itemGroup.apostate", "Apostate");
 
@@ -39,5 +41,13 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 
         translationBuilder.add("apostate.midnightconfig.title", "Apostate");
         translationBuilder.add("apostate.midnightconfig.showDisplays", "Show Bounty Poster Displays");
+
+        DataUtils.registerDamageType(
+                translationBuilder,
+                ModDamageTypes.PACT,
+                "%1$s signed away their soul",
+                "%1$s signed away their soul whilst fighting %2$s, wielding %3$s",
+                "%1$s signed away their soul whilst fighting %2$s"
+        );
     }
 }

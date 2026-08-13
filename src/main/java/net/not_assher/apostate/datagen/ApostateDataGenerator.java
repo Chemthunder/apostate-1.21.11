@@ -2,10 +2,10 @@ package net.not_assher.apostate.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.not_assher.apostate.datagen.providers.ModAdvancementProvider;
-import net.not_assher.apostate.datagen.providers.ModLanguageProvider;
-import net.not_assher.apostate.datagen.providers.ModModelProvider;
-import net.not_assher.apostate.datagen.providers.ModRecipeProvider;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
+import net.not_assher.apostate.core.index.ModDamageTypes;
+import net.not_assher.apostate.datagen.providers.*;
 
 public class ApostateDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fdg) {
@@ -16,5 +16,11 @@ public class ApostateDataGenerator implements DataGeneratorEntrypoint {
 
         pack.addProvider(ModAdvancementProvider::new);
         pack.addProvider(ModRecipeProvider::new);
+
+        pack.addProvider(ModDynamicRegistryProvider::new);
 	}
+
+    public void buildRegistry(RegistryBuilder registryBuilder) {
+        registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, ModDamageTypes.builder::bootstrap);
+    }
 }

@@ -5,6 +5,7 @@ import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.util.Identifier;
+import net.not_assher.apostate.core.cmnd.BungerCommand;
 import net.not_assher.apostate.core.cmnd.NicknameCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
 import net.not_assher.apostate.core.index.ModCriteria;
@@ -12,7 +13,8 @@ import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItemGroups;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.BountyPosterItem;
-import net.not_assher.apostate.core.item.ContractItem;
+import net.not_assher.apostate.core.item.PactCrystalItem;
+import net.not_assher.apostate.core.utilities.LootTableModifiers;
 import net.not_assher.apostate.ext.ModConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +40,8 @@ public class Apostate implements ModInitializer {
         this.bootstrapEvents();
         this.bootstrapExternal();
 
+        LootTableModifiers.init();
+
         LOGGER.info("~~~~~~~~~~~~~");
 	}
 
@@ -47,11 +51,12 @@ public class Apostate implements ModInitializer {
 
     private void createTooltips() {
         BountyPosterItem.Tooltip.create();
-        ContractItem.Tooltip.create();
+        PactCrystalItem.Tooltip.create();
     }
 
     private void createEvents() {
         NicknameCommand.create();
+        BungerCommand.create();
     }
 
     private void bootstrapEvents() {

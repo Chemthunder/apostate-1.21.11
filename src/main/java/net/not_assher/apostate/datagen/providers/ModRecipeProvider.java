@@ -24,17 +24,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("p")
                         .pattern("d")
                         .input('d', Items.YELLOW_DYE)
-                        .input('p', ModItems.PARCHMENT)
-                        .criterion("has_parchment", conditionsFromItem(ModItems.PARCHMENT))
-                        .offerTo(exporter);
-
-                createShaped(RecipeCategory.MISC, ModItems.CONTRACT)
-                        .pattern("pf")
-                        .pattern("r ")
-                        .input('f', Items.FEATHER)
-                        .input('p', ModItems.PARCHMENT)
-                        .input('r', Items.RED_DYE)
-                        .criterion("has_parchment", conditionsFromItem(ModItems.PARCHMENT))
+                        .input('p', Items.PAPER)
+                        .criterion("has_paper", conditionsFromItem(Items.PAPER))
                         .offerTo(exporter);
             }
         };
