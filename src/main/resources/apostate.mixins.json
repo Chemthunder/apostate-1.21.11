@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LivingEntityMixin",
-    "PlayerEntityMixin",
-    "ServerPlayerEntityMixin"
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -14,6 +13,7 @@
     "requireAnnotations": true
   },
   "client": [
-    "client.ItemFrameEntityRendererMixin"
+    "client.ItemFrameEntityRendererMixin",
+    "client.PlayerListHudMixin"
   ]
 }

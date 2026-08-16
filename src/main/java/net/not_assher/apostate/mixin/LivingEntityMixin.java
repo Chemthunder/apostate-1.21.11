@@ -1,10 +1,15 @@
 package net.not_assher.apostate.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Vec3d;
+import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.item.BountyPosterItem;
 import net.not_assher.apostate.core.utilities.ModUtils;
@@ -62,5 +67,26 @@ public abstract class LivingEntityMixin {
             return target.getNameForScoreboard().equals(bounty.targetName());
         }
         return false;
+    }
+
+    @Inject(method = "applyMovementInput", at = @At("HEAD"), cancellable = true)
+    public void mindsEye$forceZeroMovementInput(Vec3d movementInput, float slipperiness, CallbackInfoReturnable<Vec3d> cir) {
+        LivingEntity living = (LivingEntity)(Object)this;
+        if (living instanceof PlayerEntity player) {
+            if (PlayerComponent.KEY.get(player).isAfk()) {
+                cir.setReturnValue(Vec3d.ZERO);
+            }
+        }
+    }
+
+    @WrapMethod(method = "damage")
+    private boolean apostate$noDamageWhileAFK(ServerWorld world, DamageSource source, float amount, Operation<Boolean> original) {
+        LivingEntity living = (LivingEntity)(Object)this;
+        if (living instanceof PlayerEntity player) {
+            if (PlayerComponent.KEY.get(player).isAfk()) {
+                return false;
+            }
+        }
+        return original.call(world, source, amount);
     }
 }

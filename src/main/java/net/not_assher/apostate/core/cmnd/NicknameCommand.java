@@ -4,8 +4,11 @@ import com.mojang.brigadier.CommandDispatcher;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.MessageArgumentType;
+import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
@@ -23,6 +26,13 @@ public class NicknameCommand implements CommandRegistrationCallback {
                     PlayerComponent.KEY.get(context.getSource().getPlayerOrThrow()).setName(toSet);
 
                     context.getSource().sendFeedback(() -> Text.literal("Set nickname to " + toSet), false);
+
+                    ServerPlayerEntity target = context.getSource().getPlayer();
+                    ServerWorld serverWorld = target.getEntityWorld();
+
+                    for (ServerPlayerEntity player : serverWorld.getServer().getPlayerManager().getPlayerList()) {
+                        player.networkHandler.sendPacket(new PlayerListS2CPacket(PlayerListS2CPacket.Action.UPDATE_DISPLAY_NAME, context.getSource().getPlayer()));
+                    }
                     return SINGLE_SUCCESS;
                 })))
 

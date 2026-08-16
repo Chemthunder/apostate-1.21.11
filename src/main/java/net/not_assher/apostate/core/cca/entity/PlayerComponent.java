@@ -16,6 +16,8 @@ public class PlayerComponent implements AutoSyncedComponent {
     private final PlayerEntity player;
 
     private String name = "";
+    private boolean afk = false;
+    private boolean lore = false;
 
     public PlayerComponent(PlayerEntity player) {
         this.player = player;
@@ -27,10 +29,16 @@ public class PlayerComponent implements AutoSyncedComponent {
 
     public void readData(ReadView readView) {
         name = readView.getString("Name", "");
+
+        afk = readView.getBoolean("AFK", false);
+        lore = readView.getBoolean("Lore", lore);
     }
 
     public void writeData(WriteView writeView) {
         writeView.putString("Name", name);
+
+        writeView.putBoolean("AFK", afk);
+        writeView.putBoolean("Lore", lore);
     }
 
     public String getName() {
@@ -40,5 +48,23 @@ public class PlayerComponent implements AutoSyncedComponent {
     public void setName(String name) {
         this.name = name;
         this.sync();
+    }
+
+    public boolean isAfk() {
+        return afk;
+    }
+
+    public void setAfk(boolean afk) {
+        this.afk = afk;
+        sync();
+    }
+
+    public boolean isLore() {
+        return lore;
+    }
+
+    public void setLore(boolean lore) {
+        this.lore = lore;
+        sync();
     }
 }

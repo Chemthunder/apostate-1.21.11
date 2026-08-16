@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.cmnd.BungerCommand;
 import net.not_assher.apostate.core.cmnd.NicknameCommand;
+import net.not_assher.apostate.core.cmnd.StatusCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
@@ -57,6 +58,7 @@ public class Apostate implements ModInitializer {
     private void createEvents() {
         NicknameCommand.create();
         BungerCommand.create();
+        StatusCommand.create();
     }
 
     private void bootstrapEvents() {
