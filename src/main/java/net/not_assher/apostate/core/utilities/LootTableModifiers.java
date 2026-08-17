@@ -12,6 +12,9 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.index.ModItems;
 
+/**
+ * @author Chemthunder
+ */
 public class LootTableModifiers implements LootTableEvents.Modify {
     private static final Identifier VEX_ID = Identifier.ofVanilla("entities/vex");
 

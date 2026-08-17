@@ -4,6 +4,9 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.not_assher.apostate.core.index.ModCriteria;
 
+/**
+ * @author Chemthunder
+ */
 public class ApplyApostateAdvancementEvent implements ServerPlayerEvents.Join {
     public void onJoin(ServerPlayerEntity serverPlayerEntity) {
         ModCriteria.ROOT.trigger(serverPlayerEntity);

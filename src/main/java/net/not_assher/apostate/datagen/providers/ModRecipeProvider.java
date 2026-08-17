@@ -11,6 +11,9 @@ import net.not_assher.apostate.core.index.ModItems;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author Chemthunder
+ */
 public class ModRecipeProvider extends FabricRecipeProvider {
     public ModRecipeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);

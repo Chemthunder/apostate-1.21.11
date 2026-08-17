@@ -17,6 +17,9 @@ import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
+/**
+ * @author Chemthunder
+ */
 public class NicknameCommand implements CommandRegistrationCallback {
     public void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess access, CommandManager.RegistrationEnvironment registrationEnvironment) {
         dispatcher.register(literal("nick")

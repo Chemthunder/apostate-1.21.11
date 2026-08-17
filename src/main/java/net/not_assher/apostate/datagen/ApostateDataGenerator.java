@@ -7,6 +7,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.not_assher.apostate.core.index.ModDamageTypes;
 import net.not_assher.apostate.datagen.providers.*;
 
+/**
+ * @author Chemthunder
+ */
 public class ApostateDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fdg) {
         var pack = fdg.createPack();

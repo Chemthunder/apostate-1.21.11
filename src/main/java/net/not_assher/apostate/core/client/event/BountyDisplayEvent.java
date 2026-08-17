@@ -17,6 +17,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * @author Chemthunder
+ */
 public class BountyDisplayEvent implements HudElement {
     public void render(@NotNull DrawContext drawContext, @NotNull RenderTickCounter renderTickCounter) {
         MinecraftClient client = MinecraftClient.getInstance();

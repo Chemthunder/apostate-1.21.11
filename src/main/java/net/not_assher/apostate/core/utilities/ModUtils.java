@@ -7,6 +7,9 @@ import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.utilities.records.Bounty;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * @author Chemthunder
+ */
 public class ModUtils {
     @Nullable
     public static ItemStack checkIfBounty(PlayerEntity player) {

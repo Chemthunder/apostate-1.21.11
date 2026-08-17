@@ -8,6 +8,9 @@ import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
+/**
+ * @author Chemthunder
+ */
 public class PlayerComponent implements AutoSyncedComponent {
     public static final ComponentKey<PlayerComponent> KEY = ComponentRegistry.getOrCreate(
             Apostate.id("player"),
@@ -16,6 +19,7 @@ public class PlayerComponent implements AutoSyncedComponent {
     private final PlayerEntity player;
 
     private String name = "";
+
     private boolean afk = false;
     private boolean lore = false;
 

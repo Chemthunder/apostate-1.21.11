@@ -14,6 +14,9 @@ import net.not_assher.apostate.core.utilities.enums.KillContext;
 import net.not_assher.apostate.core.utilities.records.Bounty;
 import org.jspecify.annotations.Nullable;
 
+/**
+ * @author Chemthunder
+ */
 public record KillContextProperty() implements SelectProperty<KillContext> {
     public static final Identifier ID = Apostate.id("kill_context");
 

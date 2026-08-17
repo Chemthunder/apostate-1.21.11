@@ -8,6 +8,9 @@ import net.minecraft.util.Formatting;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(value = PlayerEntity.class)
 public abstract class PlayerEntityMixin {
 

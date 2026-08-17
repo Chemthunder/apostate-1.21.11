@@ -11,14 +11,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(value = ItemFrameEntityRenderer.class)
 public abstract class ItemFrameEntityRendererMixin<T extends ItemFrameEntity> extends EntityRenderer<T, ItemFrameEntityRenderState> {
     protected ItemFrameEntityRendererMixin(EntityRendererFactory.Context context) {
         super(context);
     }
 
-    @Inject(method = "updateRenderState(Lnet/minecraft/entity/decoration/ItemFrameEntity;Lnet/minecraft/client/render/entity/state/ItemFrameEntityRenderState;F)V", at = @At(value = "TAIL"))
-    private void aspos(T itemFrameEntity, ItemFrameEntityRenderState itemFrameEntityRenderState, float f, CallbackInfo ci) {
+    @Inject(
+            method = "updateRenderState(Lnet/minecraft/entity/decoration/ItemFrameEntity;Lnet/minecraft/client/render/entity/state/ItemFrameEntityRenderState;F)V",
+            at = @At(
+                    value = "TAIL"
+            )
+    )
+    private void apostate$hideItemFrames(T itemFrameEntity, ItemFrameEntityRenderState itemFrameEntityRenderState, float f, CallbackInfo ci) {
         if (itemFrameEntity.getHeldItemStack().getItem() instanceof BountyPosterItem) {
             itemFrameEntityRenderState.invisible = true;
         }

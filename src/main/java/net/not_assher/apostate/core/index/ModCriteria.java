@@ -6,6 +6,9 @@ import net.not_assher.apostate.core.Apostate;
 
 import static net.not_assher.apostate.core.Apostate.MOD_ID;
 
+/**
+ * @author Chemthunder
+ */
 public interface ModCriteria {
     CriterionRegistrant rant = new CriterionRegistrant(MOD_ID);
 

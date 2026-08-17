@@ -31,9 +31,9 @@ public class FlexCommand implements CommandRegistrationCallback {
                             server.getPlayerManager().broadcast(Text.empty()
                                             .append(context.getSource().getName())
                                             .append(Text.literal(" is displaying: "))
-                                            .append(Text.literal("[").formatted(Formatting.LIGHT_PURPLE)
-                                                    .append(stack.getName())
-                                                    .append(Text.literal("]").formatted(Formatting.LIGHT_PURPLE)
+                                            .append(Text.literal("").formatted(Formatting.LIGHT_PURPLE)
+                                                    .append(stack.toHoverableText())
+                                                    .append(Text.literal("").formatted(Formatting.LIGHT_PURPLE)
                                                             .append(Text.literal(" (" + stack.getItem() + ")").formatted(Formatting.DARK_GRAY))
                                                     )
                                             ),

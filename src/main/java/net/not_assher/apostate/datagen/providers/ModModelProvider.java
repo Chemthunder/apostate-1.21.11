@@ -8,6 +8,9 @@ import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.index.ModItems;
 
+/**
+ * @author Chemthunder
+ */
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
         super(output);

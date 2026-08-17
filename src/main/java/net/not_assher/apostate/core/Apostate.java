@@ -21,6 +21,9 @@ import net.not_assher.apostate.ext.ModConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author Chemthunder
+ */
 public class Apostate implements ModInitializer {
 	public static final String MOD_ID = "apostate";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
