@@ -76,3 +76,5 @@ public class Apostate implements ModInitializer {
         MidnightConfig.init(MOD_ID, ModConfig.class);
     }
 }
+
+//
