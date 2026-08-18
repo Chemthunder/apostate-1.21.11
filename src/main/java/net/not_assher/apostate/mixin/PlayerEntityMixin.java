@@ -33,11 +33,7 @@ public abstract class PlayerEntityMixin {
         PlayerEntity player = (PlayerEntity) (Object) this;
 
         if (!PlayerComponent.KEY.get(player).getName().isBlank()) {
-            if (PlayerComponent.KEY.get(player).isAfk()) {
-                return Text.literal(PlayerComponent.KEY.get(player).getName()).append(Text.literal(" [AFK]").formatted(Formatting.DARK_GRAY));
-            } else {
-                return Text.literal(PlayerComponent.KEY.get(player).getName());
-            }
+            return Text.literal(PlayerComponent.KEY.get(player).getName());
         }
         return original.call();
     }

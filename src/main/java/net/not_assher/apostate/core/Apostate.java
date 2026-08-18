@@ -5,11 +5,11 @@ import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.util.Identifier;
-import net.not_assher.apostate.core.cmnd.BungerCommand;
 import net.not_assher.apostate.core.cmnd.FlexCommand;
 import net.not_assher.apostate.core.cmnd.NicknameCommand;
 import net.not_assher.apostate.core.cmnd.StatusCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
+import net.not_assher.apostate.core.event.DebugRelogEvent;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItemGroups;
@@ -61,9 +61,10 @@ public class Apostate implements ModInitializer {
 
     private void createEvents() {
         NicknameCommand.create();
-        BungerCommand.create();
         StatusCommand.create();
         FlexCommand.create();
+
+        ServerPlayerEvents.JOIN.register(new DebugRelogEvent());
     }
 
     private void bootstrapEvents() {
@@ -76,5 +77,3 @@ public class Apostate implements ModInitializer {
         MidnightConfig.init(MOD_ID, ModConfig.class);
     }
 }
-
-//
