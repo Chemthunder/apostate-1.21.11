@@ -4,8 +4,8 @@ import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
-import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.index.ModItems;
+import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.index.data.ModEnchantments;
 
 import java.util.concurrent.CompletableFuture;

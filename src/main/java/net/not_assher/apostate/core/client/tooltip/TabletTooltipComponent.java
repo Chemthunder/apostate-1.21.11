@@ -4,10 +4,8 @@ import net.acoyt.acornlib.api.util.MiscUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.tooltip.TooltipComponent;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -87,13 +85,6 @@ public class TabletTooltipComponent implements TooltipComponent {
                     x + 20,
                     y,
                     y + 50,
-                    0xFF4d4d4d
-            );
-
-            context.drawHorizontalLine(
-                    x,
-                    x + width,
-                    y + (height / 2),
                     0xFF4d4d4d
             );
         }

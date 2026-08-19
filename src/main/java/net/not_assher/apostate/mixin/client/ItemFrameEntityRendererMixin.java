@@ -6,7 +6,6 @@ import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
 import net.minecraft.client.render.entity.state.ItemFrameEntityRenderState;
 import net.minecraft.entity.decoration.ItemFrameEntity;
 import net.not_assher.apostate.core.index.data.ModItemTags;
-import net.not_assher.apostate.core.item.BountyPosterItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

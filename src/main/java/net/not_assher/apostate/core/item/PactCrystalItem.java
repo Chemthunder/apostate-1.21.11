@@ -15,8 +15,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModCriteria;
-import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.utilities.records.Pact;
 import org.jspecify.annotations.Nullable;
 

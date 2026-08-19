@@ -1,10 +1,8 @@
 package net.not_assher.apostate.datagen.providers;
 
-import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.client.data.*;
-import net.minecraft.client.render.item.model.ItemModel;
 import net.minecraft.client.render.item.property.select.DisplayContextProperty;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDisplayContext;

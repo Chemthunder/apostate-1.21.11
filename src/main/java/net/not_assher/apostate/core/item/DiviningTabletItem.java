@@ -48,7 +48,6 @@ public class DiviningTabletItem extends Item {
         if (!tablet.isEmpty()) {
             if (tablet.hunted() != null && !tablet.ingredient().isEmpty()) {
                 PlayerEntity target = null;
-
                 for (PlayerEntity capture : world.getPlayers()) {
                     if (capture.getGameProfile().name().equals(tablet.hunted().getGameProfile().name())) {
                         target = capture;
@@ -99,7 +98,7 @@ public class DiviningTabletItem extends Item {
                     }
                     return ActionResult.SUCCESS;
                 } else {
-                    user.sendMessage(Text.literal("The targeted player is not currently online!"), true);
+                    user.sendMessage(Text.literal("The targeted player is not trackable!"), true);
                     return ActionResult.FAIL;
                 }
             }
@@ -132,7 +131,7 @@ public class DiviningTabletItem extends Item {
             );
 
             target.sendMessage(Text.literal("Your position has been revealed to ").append(Text.literal(target.getName().getString() + "!")), true);
-            target.playSound(SoundEvents.ENTITY_WITHER_DEATH);
+            target.playSound(SoundEvents.ENTITY_WITHER_DEATH, 0.3F, 1);
         }
 
         if (ingredient.equals(Items.ECHO_SHARD)) {
