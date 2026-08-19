@@ -3,7 +3,10 @@
   "package": "net.not_assher.apostate.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AnvilBlockMixin",
+    "CrossbowItemMixin",
     "LivingEntityMixin",
+    "PersistentProjectileEntityMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin"
   ],
@@ -15,6 +18,7 @@
   },
   "client": [
     "client.ItemFrameEntityRendererMixin",
+    "client.MinecraftClientMixin",
     "client.PlayerListHudMixin"
   ]
 }

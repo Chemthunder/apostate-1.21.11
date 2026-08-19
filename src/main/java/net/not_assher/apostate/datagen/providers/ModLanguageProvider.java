@@ -4,8 +4,9 @@ import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
-import net.not_assher.apostate.core.index.ModDamageTypes;
+import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.index.ModItems;
+import net.not_assher.apostate.core.index.data.ModEnchantments;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -35,6 +36,9 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("advancements.apostate.sign_contract.title", "Fettered & Chained");
         translationBuilder.add("advancements.apostate.sign_contract.desc", "Complete a Pact Crystal, doesn't this feel familiar?");
 
+        translationBuilder.add("advancements.apostate.use_tablet.title", "The Hunt Begins.");
+        translationBuilder.add("advancements.apostate.use_tablet.desc", "Use a Divining Tablet to locate your target through several means.");
+
         translationBuilder.add("itemGroup.apostate", "Apostate");
 
         translationBuilder.add("bounty.collect", "%s has collected a Bounty on %s's head");
@@ -48,6 +52,13 @@ public class ModLanguageProvider extends FabricLanguageProvider {
                 "%1$s signed away their soul",
                 "%1$s signed away their soul whilst fighting %2$s, wielding %3$s",
                 "%1$s signed away their soul whilst fighting %2$s"
+        );
+
+        DataUtils.registerEnchantment(
+                translationBuilder,
+                ModEnchantments.LASSO,
+                "Lasso",
+                "Will ensnare enemies hit by the projectile, pulling them towards the source at great speeds."
         );
     }
 }

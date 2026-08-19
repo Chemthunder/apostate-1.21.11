@@ -1,0 +1,20 @@
+{
+  "values": [
+    "minecraft:quick_charge",
+    "minecraft:mending",
+    "minecraft:multishot",
+    "minecraft:piercing",
+    {
+      "id": "enchancement:brimstone",
+      "required": false
+    },
+    {
+      "id": "enchancement:torch",
+      "required": false
+    },
+    {
+      "id": "enchancement:scatter",
+      "required": false
+    }
+  ]
+}

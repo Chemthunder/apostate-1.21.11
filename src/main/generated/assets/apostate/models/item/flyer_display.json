@@ -1,0 +1,6 @@
+{
+  "parent": "apostate:item/template/displayed",
+  "textures": {
+    "layer0": "apostate:item/flyer_display"
+  }
+}

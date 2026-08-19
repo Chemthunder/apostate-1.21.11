@@ -1,8 +1,11 @@
 package net.not_assher.apostate.core.index;
 
+import com.mojang.serialization.Codec;
 import net.acoyt.acornlib.api.registrants.DataComponentTypeRegistrant;
 import net.minecraft.component.ComponentType;
+import net.minecraft.network.codec.PacketCodecs;
 import net.not_assher.apostate.core.Apostate;
+import net.not_assher.apostate.core.item.component.TabletComponent;
 import net.not_assher.apostate.core.utilities.records.Bounty;
 import net.not_assher.apostate.core.utilities.records.Pact;
 
@@ -24,6 +27,24 @@ public interface ModDataComponentTypes {
             "stored_pact",
             Pact.CODEC,
             Pact.PACKET
+    );
+
+    ComponentType<TabletComponent> TABLET = DCT.register(
+            "tablet_component",
+            TabletComponent.CODEC,
+            TabletComponent.PACKET
+    );
+
+    ComponentType<Integer> INTEGER = DCT.register(
+            "integer",
+            Codec.INT,
+            PacketCodecs.INTEGER
+    );
+
+    ComponentType<String> STRING = DCT.register(
+            "string",
+            Codec.STRING,
+            PacketCodecs.STRING
     );
 
     static void init() {

@@ -2,10 +2,7 @@ package net.not_assher.apostate.datagen.providers;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.advancement.AdvancementFrame;
-import net.minecraft.advancement.AdvancementRequirements;
+import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.TickCriterion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryWrapper;
@@ -25,6 +22,7 @@ import java.util.function.Consumer;
 /**
  * @author Chemthunder
  */
+@SuppressWarnings("unused")
 public class ModAdvancementProvider extends FabricAdvancementProvider {
     public ModAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(output, registryLookup);
@@ -58,24 +56,6 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 true
         ));
 
-        AdvancementEntry placeBounty = Advancement.Builder.createUntelemetered()
-                .parent(root)
-                .display(
-                        placeBountyStack,
-                        Text.translatable("advancements.apostate.place_bounty.title"),
-                        Text.translatable("advancements.apostate.place_bounty.desc"),
-                        null,
-                        AdvancementFrame.TASK,
-                        true,
-                        true,
-                        false
-                ).requirements(AdvancementRequirements.allOf(List.of("e")))
-                .criteriaMerger(AdvancementRequirements.CriterionMerger.AND)
-                .criterion("e", ModCriteria.PLACE_BOUNTY.create(new TickCriterion.Conditions(Optional.empty())))
-                .build(Apostate.id("place_bounty"));
-
-        consumer.accept(placeBounty);
-
         ItemStack collectBountyStack = new ItemStack(ModItems.BOUNTY_POSTER);
         collectBountyStack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
                 "",
@@ -86,30 +66,54 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 true
         ));
 
-        AdvancementEntry collectBounty = Advancement.Builder.createUntelemetered()
-                .parent(placeBounty)
-                .display(
+        AdvancementEntry placeBounty = generateBasicAdvancement(
+                consumer,
+                root,
+                new AdvancementContext(
+                        placeBountyStack,
+                        "place_bounty",
+                        ModCriteria.PLACE_BOUNTY.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
+
+        AdvancementEntry collectBounty = generateBasicAdvancement(
+                consumer,
+                placeBounty,
+                new AdvancementContext(
                         collectBountyStack,
-                        Text.translatable("advancements.apostate.collect_bounty.title"),
-                        Text.translatable("advancements.apostate.collect_bounty.desc"),
-                        null,
-                        AdvancementFrame.TASK,
-                        true,
-                        true,
-                        false
-                ).requirements(AdvancementRequirements.allOf(List.of("e")))
-                .criteriaMerger(AdvancementRequirements.CriterionMerger.AND)
-                .criterion("e", ModCriteria.COLLECT_BOUNTY.create(new TickCriterion.Conditions(Optional.empty())))
-                .build(Apostate.id("collect_bounty"));
+                        "collect_bounty",
+                        ModCriteria.COLLECT_BOUNTY.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
 
-        consumer.accept(collectBounty);
+        AdvancementEntry signContract = generateBasicAdvancement(
+                consumer,
+                root,
+                new AdvancementContext(
+                        ModItems.PACT_CRYSTAL.getDefaultStack(),
+                        "sign_contract",
+                        ModCriteria.SIGN_CONTRACT.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
 
-        AdvancementEntry signContract = Advancement.Builder.createUntelemetered()
+        AdvancementEntry useTablet = generateBasicAdvancement(
+                consumer,
+                root,
+                new AdvancementContext(
+                        ModItems.DIVINING_TABLET.getDefaultStack(),
+                        "use_tablet",
+                        ModCriteria.USE_TABLET.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
+    }
+
+    private AdvancementEntry generateBasicAdvancement(Consumer<AdvancementEntry> consumer, AdvancementEntry root, AdvancementContext context) {
+        AdvancementEntry generated = Advancement.Builder.createUntelemetered()
                 .parent(root)
                 .display(
-                        ModItems.PACT_CRYSTAL,
-                        Text.translatable("advancements.apostate.sign_contract.title"),
-                        Text.translatable("advancements.apostate.sign_contract.desc"),
+                        context.displayStack,
+                        Text.translatable("advancements.apostate." + context.title + ".title"),
+                        Text.translatable("advancements.apostate." + context.title + ".desc"),
                         null,
                         AdvancementFrame.TASK,
                         true,
@@ -117,9 +121,12 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         false
                 ).requirements(AdvancementRequirements.allOf(List.of("e")))
                 .criteriaMerger(AdvancementRequirements.CriterionMerger.AND)
-                .criterion("e", ModCriteria.SIGN_CONTRACT.create(new TickCriterion.Conditions(Optional.empty())))
-                .build(Apostate.id("sign_contract"));
+                .criterion("e", context.criterion)
+                .build(Apostate.id(context.title));
 
-        consumer.accept(signContract);
+        consumer.accept(generated);
+        return generated;
     }
+
+    private record AdvancementContext(ItemStack displayStack, String title, AdvancementCriterion<?> criterion) {}
 }

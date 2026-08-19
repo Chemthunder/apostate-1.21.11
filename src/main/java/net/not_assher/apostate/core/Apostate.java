@@ -5,17 +5,16 @@ import net.acoyt.acornlib.api.ALib;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.minecraft.util.Identifier;
-import net.not_assher.apostate.core.cmnd.FlexCommand;
-import net.not_assher.apostate.core.cmnd.NicknameCommand;
-import net.not_assher.apostate.core.cmnd.StatusCommand;
+import net.not_assher.apostate.core.command.FlexCommand;
+import net.not_assher.apostate.core.command.NicknameCommand;
+import net.not_assher.apostate.core.command.StatusCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
 import net.not_assher.apostate.core.event.DebugRelogEvent;
-import net.not_assher.apostate.core.index.ModCriteria;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
-import net.not_assher.apostate.core.index.ModItemGroups;
-import net.not_assher.apostate.core.index.ModItems;
+import net.not_assher.apostate.core.index.*;
 import net.not_assher.apostate.core.item.BountyPosterItem;
+import net.not_assher.apostate.core.item.FlyerItem;
 import net.not_assher.apostate.core.item.PactCrystalItem;
+import net.not_assher.apostate.core.networking.ModNetworking;
 import net.not_assher.apostate.core.utilities.LootTableModifiers;
 import net.not_assher.apostate.ext.ModConfig;
 import org.slf4j.Logger;
@@ -38,6 +37,10 @@ public class Apostate implements ModInitializer {
         ModDataComponentTypes.init();
         ModItemGroups.init();
         ModCriteria.init();
+        ModEnchantmentEffects.init();
+
+        ModNetworking.init();
+        ModNetworking.c2s();
 
         this.createTooltips();
         this.createEvents();
@@ -57,6 +60,7 @@ public class Apostate implements ModInitializer {
     private void createTooltips() {
         BountyPosterItem.Tooltip.create();
         PactCrystalItem.Tooltip.create();
+        FlyerItem.Tooltip.create();
     }
 
     private void createEvents() {

@@ -1,0 +1,36 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "cases": [
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/divining_tablet_empty"
+        },
+        "when": "tablet_empty"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/divining_tablet_amethyst_shard"
+        },
+        "when": "tablet_amethyst_shard"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/divining_tablet_emerald"
+        },
+        "when": "tablet_emerald"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/divining_tablet_echo_shard"
+        },
+        "when": "tablet_echo_shard"
+      }
+    ],
+    "property": "apostate:tablet"
+  }
+}

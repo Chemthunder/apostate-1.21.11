@@ -4,7 +4,6 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 import org.spongepowered.asm.mixin.Mixin;
 
@@ -13,20 +12,6 @@ import org.spongepowered.asm.mixin.Mixin;
  */
 @Mixin(value = PlayerEntity.class)
 public abstract class PlayerEntityMixin {
-
-    @WrapMethod(method = "getName")
-    private Text apostate$applyNick(Operation<Text> original) {
-        PlayerEntity player = (PlayerEntity) (Object) this;
-
-        if (!PlayerComponent.KEY.get(player).getName().isBlank()) {
-            if (PlayerComponent.KEY.get(player).isAfk()) {
-                return Text.literal(PlayerComponent.KEY.get(player).getName()).append(Text.literal(" [AFK]").formatted(Formatting.DARK_GRAY));
-            } else {
-                return Text.literal(PlayerComponent.KEY.get(player).getName());
-            }
-        }
-        return original.call();
-    }
 
     @WrapMethod(method = "getDisplayName")
     private Text apostate$applyNickDisplay(Operation<Text> original) {

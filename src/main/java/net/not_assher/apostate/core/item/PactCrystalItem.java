@@ -15,7 +15,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModCriteria;
-import net.not_assher.apostate.core.index.ModDamageTypes;
+import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.utilities.records.Pact;
 import org.jspecify.annotations.Nullable;
@@ -39,7 +39,7 @@ public class PactCrystalItem extends Item {
                 if (pact.owner().isBlank() && pact.signer().isBlank()) {
                     stack.set(ModDataComponentTypes.STORED_PACT, new Pact(
                                     pact.signer(),
-                                    user.getDisplayName().toString(),
+                                    user.getName().getString(),
                                     false
                             )
                     );
@@ -53,7 +53,7 @@ public class PactCrystalItem extends Item {
 
                 if (!pact.owner().isBlank() && pact.signer().isBlank()) {
                     stack.set(ModDataComponentTypes.STORED_PACT, new Pact(
-                                    user.getNameForScoreboard(),
+                                    user.getName().getString(),
                                     pact.owner(),
                                     false
                             )

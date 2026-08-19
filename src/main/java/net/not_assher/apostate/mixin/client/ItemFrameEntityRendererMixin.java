@@ -5,6 +5,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
 import net.minecraft.client.render.entity.state.ItemFrameEntityRenderState;
 import net.minecraft.entity.decoration.ItemFrameEntity;
+import net.not_assher.apostate.core.index.data.ModItemTags;
 import net.not_assher.apostate.core.item.BountyPosterItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,7 +28,7 @@ public abstract class ItemFrameEntityRendererMixin<T extends ItemFrameEntity> ex
             )
     )
     private void apostate$hideItemFrames(T itemFrameEntity, ItemFrameEntityRenderState itemFrameEntityRenderState, float f, CallbackInfo ci) {
-        if (itemFrameEntity.getHeldItemStack().getItem() instanceof BountyPosterItem) {
+        if (itemFrameEntity.getHeldItemStack().isIn(ModItemTags.HIDES_FRAME)) {
             itemFrameEntityRenderState.invisible = true;
         }
     }

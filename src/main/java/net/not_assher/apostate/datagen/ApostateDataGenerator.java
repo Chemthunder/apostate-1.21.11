@@ -4,7 +4,8 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
-import net.not_assher.apostate.core.index.ModDamageTypes;
+import net.not_assher.apostate.core.index.data.ModDamageTypes;
+import net.not_assher.apostate.core.index.data.ModEnchantments;
 import net.not_assher.apostate.datagen.providers.*;
 
 /**
@@ -21,9 +22,14 @@ public class ApostateDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModRecipeProvider::new);
 
         pack.addProvider(ModDynamicRegistryProvider::new);
+
+        pack.addProvider(ModItemTagProvider::new);
+        pack.addProvider(ModEnchantmentTagProvider::new);
 	}
 
     public void buildRegistry(RegistryBuilder registryBuilder) {
         registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, ModDamageTypes.builder::bootstrap);
+
+        registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantments::bootstrap);
     }
 }

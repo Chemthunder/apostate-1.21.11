@@ -24,7 +24,7 @@ public record PactCrystalProperty() implements SelectProperty<String> {
             Codec.STRING
     );
 
-    public @Nullable String getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
+    public String getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
         Pact pact = stack.getOrDefault(ModDataComponentTypes.STORED_PACT, Pact.EMPTY);
 
         if (!pact.completed()) {

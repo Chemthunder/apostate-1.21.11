@@ -7,6 +7,7 @@ import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import net.not_assher.apostate.core.index.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -28,6 +29,24 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("d")
                         .input('d', Items.YELLOW_DYE)
                         .input('p', Items.PAPER)
+                        .criterion("has_paper", conditionsFromItem(Items.PAPER))
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.MISC, ModItems.DIVINING_TABLET)
+                        .pattern("tdt")
+                        .pattern("dld")
+                        .pattern("tdt")
+                        .input('t', Items.TUFF)
+                        .input('d', ModItems.IMMORTAL_DUST)
+                        .input('l', Items.LODESTONE)
+                        .criterion("has_immortal_dust", conditionsFromItem(ModItems.IMMORTAL_DUST))
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.MISC, ModItems.FLYER)
+                        .pattern("pd")
+                        .pattern("d ")
+                        .input('p', Items.PAPER)
+                        .input('d', ItemTags.WOOL)
                         .criterion("has_paper", conditionsFromItem(Items.PAPER))
                         .offerTo(exporter);
             }

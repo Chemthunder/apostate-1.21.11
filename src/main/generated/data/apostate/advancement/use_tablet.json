@@ -1,0 +1,25 @@
+{
+  "parent": "apostate:root",
+  "criteria": {
+    "e": {
+      "trigger": "apostate:use_tablet"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.use_tablet.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostate:divining_tablet"
+    },
+    "title": {
+      "translate": "advancements.apostate.use_tablet.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_immortal_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "apostate:immortal_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "apostate:divining_tablet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_immortal_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "apostate:divining_tablet"
+    ]
+  }
+}

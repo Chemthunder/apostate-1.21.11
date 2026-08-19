@@ -6,10 +6,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.Vec3d;
+import net.not_assher.apostate.core.Apostate;
+import net.not_assher.apostate.core.cca.entity.LassoProjectileComponent;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
+import net.not_assher.apostate.core.cca.entity.LassoComponent;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.item.BountyPosterItem;
 import net.not_assher.apostate.core.utilities.ModUtils;
@@ -26,6 +32,27 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 @Mixin(value = LivingEntity.class)
 public abstract class LivingEntityMixin {
+    @Inject(method = "damage", at = @At(value = "TAIL"))
+    private void apostate$freeFromLasso(ServerWorld world, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        LassoComponent lasso = LassoComponent.KEY.get(self);
+
+        if (lasso.getDuration() > 0) {
+            lasso.remove();
+        }
+    }
+
+    @WrapMethod(method = "travel")
+    private void apostate$stopMovementWhenLassoed(Vec3d movementInput, Operation<Void> original) {
+        LivingEntity self = (LivingEntity) (Object) this;
+        LassoComponent lasso = LassoComponent.KEY.get(self);
+
+        if (lasso.getDuration() > 0) {
+            original.call(Vec3d.ZERO);
+            return;
+        }
+        original.call(movementInput);
+    }
 
     @Inject(method = "tryUseDeathProtector", at = @At(value = "TAIL"))
     private void apostate$redeemBounty(DamageSource source, CallbackInfoReturnable<Boolean> cir) {

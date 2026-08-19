@@ -10,14 +10,16 @@ import static net.not_assher.apostate.core.Apostate.MOD_ID;
  * @author Chemthunder
  */
 public interface ModCriteria {
-    CriterionRegistrant rant = new CriterionRegistrant(MOD_ID);
+    CriterionRegistrant CRITERIA = new CriterionRegistrant(MOD_ID);
 
-    TickCriterion ROOT = rant.register("root", new TickCriterion());
+    TickCriterion ROOT = CRITERIA.register("root", new TickCriterion());
 
-    TickCriterion PLACE_BOUNTY = rant.register("place_bounty", new TickCriterion());
-    TickCriterion COLLECT_BOUNTY = rant.register("collect_bounty", new TickCriterion());
+    TickCriterion PLACE_BOUNTY = CRITERIA.register("place_bounty", new TickCriterion());
+    TickCriterion COLLECT_BOUNTY = CRITERIA.register("collect_bounty", new TickCriterion());
 
-    TickCriterion SIGN_CONTRACT = rant.register("sign_contract", new TickCriterion());
+    TickCriterion SIGN_CONTRACT = CRITERIA.register("sign_contract", new TickCriterion());
+
+    TickCriterion USE_TABLET = CRITERIA.register("use_tablet", new TickCriterion());
 
     static void init() {
         Apostate.LOGGER.info("Registered Criterions");
