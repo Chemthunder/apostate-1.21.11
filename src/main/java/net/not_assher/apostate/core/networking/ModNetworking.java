@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.not_assher.apostate.core.networking.c2s.FlyerEditPayload;
+import net.not_assher.apostate.core.networking.s2c.OpenBountyBookPayload;
 import net.not_assher.apostate.core.networking.s2c.OpenFlyerPayload;
 
 /**
@@ -16,6 +17,7 @@ public interface ModNetworking {
         PayloadTypeRegistry.playC2S().register(FlyerEditPayload.ID, FlyerEditPayload.CODEC);
 
         PayloadTypeRegistry.playS2C().register(OpenFlyerPayload.ID, OpenFlyerPayload.CODEC);
+        PayloadTypeRegistry.playS2C().register(OpenBountyBookPayload.ID, OpenBountyBookPayload.CODEC);
     }
 
     static void c2s() {
@@ -25,5 +27,6 @@ public interface ModNetworking {
     @Environment(EnvType.CLIENT)
     static void s2c() {
         ClientPlayNetworking.registerGlobalReceiver(OpenFlyerPayload.ID, new OpenFlyerPayload.Receiver());
+        ClientPlayNetworking.registerGlobalReceiver(OpenBountyBookPayload.ID, new OpenBountyBookPayload.Receiver());
     }
 }

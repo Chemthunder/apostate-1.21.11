@@ -1,5 +1,7 @@
 // 1.21.11	-999999999-01-01T00:00:00	Apostate/Apostate Recipes
 47a1ba9c353fc6236ffa1b87b1b9119c487ec62c data/apostate/advancement/recipes/misc/bounty_poster.json
 170e49f04ab0e4a75036f758249fa364532ca9bb data/apostate/advancement/recipes/misc/divining_tablet.json
+d6379a768ad72ee67204119b00cba481ae1972d2 data/apostate/advancement/recipes/misc/flyer.json
 2cf78da86467f2ee85a78df1474f5e38a9a52f2f data/apostate/recipe/bounty_poster.json
 a67d88edc335a9ecb380112fe344e0a28efefb7c data/apostate/recipe/divining_tablet.json
+f8fa0ed5f7821e74f1e28ddea1299eb4e9c585e8 data/apostate/recipe/flyer.json

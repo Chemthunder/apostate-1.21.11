@@ -5,12 +5,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Rarity;
 import net.not_assher.apostate.core.Apostate;
-import net.not_assher.apostate.core.item.BountyPosterItem;
-import net.not_assher.apostate.core.item.DiviningTabletItem;
-import net.not_assher.apostate.core.item.FlyerItem;
-import net.not_assher.apostate.core.item.PactCrystalItem;
+import net.not_assher.apostate.core.item.*;
+import net.not_assher.apostate.core.item.component.BookComponent;
 import net.not_assher.apostate.core.item.component.TabletComponent;
 import net.not_assher.apostate.core.utilities.records.Bounty;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.not_assher.apostate.core.Apostate.LOGGER;
 
@@ -22,6 +23,13 @@ public interface ModItems {
 
     Item BOUNTY_POSTER = ITEMS.register("bounty_poster", BountyPosterItem::new, new Item.Settings()
             .component(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY)
+            .component(ModDataComponentTypes.STACK_LIST, new ArrayList<>())
+    );
+
+    Item BOUNTY_BOOK = ITEMS.register("bounty_book", BountyBookItem::new, new Item.Settings()
+            .maxCount(1)
+            .rarity(Rarity.UNCOMMON)
+            .component(ModDataComponentTypes.BOOK, new BookComponent(new ArrayList<>()))
     );
 
     Item PACT_CRYSTAL = ITEMS.register("pact_crystal", PactCrystalItem::new, new Item.Settings()

@@ -32,6 +32,7 @@ public class ModModelProvider extends FabricModelProvider {
         createFlyer(itemModelGenerator);
 
         itemModelGenerator.register(ModItems.IMMORTAL_DUST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BOUNTY_BOOK, Models.GENERATED);
     }
 
     private void createFlyer(ItemModelGenerator generator) {

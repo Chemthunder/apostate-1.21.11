@@ -17,6 +17,7 @@
   "death.attack.pact.player": "%1$s signed away their soul whilst fighting %2$s",
   "enchantment.apostate.lasso": "Lasso",
   "enchantment.apostate.lasso.desc": "Will ensnare enemies hit by the projectile, pulling them towards the source at great speeds.",
+  "item.apostate.bounty_book": "Bounty Book",
   "item.apostate.bounty_poster": "Bounty Poster",
   "item.apostate.bounty_poster.0": "%s is wanted by %s, ",
   "item.apostate.bounty_poster.1": "You have failed this Bounty.",

@@ -1,12 +1,16 @@
 // 1.21.11	-999999999-01-01T00:00:00	Apostate/Model Definitions
+5dfa5e2b045dc35513f4429e0921c4e1194c8d35 assets/apostate/items/bounty_book.json
 2186d9933117988909dd8c7a8aa0011a01ede687 assets/apostate/items/divining_tablet.json
 f393c98478cd7ea3dbf503763a070e5d5b92b758 assets/apostate/items/flyer.json
 31cd53bf0990ad1c9feae35d7ba002de1c1c278d assets/apostate/items/immortal_dust.json
 3d7dd7b77aa81c6b131f6f3e6ca9f0c20377c09c assets/apostate/items/pact_crystal.json
+a97cb393a5b76824696743e221077464631669d3 assets/apostate/models/item/bounty_book.json
 7e386959bae4e2811c2c5f8a1d42d77fdef7b288 assets/apostate/models/item/divining_tablet_amethyst_shard.json
 f53e7f6f25f5afac6ecb4a6ba792e564cfe8028c assets/apostate/models/item/divining_tablet_echo_shard.json
 beac70f8807dbc37b98306aa934f024e0e5c5827 assets/apostate/models/item/divining_tablet_emerald.json
 8ee4ea9cd1e3ff6ef77c8a00fdbe7fb575631d81 assets/apostate/models/item/divining_tablet_empty.json
+b69b877a7dcf92072ea573d699c52076f89e814e assets/apostate/models/item/flyer.json
+817b925f5f8fa03d5724976d03be90e29dc454e9 assets/apostate/models/item/flyer_display.json
 9c2ceafe98abc3537cf693bb8c37636d906158e2 assets/apostate/models/item/immortal_dust.json
 7bef2941300ff7749bfc33871b97184502980b1e assets/apostate/models/item/pact_crystal_clear.json
 276a7b34edd2ab9a5b4f69a79cde8bab7fda4339 assets/apostate/models/item/pact_crystal_full.json

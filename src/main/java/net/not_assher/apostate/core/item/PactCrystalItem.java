@@ -102,7 +102,7 @@ public class PactCrystalItem extends Item {
         }
 
         public static void create() {
-            BetterItemTooltipEvent.EVENT.register(new PactCrystalItem.Tooltip());
+            BetterItemTooltipEvent.EVENT.register(new Tooltip());
 
             Apostate.LOGGER.info("Created PactCrystalItem/Tooltip");
         }

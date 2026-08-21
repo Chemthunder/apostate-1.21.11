@@ -3,18 +3,14 @@ package net.not_assher.apostate.core.item;
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDisplayContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -26,7 +22,6 @@ import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
 import net.not_assher.apostate.core.utilities.records.Bounty;
-import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,22 +111,19 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
             Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 
             if (bounty != null) {
-                if (otherStack.isOf(Items.PAPER)) {
-                    if (!bounty.completed() && !bounty.failed()) {
-                        otherStack.decrement(1);
-
-                        if (otherStack.getCount() <= 1) {
-                            cursorStackReference.set(stack.copy());
-                        } else {
-                            player.getInventory().insertStack(stack.copy());
-                        }
-
-                        if (player.getEntityWorld().isClient()) {
-                            player.playSound(SoundEvents.UI_LOOM_SELECT_PATTERN, 1, 1);
-                        }
-                        return true;
-                    }
-                }
+//                if (!otherStack.isEmpty()) {
+//                    if (!bounty.completed()) {
+//                        List<ItemStack> list = stack.get(ModDataComponentTypes.STACK_LIST);
+//
+//                        if (list != null) {
+//                            List<ItemStack> entries = new ArrayList<>(list);
+//                            entries.add(otherStack);
+//
+//                            stack.set(ModDataComponentTypes.STACK_LIST, entries);
+//                            return true;
+//                        }
+//                    }
+//                }
 
                 if (otherStack.isEmpty()) {
                     if (!bounty.signed()) {
@@ -159,12 +151,6 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
         return false;
     }
 
-    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
-        if (stack.get(ModDataComponentTypes.STORED_BOUNTY).completed()) {
-            stack.set(ModDataComponentTypes.STORED_BOUNTY, stack.get(ModDataComponentTypes.STORED_BOUNTY));
-        }
-    }
-
     public Identifier getModel(ItemDisplayContext itemDisplayContext, ItemStack itemStack, HeldItemContext heldItemContext) {
         Bounty bounty = itemStack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY);
 
@@ -185,7 +171,7 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
     }
 
     public static final class Tooltip implements BetterItemTooltipEvent {
-        public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> lines) {
+        public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
             if (stack.isOf(ModItems.BOUNTY_POSTER)) {
                 Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 
@@ -205,21 +191,25 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
 
                         for (Text text : finalTexts) {
                             if (!bounty.completed()) {
-                                lines.accept(text);
+                                consumer.accept(text);
                             } else {
-                                lines.accept(text.copy().formatted(Formatting.STRIKETHROUGH));
+                                consumer.accept(text.copy().formatted(Formatting.STRIKETHROUGH));
                             }
                         }
 
                         if (bounty.failed()) {
-                            lines.accept(Text.literal("You have failed this bounty!").formatted(
+                            consumer.accept(Text.literal("You have failed this bounty!").formatted(
                                     Formatting.BOLD,
                                     Formatting.DARK_RED,
                                     Formatting.ITALIC
                             ));
                         }
                     } else {
-                        lines.accept(bounty.ctx().txt.copy().formatted(bounty.ctx().formatting));
+                        consumer.accept(bounty.ctx().txt.copy().formatted(bounty.ctx().formatting));
+                    }
+
+                    for (ItemStack displayed : stack.get(ModDataComponentTypes.STACK_LIST)) {
+                        consumer.accept(displayed.getName().copy().formatted(Formatting.DARK_GRAY).append(Text.literal(" x" + stack.getCount()).formatted(Formatting.DARK_GRAY)));
                     }
                 }
             }

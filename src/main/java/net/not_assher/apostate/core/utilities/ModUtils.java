@@ -1,7 +1,5 @@
 package net.not_assher.apostate.core.utilities;
 
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
@@ -109,26 +107,6 @@ public class ModUtils {
                 if (bounty != null) {
                     if (!bounty.completed() && bounty.signed()) {
                         return slot;
-                    }
-                }
-            }
-
-            if (slot.contains(DataComponentTypes.BUNDLE_CONTENTS)) {
-                BundleContentsComponent bundle = slot.get(DataComponentTypes.BUNDLE_CONTENTS);
-
-                if (bundle != null) {
-                    for (int i = 0; i < bundle.size(); i++) {
-                        ItemStack bundleSlot = bundle.get(i);
-
-                        if (bundleSlot.contains(ModDataComponentTypes.STORED_BOUNTY)) {
-                            Bounty bounty = bundleSlot.get(ModDataComponentTypes.STORED_BOUNTY);
-
-                            if (bounty != null) {
-                                if (!bounty.completed() && bounty.signed()) {
-                                    return bundleSlot;
-                                }
-                            }
-                        }
                     }
                 }
             }

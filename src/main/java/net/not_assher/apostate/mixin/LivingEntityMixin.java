@@ -20,6 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
@@ -49,12 +50,11 @@ public abstract class LivingEntityMixin {
         original.call(movementInput);
     }
 
-    @Inject(method = "tryUseDeathProtector", at = @At(value = "TAIL"))
-    private void apostate$redeemBounty(DamageSource source, CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "onKilledBy", at = @At(value = "TAIL"))
+    private void apostate$redeemBounty(LivingEntity adversary, CallbackInfo ci) {
         LivingEntity self = (LivingEntity) (Object) this;
-        Entity src = source.getAttacker();
 
-        if (src instanceof PlayerEntity player) {
+        if (adversary instanceof PlayerEntity player) {
             if (self instanceof PlayerEntity target) {
                 ModUtils.redeemBounty(player, target);
             }

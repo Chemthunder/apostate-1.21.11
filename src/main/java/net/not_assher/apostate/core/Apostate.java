@@ -11,6 +11,7 @@ import net.not_assher.apostate.core.command.StatusCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
 import net.not_assher.apostate.core.event.DebugRelogEvent;
 import net.not_assher.apostate.core.index.*;
+import net.not_assher.apostate.core.item.BountyBookItem;
 import net.not_assher.apostate.core.item.BountyPosterItem;
 import net.not_assher.apostate.core.item.FlyerItem;
 import net.not_assher.apostate.core.item.PactCrystalItem;
@@ -61,6 +62,7 @@ public class Apostate implements ModInitializer {
         BountyPosterItem.Tooltip.create();
         PactCrystalItem.Tooltip.create();
         FlyerItem.Tooltip.create();
+        BountyBookItem.Tooltip.create();
     }
 
     private void createEvents() {
