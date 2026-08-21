@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ClickType;
@@ -49,6 +50,9 @@ public class BountyBookItem extends Item {
 
                         entries.add(split);
                         stack.set(ModDataComponentTypes.BOOK, new BookComponent(entries));
+                        if (player.getEntityWorld().isClient()) {
+                            player.playSound(SoundEvents.ITEM_BUNDLE_INSERT);
+                        }
                         return true;
                     }
                 } else {
@@ -58,6 +62,9 @@ public class BountyBookItem extends Item {
 
                     entries.remove(top);
                     stack.set(ModDataComponentTypes.BOOK, new BookComponent(entries));
+                    if (player.getEntityWorld().isClient()) {
+                        player.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE);
+                    }
                     return true;
                 }
             }
@@ -84,7 +91,7 @@ public class BountyBookItem extends Item {
                         Bounty bounty = storedStack.get(ModDataComponentTypes.STORED_BOUNTY);
 
                         if (bounty != null) {
-                            consumer.accept(Text.literal(bounty.targetName() + "-" + bounty.ownerName())
+                            consumer.accept(Text.literal(bounty.targetName() + " | " + bounty.ownerName())
                                     .formatted(bounty.ctx().formatting)
                                     .formatted(bounty.completed() ? Formatting.STRIKETHROUGH : Formatting.BOLD));
                         }

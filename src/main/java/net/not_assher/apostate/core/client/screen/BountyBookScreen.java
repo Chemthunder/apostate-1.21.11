@@ -59,10 +59,10 @@ public class BountyBookScreen extends Screen {
                 this.addDrawableChild(cycleFwd);
 
                 ButtonWidget cycleBwd = ButtonWidget.builder(Text.literal("Back"), (button -> {
-                    if (currentPage > 1) {
+                    if (currentPage > 0) {
                         currentPage--;
                     } else {
-                        currentPage = book.posters().size();
+                        currentPage = book.posters().size() - 1;
                     }
                 })).build();
 
@@ -91,6 +91,14 @@ public class BountyBookScreen extends Screen {
                         height / 2 - 90,
                         256,
                         256
+                );
+
+                context.drawCenteredTextWithShadow(
+                        client.textRenderer,
+                        Text.literal("Bounty Book"),
+                        width / 2,
+                        height / 2 - 100,
+                        0xFFFFFFFF
                 );
 
                 if (bounty != null) {
