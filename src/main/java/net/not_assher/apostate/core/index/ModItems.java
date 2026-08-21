@@ -21,7 +21,6 @@ public interface ModItems {
     ItemRegistrant ITEMS = new ItemRegistrant(Apostate.MOD_ID);
 
     Item BOUNTY_POSTER = ITEMS.register("bounty_poster", BountyPosterItem::new, new Item.Settings()
-            .maxCount(1)
             .component(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY)
     );
 

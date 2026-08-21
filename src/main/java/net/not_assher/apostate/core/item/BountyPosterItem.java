@@ -215,7 +215,7 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
         );
     }
 
-    public Identifier getModel(ItemStack itemStack, ItemDisplayContext itemDisplayContext, HeldItemContext heldItemContext) {
+    public Identifier getModel(ItemDisplayContext itemDisplayContext, ItemStack itemStack, HeldItemContext heldItemContext) {
         Bounty bounty = itemStack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY);
 
         if (itemDisplayContext == ItemDisplayContext.FIXED) {
@@ -225,8 +225,17 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
         }
     }
 
+    public List<Identifier> getModelsToLoad() {
+        return List.of(
+                Apostate.id("bounty_unwrapped"),
+                Apostate.id("bounty_poster_display"),
+                Apostate.id("bounty_poster_complete"),
+                Apostate.id("bounty_poster")
+        );
+    }
+
     public static final class Tooltip implements BetterItemTooltipEvent {
-        public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipDisplayComponent tooltipDisplayComponent, @Nullable PlayerEntity playerEntity, TooltipType tooltipType, Consumer<Text> lines) {
+        public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> lines) {
             if (stack.isOf(ModItems.BOUNTY_POSTER)) {
                 Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 

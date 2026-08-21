@@ -26,7 +26,7 @@ import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
-import net.not_assher.apostate.core.index.data.ModItemTags;
+import net.not_assher.apostate.core.index.tag.ModItemTags;
 import net.not_assher.apostate.core.item.component.TabletComponent;
 import net.not_assher.apostate.core.utilities.ModUtils;
 import net.not_assher.apostate.core.utilities.records.Pact;
@@ -130,8 +130,19 @@ public class DiviningTabletItem extends Item {
                     true
             );
 
-            target.sendMessage(Text.literal("Your position has been revealed to ").append(Text.literal(target.getName().getString() + "!")), true);
-            target.playSound(SoundEvents.ENTITY_WITHER_DEATH, 0.3F, 1);
+            target.sendMessage(
+                    Text.literal("Your position has been revealed to ").append(Text.literal(player.getName().getString() + "!")),
+                    true
+            );
+
+            world.playSound(
+                    null,
+                    target.getBlockPos(),
+                    SoundEvents.ENTITY_WITHER_DEATH,
+                    SoundCategory.PLAYERS,
+                    0.3F,
+                    1
+            );
         }
 
         if (ingredient.equals(Items.ECHO_SHARD)) {

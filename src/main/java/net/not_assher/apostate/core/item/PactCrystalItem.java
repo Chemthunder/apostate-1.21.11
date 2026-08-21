@@ -90,8 +90,8 @@ public class PactCrystalItem extends Item {
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {
-        public void getTooltip(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplayComponent tooltipDisplayComponent, @Nullable PlayerEntity playerEntity, TooltipType tooltipType, Consumer<Text> consumer) {
-            Pact pact = itemStack.get(ModDataComponentTypes.STORED_PACT);
+        public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
+            Pact pact = stack.get(ModDataComponentTypes.STORED_PACT);
 
             if (pact != null) {
                 if (!pact.owner().isBlank() && !pact.signer().isBlank()) {

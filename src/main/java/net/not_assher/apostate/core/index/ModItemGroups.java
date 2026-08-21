@@ -1,6 +1,6 @@
 package net.not_assher.apostate.core.index;
 
-import net.acoyt.acornlib.api.registrants.ItemGroupRegistrant;
+import net.acoyt.acornlib.api.registrants.CreativeModeTabRegistrant;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroup;
@@ -17,7 +17,7 @@ import static net.not_assher.apostate.core.Apostate.*;
  * @author Chemthunder
  */
 public interface ModItemGroups {
-    ItemGroupRegistrant GROUPS = new ItemGroupRegistrant(MOD_ID);
+    CreativeModeTabRegistrant GROUPS = new CreativeModeTabRegistrant(MOD_ID);
 
     RegistryKey<ItemGroup> GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, id(MOD_ID));
     ItemGroup ITEM_GROUP = GROUPS.register(GROUP_KEY.getValue().getPath(), FabricItemGroup.builder()

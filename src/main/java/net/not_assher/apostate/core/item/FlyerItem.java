@@ -2,7 +2,6 @@ package net.not_assher.apostate.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,6 @@ import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.networking.s2c.OpenFlyerPayload;
-import org.jspecify.annotations.Nullable;
 
 import java.util.function.Consumer;
 
@@ -39,7 +37,7 @@ public class FlyerItem extends Item {
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {
-        public void getTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent component, @Nullable PlayerEntity player, TooltipType type, Consumer<Text> consumer) {
+        public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
             if (stack.isOf(ModItems.FLYER)) {
                 consumer.accept(Text.literal("[Shift + Right Click]").formatted(Formatting.YELLOW).append(Text.literal(" to edit.").formatted(Formatting.DARK_GRAY)));
                 consumer.accept(Text.literal("-").formatted(Formatting.DARK_GRAY));

@@ -1,8 +1,11 @@
 package net.not_assher.apostate.core.utilities;
 
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.BundleContentsComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
@@ -23,6 +26,24 @@ public class ModUtils {
                 if (bounty != null) {
                     if (!bounty.completed() && bounty.signed()) {
                         return slot;
+                    }
+                }
+            }
+
+            if (slot.isIn(ItemTags.BUNDLES) && slot.contains(DataComponentTypes.BUNDLE_CONTENTS)) {
+                BundleContentsComponent bundle = slot.get(DataComponentTypes.BUNDLE_CONTENTS);
+
+                if (bundle != null) {
+                    for (ItemStack bundleSlot : bundle.stream().toList()) {
+                        if (bundleSlot.contains(ModDataComponentTypes.STORED_BOUNTY)) {
+                            Bounty bounty = slot.get(ModDataComponentTypes.STORED_BOUNTY);
+
+                            if (bounty != null) {
+                                if (!bounty.completed() && bounty.signed()) {
+                                    return slot;
+                                }
+                            }
+                        }
                     }
                 }
             }

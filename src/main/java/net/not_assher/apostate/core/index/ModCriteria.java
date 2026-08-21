@@ -1,6 +1,6 @@
 package net.not_assher.apostate.core.index;
 
-import net.acoyt.acornlib.api.registrants.CriterionRegistrant;
+import net.acoyt.acornlib.api.registrants.CriterionTriggerRegistrant;
 import net.minecraft.advancement.criterion.TickCriterion;
 import net.not_assher.apostate.core.Apostate;
 
@@ -10,7 +10,7 @@ import static net.not_assher.apostate.core.Apostate.MOD_ID;
  * @author Chemthunder
  */
 public interface ModCriteria {
-    CriterionRegistrant CRITERIA = new CriterionRegistrant(MOD_ID);
+    CriterionTriggerRegistrant CRITERIA = new CriterionTriggerRegistrant(MOD_ID);
 
     TickCriterion ROOT = CRITERIA.register("root", new TickCriterion());
 

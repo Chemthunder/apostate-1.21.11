@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.not_assher.apostate.core.index.ModItems;
-import net.not_assher.apostate.core.index.data.ModItemTags;
+import net.not_assher.apostate.core.index.tag.ModItemTags;
 
 import java.util.concurrent.CompletableFuture;
 

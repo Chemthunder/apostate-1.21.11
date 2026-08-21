@@ -11,6 +11,7 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Unit;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModEnchantmentEffects;
+import net.not_assher.apostate.core.index.tag.ModEnchantmentTags;
 
 /**
  * @author Chemthunder

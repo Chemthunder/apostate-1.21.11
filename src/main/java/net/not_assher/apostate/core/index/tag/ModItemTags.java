@@ -1,4 +1,4 @@
-package net.not_assher.apostate.core.index.data;
+package net.not_assher.apostate.core.index.tag;
 
 import net.acoyt.acornlib.api.builder.TagBuilder;
 import net.minecraft.item.Item;

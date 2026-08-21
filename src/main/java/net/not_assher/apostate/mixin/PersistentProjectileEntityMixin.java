@@ -24,7 +24,7 @@ public abstract class PersistentProjectileEntityMixin {
                     target = "Lnet/minecraft/enchantment/EnchantmentHelper;onTargetDamaged(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/entity/Entity;Lnet/minecraft/entity/damage/DamageSource;Lnet/minecraft/item/ItemStack;)V"
             )
     )
-    private void apostate$test(EntityHitResult entityHitResult, CallbackInfo ci) {
+    private void apostate$applyData(EntityHitResult entityHitResult, CallbackInfo ci) {
         Entity entity = entityHitResult.getEntity();
         PersistentProjectileEntity self = (PersistentProjectileEntity) (Object) this;
 

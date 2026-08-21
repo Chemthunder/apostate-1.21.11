@@ -32,7 +32,7 @@ public class EmeraldTabletElement implements HudElement {
 
         PlayerComponent component = PlayerComponent.KEY.get(player);
 
-        if (!component.getTabletTarget().isBlank()) {
+        if (!component.getTabletTarget().isBlank() && component.getEmeraldTicks() > 0) {
             for (PlayerEntity target : world.getPlayers()) {
                 if (target.getGameProfile().name().equals(component.getTabletTarget())) {
                     tracked = target;
