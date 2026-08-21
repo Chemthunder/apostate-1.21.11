@@ -46,7 +46,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("pd")
                         .pattern("d ")
                         .input('p', Items.PAPER)
-                        .input('d', ItemTags.WOOL)
+                        .input('d', Items.STRING)
                         .criterion("has_paper", conditionsFromItem(Items.PAPER))
                         .offerTo(exporter);
             }

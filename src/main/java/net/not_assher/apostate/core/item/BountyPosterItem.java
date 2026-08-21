@@ -3,7 +3,8 @@ package net.not_assher.apostate.core.item;
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.TooltipDisplayComponent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
@@ -13,6 +14,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -157,62 +159,10 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
         return false;
     }
 
-    public void killEntity(PlayerEntity redeemer, PlayerEntity target, ItemStack stack, Bounty bounty) {
-        World world = redeemer.getEntityWorld();
-
-        stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
-                bounty.targetName(),
-                bounty.ownerName(),
-                bounty.ctx(),
-                true,
-                false,
-                bounty.signed()
-        ));
-
-        redeemer.sendMessage(Text.literal("You have redeemed a bounty!").formatted(bounty.ctx().formatting), true);
-
-        if (redeemer instanceof ServerPlayerEntity serverPlayer) {
-            ModCriteria.COLLECT_BOUNTY.trigger(serverPlayer);
+    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
+        if (stack.get(ModDataComponentTypes.STORED_BOUNTY).completed()) {
+            stack.set(ModDataComponentTypes.STORED_BOUNTY, stack.get(ModDataComponentTypes.STORED_BOUNTY));
         }
-
-        world.playSound(
-                null,
-                redeemer.getBlockPos(),
-                SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK,
-                SoundCategory.PLAYERS,
-                1,
-                1
-        );
-
-        world.getServer().getPlayerManager().broadcast(
-                Text.translatable("bounty.collect", redeemer.getNameForScoreboard(), target.getNameForScoreboard())
-                        .formatted(Formatting.YELLOW),
-                false
-        );
-    }
-
-    public void failKillEntity(PlayerEntity redeemer, ItemStack stack, Bounty bounty) {
-        World world = redeemer.getEntityWorld();
-
-        stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
-                bounty.targetName(),
-                bounty.ownerName(),
-                bounty.ctx(),
-                false,
-                true,
-                bounty.signed()
-        ));
-
-        redeemer.sendMessage(Text.literal("You have failed a bounty!").formatted(Formatting.BOLD, Formatting.DARK_RED), true);
-
-        world.playSound(
-                null,
-                redeemer.getBlockPos(),
-                SoundEvents.ENTITY_WITHER_HURT,
-                SoundCategory.PLAYERS,
-                1,
-                1
-        );
     }
 
     public Identifier getModel(ItemDisplayContext itemDisplayContext, ItemStack itemStack, HeldItemContext heldItemContext) {

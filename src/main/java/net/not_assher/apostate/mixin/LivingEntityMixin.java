@@ -56,42 +56,9 @@ public abstract class LivingEntityMixin {
 
         if (src instanceof PlayerEntity player) {
             if (self instanceof PlayerEntity target) {
-                ItemStack stack = ModUtils.checkIfBounty(player);
-
-                if (stack != null) {
-                    if (stack.getItem() instanceof BountyPosterItem posterItem) {
-                        if (bountyIsRedeemable(stack, target)) {
-                            Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
-                            if (bounty != null) {
-                                if (!bounty.ctx().equals(KillContext.ALIVE)) {
-                                    posterItem.killEntity(
-                                            player,
-                                            target,
-                                            stack,
-                                            bounty
-                                    );
-                                } else {
-                                    posterItem.failKillEntity(
-                                            player,
-                                            stack,
-                                            bounty
-                                    );
-                                }
-                            }
-                        }
-                    }
-                }
+                ModUtils.redeemBounty(player, target);
             }
         }
-    }
-
-    @Unique
-    private static boolean bountyIsRedeemable(ItemStack stack, PlayerEntity target) {
-        Bounty bounty = stack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY);
-        if (!bounty.completed() && bounty.signed()) {
-            return target.getNameForScoreboard().equals(bounty.targetName());
-        }
-        return false;
     }
 
     @Inject(method = "applyMovementInput", at = @At("HEAD"), cancellable = true)
