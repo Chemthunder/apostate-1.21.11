@@ -20,6 +20,7 @@ public class ApostateDataGenerator implements DataGeneratorEntrypoint {
 
         pack.addProvider(ModAdvancementProvider::new);
         pack.addProvider(ModRecipeProvider::new);
+        pack.addProvider(ModBlockLootTableProvider::new);
 
         pack.addProvider(ModDynamicRegistryProvider::new);
 

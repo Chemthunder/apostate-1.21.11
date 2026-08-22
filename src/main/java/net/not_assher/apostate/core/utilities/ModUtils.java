@@ -1,13 +1,18 @@
 package net.not_assher.apostate.core.utilities;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
@@ -23,6 +28,39 @@ import org.jetbrains.annotations.Nullable;
  * @author Chemthunder
  */
 public class ModUtils {
+    public static boolean nearBlock(BlockPos origin, int radius, World world, BlockState toFind) {
+        Box box = new Box(origin);
+        box.expand(radius);
+
+        double xStart = box.getCenter().getX() - radius;
+        double yStart = box.getCenter().getY() - radius;
+        double zStart = box.getCenter().getZ() - radius;
+
+        for (double x = xStart; x < box.getCenter().getX() + radius; x++) {
+            for (double y = yStart; y < box.getCenter().getY() + radius; y++) {
+                for (double z = zStart; z < box.getCenter().getZ() + radius; z++) {
+                    BlockPos target = new BlockPos.Mutable(x, y, z);
+
+                    if (world.getBlockState(target) == toFind) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean stackCreatesFire(ItemStack stack) {
+        if (stack.isOf(Items.FIRE_CHARGE) || stack.isOf(Items.FLINT_AND_STEEL)) {
+            return true;
+        }
+        if (stack.getEnchantments().getEnchantments().contains(Enchantments.FIRE_ASPECT)) {
+            return true;
+        }
+        return false;
+    }
+
     public static void redeemBounty(PlayerEntity player, PlayerEntity target) {
         ItemStack stack = ModUtils.checkIfBounty(player);
         World world = player.getEntityWorld();

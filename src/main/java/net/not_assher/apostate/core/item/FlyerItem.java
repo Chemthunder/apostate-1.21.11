@@ -12,7 +12,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.networking.s2c.OpenFlyerPayload;
@@ -37,18 +36,13 @@ public class FlyerItem extends Item {
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {
+        @SuppressWarnings("DataFlowIssue")
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
             if (stack.isOf(ModItems.FLYER)) {
-                consumer.accept(Text.literal("[Shift + Right Click]").formatted(Formatting.YELLOW).append(Text.literal(" to edit.").formatted(Formatting.DARK_GRAY)));
-                consumer.accept(Text.literal("-").formatted(Formatting.DARK_GRAY));
-                consumer.accept(Text.literal(stack.get(ModDataComponentTypes.STRING)).formatted(Formatting.DARK_GRAY));
+                if (stack.get(ModDataComponentTypes.STRING) != null) {
+                    consumer.accept(Text.literal(stack.get(ModDataComponentTypes.STRING)).formatted(Formatting.DARK_GRAY));
+                }
             }
-        }
-
-        public static void create() {
-            BetterItemTooltipEvent.EVENT.register(new Tooltip());
-
-            Apostate.LOGGER.info("Created FlyerItem/Tooltip");
         }
     }
 }

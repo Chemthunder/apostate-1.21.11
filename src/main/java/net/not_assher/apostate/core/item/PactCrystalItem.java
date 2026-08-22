@@ -1,7 +1,6 @@
 package net.not_assher.apostate.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
-import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,12 +12,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.utilities.records.Pact;
-import org.jspecify.annotations.Nullable;
 
 import java.util.function.Consumer;
 
@@ -99,12 +96,6 @@ public class PactCrystalItem extends Item {
                     consumer.accept(Text.empty().append(Text.literal("Signed by ").formatted(Formatting.DARK_GRAY).append(Text.literal(pact.signer()).formatted(Formatting.AQUA))));
                 }
             }
-        }
-
-        public static void create() {
-            BetterItemTooltipEvent.EVENT.register(new Tooltip());
-
-            Apostate.LOGGER.info("Created PactCrystalItem/Tooltip");
         }
     }
 }

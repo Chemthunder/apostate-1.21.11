@@ -11,6 +11,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.client.item.TabletProperty;
+import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.index.ModModels;
 
@@ -33,6 +34,7 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.IMMORTAL_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.BOUNTY_BOOK, Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.CRIMSON_CANDLE.asItem(), Models.GENERATED);
     }
 
     private void createFlyer(ItemModelGenerator generator) {

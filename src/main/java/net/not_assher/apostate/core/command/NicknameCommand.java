@@ -9,7 +9,6 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
@@ -59,10 +58,5 @@ public class NicknameCommand implements CommandRegistrationCallback {
                     return SINGLE_SUCCESS;
                 }))
         );
-    }
-
-    public static void create() {
-        CommandRegistrationCallback.EVENT.register(new NicknameCommand());
-        Apostate.LOGGER.info("Created NicknameCommand");
     }
 }

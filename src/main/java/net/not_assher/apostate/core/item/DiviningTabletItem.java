@@ -37,6 +37,8 @@ import java.util.Optional;
  * @author Chemthunder
  */
 public class DiviningTabletItem extends Item {
+    public static final int MAX_USES = 5;
+
     public DiviningTabletItem(Settings settings) {
         super(settings);
     }
@@ -45,66 +47,70 @@ public class DiviningTabletItem extends Item {
         ItemStack stack = user.getStackInHand(hand);
         TabletComponent tablet = stack.getOrDefault(ModDataComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
 
-        if (!tablet.isEmpty()) {
-            if (tablet.hunted() != null && !tablet.ingredient().isEmpty()) {
-                PlayerEntity target = null;
-                for (PlayerEntity capture : world.getPlayers()) {
-                    if (capture.getGameProfile().name().equals(tablet.hunted().getGameProfile().name())) {
-                        target = capture;
-                        break;
-                    }
-                }
-
-                if (target != null) {
-                    user.spawnItemParticles(stack, 15);
-                    user.spawnItemParticles(tablet.ingredient(), 15);
-
-                    ModUtils.spawnRotatedParticles(user, ParticleTypes.END_ROD, 15);
-
-                    world.playSound(
-                            null,
-                            user.getBlockPos(),
-                            SoundEvents.ITEM_SHIELD_BREAK.value(),
-                            SoundCategory.PLAYERS,
-                            0.8F,
-                            0.7F
-                    );
-
-                    world.playSound(
-                            null,
-                            user.getBlockPos(),
-                            SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK,
-                            SoundCategory.PLAYERS,
-                            1,
-                            0.7F
-                    );
-
-                    if (user instanceof ServerPlayerEntity serverPlayer) {
-                        ModCriteria.USE_TABLET.trigger(serverPlayer);
-                    }
-
-                    track(world, user, target, stack, tablet.ingredient().getItem());
-
-                    if (!user.isCreative()) {
-                        stack.set(ModDataComponentTypes.TABLET, new TabletComponent(tablet.hunted(), ItemStack.EMPTY));
-
-                        int durability = stack.getOrDefault(ModDataComponentTypes.INTEGER, 8);
-
-                        if (durability > 1) {
-                            stack.set(ModDataComponentTypes.INTEGER, durability - 1);
-                        } else {
-                            stack.decrement(1);
+        if (!user.getItemCooldownManager().isCoolingDown(stack)) {
+            if (!tablet.isEmpty()) {
+                if (tablet.hunted() != null && !tablet.ingredient().isEmpty()) {
+                    PlayerEntity target = null;
+                    for (PlayerEntity capture : world.getPlayers()) {
+                        if (capture.getGameProfile().name().equals(tablet.hunted().getGameProfile().name())) {
+                            target = capture;
+                            break;
                         }
                     }
-                    return ActionResult.SUCCESS;
-                } else {
-                    user.sendMessage(Text.literal("The targeted player is not trackable!"), true);
-                    return ActionResult.FAIL;
+
+                    if (target != null) {
+                        user.spawnItemParticles(stack, 15);
+                        user.spawnItemParticles(tablet.ingredient(), 15);
+
+                        ModUtils.spawnRotatedParticles(user, ParticleTypes.END_ROD, 15);
+
+                        world.playSound(
+                                null,
+                                user.getBlockPos(),
+                                SoundEvents.ITEM_SHIELD_BREAK.value(),
+                                SoundCategory.PLAYERS,
+                                0.8F,
+                                0.7F
+                        );
+
+                        world.playSound(
+                                null,
+                                user.getBlockPos(),
+                                SoundEvents.BLOCK_AMETHYST_CLUSTER_BREAK,
+                                SoundCategory.PLAYERS,
+                                1,
+                                0.7F
+                        );
+
+                        if (user instanceof ServerPlayerEntity serverPlayer) {
+                            ModCriteria.USE_TABLET.trigger(serverPlayer);
+                        }
+
+                        track(world, user, target, stack, tablet.ingredient().getItem());
+
+                        if (!user.isCreative()) {
+                            stack.set(ModDataComponentTypes.TABLET, new TabletComponent(tablet.hunted(), ItemStack.EMPTY));
+
+                            int durability = stack.getOrDefault(ModDataComponentTypes.INTEGER, MAX_USES);
+
+                            if (durability > 1) {
+                                stack.set(ModDataComponentTypes.INTEGER, durability - 1);
+                            } else {
+                                stack.decrement(1);
+                            }
+
+                            user.getItemCooldownManager().set(stack, (60 * 20));
+                        }
+                        return ActionResult.SUCCESS;
+                    } else {
+                        user.sendMessage(Text.literal("The targeted player is not trackable!"), true);
+                        return ActionResult.FAIL;
+                    }
                 }
+            } else {
+                user.sendMessage(Text.literal("Insert the proper ingredients to use this Divining Tablet!"), true);
+                return ActionResult.FAIL;
             }
-        } else {
-            user.sendMessage(Text.literal("Insert the proper ingredients to use this Divining Tablet!"), true);
-            return ActionResult.FAIL;
         }
         return super.use(world, user, hand);
     }
@@ -237,7 +243,7 @@ public class DiviningTabletItem extends Item {
     }
 
     public int getItemBarStep(ItemStack stack) {
-        return Math.clamp(Math.round((float) stack.getOrDefault(ModDataComponentTypes.INTEGER, 8) / 8 * 13), 0, 13);
+        return Math.clamp(Math.round((float) stack.getOrDefault(ModDataComponentTypes.INTEGER, MAX_USES) / MAX_USES * 13), 0, 13);
     }
 
     public int getItemBarColor(ItemStack stack) {
@@ -245,6 +251,6 @@ public class DiviningTabletItem extends Item {
     }
 
     public boolean isItemBarVisible(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponentTypes.INTEGER, 8) < 8;
+        return stack.getOrDefault(ModDataComponentTypes.INTEGER, MAX_USES) < MAX_USES;
     }
 }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=true": {
+      "model": "apostate:block/crimson_candle_lit"
+    },
+    "lit=false": {
+      "model": "apostate:block/crimson_candle"
+    }
+  }
+}

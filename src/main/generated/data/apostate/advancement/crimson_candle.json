@@ -1,0 +1,25 @@
+{
+  "parent": "apostate:root",
+  "criteria": {
+    "e": {
+      "trigger": "apostate:crimson_candle"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.crimson_candle.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostate:crimson_candle"
+    },
+    "title": {
+      "translate": "advancements.apostate.crimson_candle.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

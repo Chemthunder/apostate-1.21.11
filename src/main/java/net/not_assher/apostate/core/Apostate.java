@@ -2,14 +2,18 @@ package net.not_assher.apostate.core;
 
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.acoyt.acornlib.api.ALib;
+import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.command.FlexCommand;
 import net.not_assher.apostate.core.command.NicknameCommand;
 import net.not_assher.apostate.core.command.StatusCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
 import net.not_assher.apostate.core.event.DebugRelogEvent;
+import net.not_assher.apostate.core.event.LightCrimsonCandleEvent;
 import net.not_assher.apostate.core.index.*;
 import net.not_assher.apostate.core.item.BountyBookItem;
 import net.not_assher.apostate.core.item.BountyPosterItem;
@@ -31,55 +35,42 @@ public class Apostate implements ModInitializer {
     public static final int MAIN_COLOR = 0xFF621414;
 
 	public void onInitialize() {
-		LOGGER.info("Apostate Init ⭐");
-        LOGGER.info("~~~~~~~~~~~~~");
+		LOGGER.info("Apostate Init");
 
+        // Registries
         ModItems.init();
         ModDataComponentTypes.init();
         ModItemGroups.init();
         ModCriteria.init();
         ModEnchantmentEffects.init();
+        ModBlocks.init();
 
         ModNetworking.init();
         ModNetworking.c2s();
 
-        this.createTooltips();
-        this.createEvents();
+        // Events
+        BetterItemTooltipEvent.EVENT.register(new BountyPosterItem.Tooltip());
+        BetterItemTooltipEvent.EVENT.register(new PactCrystalItem.Tooltip());
+        BetterItemTooltipEvent.EVENT.register(new FlyerItem.Tooltip());
+        BetterItemTooltipEvent.EVENT.register(new BountyBookItem.Tooltip());
 
-        this.bootstrapEvents();
-        this.bootstrapExternal();
+        CommandRegistrationCallback.EVENT.register(new NicknameCommand());
+        CommandRegistrationCallback.EVENT.register(new StatusCommand());
+        CommandRegistrationCallback.EVENT.register(new FlexCommand());
+
+        ServerPlayerEvents.JOIN.register(new DebugRelogEvent());
+        ServerPlayerEvents.JOIN.register(new ApplyApostateAdvancementEvent());
+
+        UseBlockCallback.EVENT.register(new LightCrimsonCandleEvent());
+
+        ALib.registerModMenu(MOD_ID, MAIN_COLOR);
+
+        MidnightConfig.init(MOD_ID, ModConfig.class);
 
         LootTableModifiers.init();
-
-        LOGGER.info("~~~~~~~~~~~~~");
 	}
 
 	public static Identifier id(String path) {
 		return Identifier.of(MOD_ID, path);
 	}
-
-    private void createTooltips() {
-        BountyPosterItem.Tooltip.create();
-        PactCrystalItem.Tooltip.create();
-        FlyerItem.Tooltip.create();
-        BountyBookItem.Tooltip.create();
-    }
-
-    private void createEvents() {
-        NicknameCommand.create();
-        StatusCommand.create();
-        FlexCommand.create();
-
-        ServerPlayerEvents.JOIN.register(new DebugRelogEvent());
-    }
-
-    private void bootstrapEvents() {
-        ServerPlayerEvents.JOIN.register(new ApplyApostateAdvancementEvent());
-    }
-
-    private void bootstrapExternal() {
-        ALib.registerModMenu(MOD_ID, MAIN_COLOR);
-
-        MidnightConfig.init(MOD_ID, ModConfig.class);
-    }
 }

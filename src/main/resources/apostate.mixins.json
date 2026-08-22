@@ -6,6 +6,7 @@
     "AnvilBlockMixin",
     "CrossbowItemMixin",
     "LivingEntityMixin",
+    "MobEntityMixin",
     "PersistentProjectileEntityMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin"

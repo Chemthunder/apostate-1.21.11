@@ -1,6 +1,8 @@
 {
   "advancements.apostate.collect_bounty.desc": "Collect a Bounty.",
   "advancements.apostate.collect_bounty.title": "A Pretty Penny",
+  "advancements.apostate.crimson_candle.desc": "Light a Crimson Candle.",
+  "advancements.apostate.crimson_candle.title": "How Foul...",
   "advancements.apostate.place_bounty.desc": "Place a Bounty on someone's head.",
   "advancements.apostate.place_bounty.title": "Never Forget a Grudge...",
   "advancements.apostate.root.desc": "Have fun!",
@@ -11,6 +13,7 @@
   "advancements.apostate.use_tablet.title": "The Hunt Begins.",
   "apostate.midnightconfig.showDisplays": "Show Bounty Poster Displays",
   "apostate.midnightconfig.title": "Apostate",
+  "block.apostate.crimson_candle": "Crimson Candle",
   "bounty.collect": "%s has collected a Bounty on %s's head",
   "death.attack.pact": "%1$s signed away their soul",
   "death.attack.pact.item": "%1$s signed away their soul whilst fighting %2$s, wielding %3$s",

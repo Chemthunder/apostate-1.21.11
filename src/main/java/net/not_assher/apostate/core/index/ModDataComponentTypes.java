@@ -13,57 +13,53 @@ import net.not_assher.apostate.core.utilities.records.Pact;
 
 import java.util.List;
 
-import static net.not_assher.apostate.core.Apostate.LOGGER;
-
 /**
  * @author Chemthunder
  */
 public interface ModDataComponentTypes {
-    DataComponentTypeRegistrant DCT = new DataComponentTypeRegistrant(Apostate.MOD_ID);
+    DataComponentTypeRegistrant plugin = new DataComponentTypeRegistrant(Apostate.MOD_ID);
 
-    ComponentType<Bounty> STORED_BOUNTY = DCT.register(
+    ComponentType<Bounty> STORED_BOUNTY = plugin.register(
             "stored_bounty",
             Bounty.CODEC,
             Bounty.PACKET
     );
 
-    ComponentType<Pact> STORED_PACT = DCT.register(
+    ComponentType<Pact> STORED_PACT = plugin.register(
             "stored_pact",
             Pact.CODEC,
             Pact.PACKET
     );
 
-    ComponentType<TabletComponent> TABLET = DCT.register(
+    ComponentType<TabletComponent> TABLET = plugin.register(
             "tablet_component",
             TabletComponent.CODEC,
             TabletComponent.PACKET
     );
 
-    ComponentType<BookComponent> BOOK = DCT.register(
+    ComponentType<BookComponent> BOOK = plugin.register(
             "bounty_book",
             BookComponent.CODEC,
             BookComponent.PACKET
     );
 
-    ComponentType<Integer> INTEGER = DCT.register(
+    ComponentType<Integer> INTEGER = plugin.register(
             "integer",
             Codec.INT,
             PacketCodecs.INTEGER
     );
 
-    ComponentType<String> STRING = DCT.register(
+    ComponentType<String> STRING = plugin.register(
             "string",
             Codec.STRING,
             PacketCodecs.STRING
     );
 
-    ComponentType<List<ItemStack>> STACK_LIST = DCT.register("stack_list", ComponentType.<List<ItemStack>>builder()
+    ComponentType<List<ItemStack>> STACK_LIST = plugin.register("stack_list", ComponentType.<List<ItemStack>>builder()
             .codec(ItemStack.CODEC.listOf())
             .packetCodec(ItemStack.OPTIONAL_LIST_PACKET_CODEC)
             .build()
     );
 
-    static void init() {
-        LOGGER.info("Registered Data Component Types");
-    }
+    static void init() {}
 }

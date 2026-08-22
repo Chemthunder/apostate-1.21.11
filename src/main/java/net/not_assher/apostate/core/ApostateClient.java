@@ -33,17 +33,12 @@ public class ApostateClient implements ClientModInitializer {
     public void onInitializeClient() {
         ModNetworking.s2c();
 
-        this.bootstrapData();
-        this.bootstrapEvents();
-    }
-
-    private void bootstrapData() {
+        // Models
         SelectProperties.ID_MAPPER.put(KillContextProperty.ID, KillContextProperty.TYPE);
         SelectProperties.ID_MAPPER.put(PactCrystalProperty.ID, PactCrystalProperty.TYPE);
         SelectProperties.ID_MAPPER.put(TabletProperty.ID, TabletProperty.TYPE);
-    }
 
-    private void bootstrapEvents() {
+        // Hud
         HudElementRegistry.addFirst(
                 id("compass"),
                 new EmeraldTabletElement()
@@ -59,6 +54,7 @@ public class ApostateClient implements ClientModInitializer {
                 new TextOverlayEvents.Render()
         );
 
+        // Events
         ClientTickEvents.START_CLIENT_TICK.register(new TextOverlayEvents.Ticker());
 
         TooltipComponentCallback.EVENT.register(data -> {

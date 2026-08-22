@@ -4,6 +4,7 @@ import net.acoyt.acornlib.api.util.DataUtils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.index.data.ModEnchantments;
@@ -19,7 +20,8 @@ public class ModLanguageProvider extends FabricLanguageProvider {
     }
 
     public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
-        ModItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
+        ModItems.plugin.registerLang(wrapperLookup, translationBuilder);
+        ModBlocks.plugin.registerLang(wrapperLookup, translationBuilder);
 
         translationBuilder.add("item.apostate.bounty_poster.0", "%s is wanted by %s, ");
         translationBuilder.add("item.apostate.bounty_poster.1", "You have failed this Bounty.");
@@ -38,6 +40,9 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 
         translationBuilder.add("advancements.apostate.use_tablet.title", "The Hunt Begins.");
         translationBuilder.add("advancements.apostate.use_tablet.desc", "Use a Divining Tablet to locate your target through several means.");
+
+        translationBuilder.add("advancements.apostate.crimson_candle.title", "How Foul...");
+        translationBuilder.add("advancements.apostate.crimson_candle.desc", "Light a Crimson Candle.");
 
         translationBuilder.add("itemGroup.apostate", "Apostate");
 

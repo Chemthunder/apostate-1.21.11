@@ -9,7 +9,6 @@ import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 
 import static net.minecraft.server.command.CommandManager.argument;
@@ -46,10 +45,5 @@ public class StatusCommand implements CommandRegistrationCallback {
                     return 1;
                 })))
         );
-    }
-
-    public static void create() {
-        CommandRegistrationCallback.EVENT.register(new StatusCommand());
-        Apostate.LOGGER.info("Created StatusCommand");
     }
 }

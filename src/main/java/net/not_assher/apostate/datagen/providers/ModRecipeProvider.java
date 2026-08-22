@@ -8,6 +8,7 @@ import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
+import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -54,10 +55,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .pattern("bg")
                         .pattern("pf")
                         .input('b', Items.BOOK)
-                        .input('p', ModItems.BOUNTY_BOOK)
+                        .input('p', ModItems.BOUNTY_POSTER)
                         .input('g', Items.GOLD_NUGGET)
                         .input('f', Items.FEATHER)
                         .criterion("has_book", conditionsFromItem(Items.BOOK))
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRIMSON_CANDLE.asItem())
+                        .pattern("t")
+                        .pattern("c")
+                        .pattern("d")
+                        .input('t', ItemTags.SOUL_FIRE_BASE_BLOCKS)
+                        .input('c', ItemTags.CANDLES)
+                        .input('d', Items.NETHER_WART_BLOCK)
+                        .criterion("has_candle", conditionsFromItem(Items.CANDLE))
                         .offerTo(exporter);
             }
         };

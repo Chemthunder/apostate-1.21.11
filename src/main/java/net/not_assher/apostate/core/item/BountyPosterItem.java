@@ -214,11 +214,5 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
                 }
             }
         }
-
-        public static void create() {
-            BetterItemTooltipEvent.EVENT.register(new Tooltip());
-
-            Apostate.LOGGER.info("Created BountyPosterItem/Tooltip");
-        }
     }
 }

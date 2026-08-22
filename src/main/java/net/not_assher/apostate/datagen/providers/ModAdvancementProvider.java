@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.not_assher.apostate.core.Apostate;
+import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
@@ -103,6 +104,16 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         ModItems.DIVINING_TABLET.getDefaultStack(),
                         "use_tablet",
                         ModCriteria.USE_TABLET.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
+
+        AdvancementEntry crimsonCandle = generateBasicAdvancement(
+                consumer,
+                root,
+                new AdvancementContext(
+                        ModBlocks.CRIMSON_CANDLE.asItem().getDefaultStack(),
+                        "crimson_candle",
+                        ModCriteria.CRIMSON_CANDLE.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
     }

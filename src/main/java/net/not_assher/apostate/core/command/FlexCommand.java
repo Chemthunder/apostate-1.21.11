@@ -10,7 +10,6 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.not_assher.apostate.core.Apostate;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
@@ -44,10 +43,5 @@ public class FlexCommand implements CommandRegistrationCallback {
                     return 1;
                 })
         );
-    }
-
-    public static void create() {
-        CommandRegistrationCallback.EVENT.register(new FlexCommand());
-        Apostate.LOGGER.info("Created FlexCommand");
     }
 }

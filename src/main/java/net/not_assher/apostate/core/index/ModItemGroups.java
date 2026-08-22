@@ -11,26 +11,28 @@ import net.minecraft.text.Text;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
 import net.not_assher.apostate.core.utilities.records.Bounty;
 
-import static net.not_assher.apostate.core.Apostate.*;
+import static net.not_assher.apostate.core.Apostate.MOD_ID;
+import static net.not_assher.apostate.core.Apostate.id;
 
 /**
  * @author Chemthunder
  */
 public interface ModItemGroups {
-    CreativeModeTabRegistrant GROUPS = new CreativeModeTabRegistrant(MOD_ID);
+    CreativeModeTabRegistrant plugin = new CreativeModeTabRegistrant(MOD_ID);
 
     RegistryKey<ItemGroup> GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, id(MOD_ID));
-    ItemGroup ITEM_GROUP = GROUPS.register(GROUP_KEY.getValue().getPath(), FabricItemGroup.builder()
+    ItemGroup ITEM_GROUP = plugin.register(GROUP_KEY.getValue().getPath(), FabricItemGroup.builder()
             .icon(ModItemGroups::createIcon)
             .displayName(Text.translatable("itemGroup." + MOD_ID).withColor(0xFF621414))
             .build());
 
     static void init() {
         ItemGroupEvents.modifyEntriesEvent(GROUP_KEY).register(
-                entries -> ModItems.ITEMS.toRegister.forEach(entries::add)
+                entries ->  {
+                    ModItems.plugin.toRegister.forEach(entries::add);
+                    ModBlocks.plugin.toRegister.forEach(entries::add);
+                }
         );
-
-        LOGGER.info("Registered Item Groups");
     }
 
     private static ItemStack createIcon() {

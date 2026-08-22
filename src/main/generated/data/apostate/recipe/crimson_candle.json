@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "c": "#minecraft:candles",
+    "d": "minecraft:nether_wart_block",
+    "t": "#minecraft:soul_fire_base_blocks"
+  },
+  "pattern": [
+    "t",
+    "c",
+    "d"
+  ],
+  "result": {
+    "count": 1,
+    "id": "apostate:crimson_candle"
+  }
+}

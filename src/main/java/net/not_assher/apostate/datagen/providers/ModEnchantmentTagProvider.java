@@ -8,8 +8,8 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.util.Identifier;
-import net.not_assher.apostate.core.index.tag.ModEnchantmentTags;
 import net.not_assher.apostate.core.index.data.ModEnchantments;
+import net.not_assher.apostate.core.index.tag.ModEnchantmentTags;
 
 import java.util.concurrent.CompletableFuture;
 

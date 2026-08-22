@@ -17,7 +17,6 @@ import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.component.BookComponent;
@@ -45,14 +44,20 @@ public class BountyBookItem extends Item {
             if (clickType == ClickType.RIGHT) {
                 if (!otherStack.isEmpty()) {
                     if (otherStack.contains(ModDataComponentTypes.STORED_BOUNTY)) {
-                        ItemStack split = otherStack.split(1);
+                        Bounty bounty = otherStack.get(ModDataComponentTypes.STORED_BOUNTY);
 
-                        entries.add(split);
-                        stack.set(ModDataComponentTypes.BOOK, new BookComponent(entries));
-                        if (player.getEntityWorld().isClient()) {
-                            player.playSound(SoundEvents.ITEM_BUNDLE_INSERT);
+                        if (bounty != null) {
+                            if (bounty.signed()) {
+                                ItemStack split = otherStack.split(1);
+
+                                entries.add(split);
+                                stack.set(ModDataComponentTypes.BOOK, new BookComponent(entries));
+                                if (player.getEntityWorld().isClient()) {
+                                    player.playSound(SoundEvents.ITEM_BUNDLE_INSERT);
+                                }
+                                return true;
+                            }
                         }
-                        return true;
                     }
                 } else {
                     ItemStack top = entries.getLast();
@@ -82,6 +87,8 @@ public class BountyBookItem extends Item {
                     if (user instanceof ServerPlayerEntity serverPlayer) {
                         ServerPlayNetworking.send(serverPlayer, new OpenBountyBookPayload(stack));
                     }
+                } else {
+                    user.sendMessage(Text.literal("Insert Bounty Posters into your Bounty Book!"), true);
                 }
             }
         }
@@ -123,12 +130,6 @@ public class BountyBookItem extends Item {
                     }
                 }
             }
-        }
-
-        public static void create() {
-            BetterItemTooltipEvent.EVENT.register(new Tooltip());
-
-            Apostate.LOGGER.info("Created BountyBookItem/Tooltip");
         }
     }
 }
