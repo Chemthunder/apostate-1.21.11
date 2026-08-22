@@ -53,8 +53,8 @@ public class BountyBookScreen extends Screen {
                     }
                 })).build();
 
-                cycleFwd.setDimensions(48, 48);
-                cycleFwd.setPosition(width / 2 - (cycleFwd.getWidth() / 2) + 30, height - 60);
+                cycleFwd.setDimensions(48, 16);
+                cycleFwd.setPosition(width / 2 - (cycleFwd.getWidth() / 2) + 30, height - 40);
                 drawableFunctions.add(context -> cycleFwd);
                 this.addDrawableChild(cycleFwd);
 
@@ -66,8 +66,8 @@ public class BountyBookScreen extends Screen {
                     }
                 })).build();
 
-                cycleBwd.setDimensions(48, 48);
-                cycleBwd.setPosition(width / 2 - (cycleBwd.getWidth() / 2) - 30, height - 60);
+                cycleBwd.setDimensions(48, 16);
+                cycleBwd.setPosition(width / 2 - (cycleBwd.getWidth() / 2) - 30, height - 40);
                 drawableFunctions.add(context -> cycleBwd);
                 this.addDrawableChild(cycleBwd);
             }

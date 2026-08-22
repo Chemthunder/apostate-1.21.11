@@ -1,8 +1,8 @@
 package net.not_assher.apostate.core.item;
 
 import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
@@ -22,7 +22,6 @@ import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.component.BookComponent;
 import net.not_assher.apostate.core.networking.s2c.OpenBountyBookPayload;
-import net.not_assher.apostate.core.networking.s2c.OpenFlyerPayload;
 import net.not_assher.apostate.core.utilities.records.Bounty;
 
 import java.util.ArrayList;
@@ -73,12 +72,38 @@ public class BountyBookItem extends Item {
     }
 
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        if (user instanceof ServerPlayerEntity serverPlayer) {
-            ServerPlayNetworking.send(serverPlayer, new OpenBountyBookPayload(user.getStackInHand(hand)));
+        ItemStack stack = user.getStackInHand(hand);
+
+        if (stack.contains(ModDataComponentTypes.BOOK)) {
+            BookComponent book = stack.get(ModDataComponentTypes.BOOK);
+
+            if (book != null) {
+                if (!book.posters().isEmpty()) {
+                    if (user instanceof ServerPlayerEntity serverPlayer) {
+                        ServerPlayNetworking.send(serverPlayer, new OpenBountyBookPayload(stack));
+                    }
+                }
+            }
         }
 
         user.swingHand(hand);
         return super.use(world, user, hand);
+    }
+
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        ItemStack prime = entity.getStack();
+
+        if (prime.contains(ModDataComponentTypes.BOOK)) {
+            BookComponent book = prime.get(ModDataComponentTypes.BOOK);
+
+            if (book != null) {
+                for (ItemStack stack : book.posters()) {
+                    ItemEntity item = new ItemEntity(entity.getEntityWorld(), entity.getX(), entity.getY(), entity.getZ(), stack);
+
+                    entity.getEntityWorld().spawnEntity(item);
+                }
+            }
+        }
     }
 
     public static class Tooltip implements BetterItemTooltipEvent {

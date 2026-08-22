@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": "minecraft:book",
+    "f": "minecraft:feather",
+    "g": "minecraft:gold_nugget",
+    "p": "apostate:bounty_book"
+  },
+  "pattern": [
+    "bg",
+    "pf"
+  ],
+  "result": {
+    "count": 1,
+    "id": "apostate:bounty_book"
+  }
+}

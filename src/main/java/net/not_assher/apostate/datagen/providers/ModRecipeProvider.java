@@ -49,6 +49,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('d', Items.STRING)
                         .criterion("has_paper", conditionsFromItem(Items.PAPER))
                         .offerTo(exporter);
+
+                createShaped(RecipeCategory.MISC, ModItems.BOUNTY_BOOK)
+                        .pattern("bg")
+                        .pattern("pf")
+                        .input('b', Items.BOOK)
+                        .input('p', ModItems.BOUNTY_BOOK)
+                        .input('g', Items.GOLD_NUGGET)
+                        .input('f', Items.FEATHER)
+                        .criterion("has_book", conditionsFromItem(Items.BOOK))
+                        .offerTo(exporter);
             }
         };
     }
