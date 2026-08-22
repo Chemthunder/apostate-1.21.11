@@ -20,7 +20,6 @@ public interface ModItems {
 
     Item BOUNTY_POSTER = plugin.register("bounty_poster", BountyPosterItem::new, new Item.Settings()
             .component(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY)
-            .component(ModDataComponentTypes.STACK_LIST, new ArrayList<>())
     );
 
     Item BOUNTY_BOOK = plugin.register("bounty_book", BountyBookItem::new, new Item.Settings()

@@ -111,20 +111,6 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
             Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 
             if (bounty != null) {
-//                if (!otherStack.isEmpty()) {
-//                    if (!bounty.completed()) {
-//                        List<ItemStack> list = stack.get(ModDataComponentTypes.STACK_LIST);
-//
-//                        if (list != null) {
-//                            List<ItemStack> entries = new ArrayList<>(list);
-//                            entries.add(otherStack);
-//
-//                            stack.set(ModDataComponentTypes.STACK_LIST, entries);
-//                            return true;
-//                        }
-//                    }
-//                }
-
                 if (otherStack.isEmpty()) {
                     if (!bounty.signed()) {
                         KillContext currentCtx = bounty.ctx();
@@ -206,10 +192,6 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
                         }
                     } else {
                         consumer.accept(bounty.ctx().txt.copy().formatted(bounty.ctx().formatting));
-                    }
-
-                    for (ItemStack displayed : stack.get(ModDataComponentTypes.STACK_LIST)) {
-                        consumer.accept(displayed.getName().copy().formatted(Formatting.DARK_GRAY).append(Text.literal(" x" + stack.getCount()).formatted(Formatting.DARK_GRAY)));
                     }
                 }
             }
