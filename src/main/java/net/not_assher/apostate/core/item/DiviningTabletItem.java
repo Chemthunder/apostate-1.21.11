@@ -18,7 +18,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ClickType;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -121,32 +120,7 @@ public class DiviningTabletItem extends Item {
         if (ingredient.equals(Items.AMETHYST_SHARD)) {
             BlockPos pos = target.getBlockPos();
 
-            player.sendMessage(
-                    Text.literal(target.getName().getString()).formatted(Formatting.YELLOW)
-                            .append(Text.literal(" is located at ").formatted(Formatting.DARK_GRAY))
-                            .append(Text.empty()
-                                    .append(Text.literal("[").formatted(Formatting.DARK_GRAY))
-                                    .append(Text.literal(String.valueOf(pos.getX())).formatted(Formatting.RED))
-                                    .append(Text.literal(", ").formatted(Formatting.DARK_GRAY))
-                                    .append(Text.literal(String.valueOf(pos.getY())).formatted(Formatting.GREEN))
-                                    .append(Text.literal("]").formatted(Formatting.DARK_GRAY))
-                            ),
-                    true
-            );
-
-            target.sendMessage(
-                    Text.literal("Your position has been revealed to ").append(Text.literal(player.getName().getString() + "!")),
-                    true
-            );
-
-            world.playSound(
-                    null,
-                    target.getBlockPos(),
-                    SoundEvents.ENTITY_WITHER_DEATH,
-                    SoundCategory.PLAYERS,
-                    0.3F,
-                    1
-            );
+            player.sendMessage(Text.literal("You are " + Math.round(target.getEntityPos().distanceTo(player.getEntityPos()) - 1) + " blocks away from " + target.getDisplayName().getString()), true);
         }
 
         if (ingredient.equals(Items.ECHO_SHARD)) {
