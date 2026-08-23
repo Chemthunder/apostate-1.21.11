@@ -23,9 +23,8 @@ import java.util.Random;
  */
 @Mixin(value = AnvilBlock.class)
 public abstract class AnvilBlockMixin {
-
     @Inject(method = "onLanding", at = @At(value = "TAIL"))
-    private void apostate$createDust(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity, CallbackInfo ci) {
+    private void apostate$createImmortalDust(World world, BlockPos pos, BlockState fallingBlockState, BlockState currentStateInPos, FallingBlockEntity fallingBlockEntity, CallbackInfo ci) {
         Box detection = new Box(pos).expand(1);
 
         for (ItemEntity itemEntity : world.getEntitiesByClass(ItemEntity.class, detection, itemEntity -> true)) {

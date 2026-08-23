@@ -12,6 +12,9 @@ import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * @author Chemthunder
+ */
 @Mixin(value = MobEntity.class)
 public abstract class MobEntityMixin {
     @Shadow private @Nullable LivingEntity target;

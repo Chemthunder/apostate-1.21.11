@@ -25,7 +25,7 @@ public abstract class CrossbowItemMixin {
                     target = "Lnet/minecraft/item/RangedWeaponItem;createArrowEntity(Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;Z)Lnet/minecraft/entity/projectile/ProjectileEntity;"
             )
     )
-    private ProjectileEntity apostate$applydata(CrossbowItem instance, World world, LivingEntity shooter, ItemStack weaponStack, ItemStack projectileStack, boolean critical, Operation<ProjectileEntity> original) {
+    private ProjectileEntity apostate$applyComponentIfApplicable(CrossbowItem instance, World world, LivingEntity shooter, ItemStack weaponStack, ItemStack projectileStack, boolean critical, Operation<ProjectileEntity> original) {
         ProjectileEntity projectile = original.call(instance, world, shooter, weaponStack, projectileStack, critical);
 
         if (EnchantmentHelper.hasAnyEnchantmentsWith(weaponStack, ModEnchantmentEffects.LASSO)) {

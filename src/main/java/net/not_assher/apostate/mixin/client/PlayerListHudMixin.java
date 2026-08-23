@@ -20,7 +20,7 @@ public abstract class PlayerListHudMixin {
     @Shadow @Final private MinecraftClient client;
 
     @Inject(method = "renderLatencyIcon", at = @At(value = "HEAD"))
-    private void apostate$editListEntry(DrawContext context, int width, int x, int y, PlayerListEntry entry, CallbackInfo ci) {
+    private void apostate$addLoreIcon(DrawContext context, int width, int x, int y, PlayerListEntry entry, CallbackInfo ci) {
         ApostateClient.drawListEntry(context, width, x, y, entry, this.client);
     }
 }

@@ -129,8 +129,6 @@ public class DiviningTabletItem extends Item {
                                     .append(Text.literal(String.valueOf(pos.getX())).formatted(Formatting.RED))
                                     .append(Text.literal(", ").formatted(Formatting.DARK_GRAY))
                                     .append(Text.literal(String.valueOf(pos.getY())).formatted(Formatting.GREEN))
-                                    .append(Text.literal(", ").formatted(Formatting.DARK_GRAY))
-                                    .append(Text.literal(String.valueOf(pos.getZ())).formatted(Formatting.BLUE))
                                     .append(Text.literal("]").formatted(Formatting.DARK_GRAY))
                             ),
                     true

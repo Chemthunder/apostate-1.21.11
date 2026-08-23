@@ -26,7 +26,7 @@ public abstract class ItemFrameEntityRendererMixin<T extends ItemFrameEntity> ex
                     value = "TAIL"
             )
     )
-    private void apostate$hideItemFrames(T itemFrameEntity, ItemFrameEntityRenderState itemFrameEntityRenderState, float f, CallbackInfo ci) {
+    private void apostate$stopItemFrameRenderingWhenItemIsDetected(T itemFrameEntity, ItemFrameEntityRenderState itemFrameEntityRenderState, float f, CallbackInfo ci) {
         if (itemFrameEntity.getHeldItemStack().isIn(ModItemTags.HIDES_FRAME)) {
             itemFrameEntityRenderState.invisible = true;
         }

@@ -74,4 +74,16 @@ public abstract class LivingEntityMixin {
         }
         return original.call(world, source, amount);
     }
+
+    @Inject(method = "jump", at = @At(value = "HEAD"))
+    private void apostate$test(CallbackInfo ci) {
+        LivingEntity living = (LivingEntity)(Object)this;
+        if (living instanceof PlayerEntity player) {
+            LassoComponent lasso = LassoComponent.KEY.get(player);
+
+            if (lasso.getDuration() > 0) {
+                lasso.remove();
+            }
+        }
+    }
 }
