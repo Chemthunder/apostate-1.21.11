@@ -12,6 +12,7 @@ import net.not_assher.apostate.core.command.FlexCommand;
 import net.not_assher.apostate.core.command.NicknameCommand;
 import net.not_assher.apostate.core.command.StatusCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
+import net.not_assher.apostate.core.event.CovenantBellEvent;
 import net.not_assher.apostate.core.event.DebugRelogEvent;
 import net.not_assher.apostate.core.event.LightCrimsonCandleEvent;
 import net.not_assher.apostate.core.index.*;
@@ -44,6 +45,7 @@ public class Apostate implements ModInitializer {
         ModCriteria.init();
         ModEnchantmentEffects.init();
         ModBlocks.init();
+        ModBlockEntityTypes.init();
 
         ModNetworking.init();
         ModNetworking.c2s();
@@ -64,6 +66,7 @@ public class Apostate implements ModInitializer {
         ServerPlayerEvents.JOIN.register(new ApplyApostateAdvancementEvent());
 
         UseBlockCallback.EVENT.register(new LightCrimsonCandleEvent());
+        UseBlockCallback.EVENT.register(new CovenantBellEvent());
 
         // External
         ALib.registerModMenu(MOD_ID, MAIN_COLOR);

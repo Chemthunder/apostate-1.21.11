@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.sound.BlockSoundGroup;
 import net.not_assher.apostate.core.Apostate;
+import net.not_assher.apostate.core.block.CovenantBellBlock;
 import net.not_assher.apostate.core.block.CrimsonCandleBlock;
 
 /**
@@ -18,6 +19,10 @@ public interface ModBlocks {
             .sounds(BlockSoundGroup.CANDLE)
             .emissiveLighting(CrimsonCandleBlock::hasEmissiveLighting)
             .luminance(CrimsonCandleBlock::getLuminance)
+    );
+
+    Block COVENANT_BELL = plugin.registerWithItem("covenant_bell", CovenantBellBlock::new, AbstractBlock.Settings.copy(Blocks.BELL)
+            .sounds(BlockSoundGroup.METAL)
     );
 
     static void init() {}

@@ -21,6 +21,7 @@ import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.client.item.TabletProperty;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipComponent;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
+import net.not_assher.apostate.core.index.ModBlockEntityTypes;
 import net.not_assher.apostate.core.item.component.TabletComponent;
 import net.not_assher.apostate.core.networking.ModNetworking;
 
@@ -31,6 +32,8 @@ import static net.not_assher.apostate.core.Apostate.id;
  */
 public class ApostateClient implements ClientModInitializer {
     public void onInitializeClient() {
+        ModBlockEntityTypes.clinit();
+
         ModNetworking.s2c();
 
         // Models
