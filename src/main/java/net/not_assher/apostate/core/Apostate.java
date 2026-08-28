@@ -72,6 +72,8 @@ public class Apostate implements ModInitializer {
         ALib.registerModMenu(MOD_ID, MAIN_COLOR);
 
         MidnightConfig.init(MOD_ID, ModConfig.class);
+
+        LOGGER.info("Init completed successfully!");
     }
 
     public static Identifier id(String path) {
