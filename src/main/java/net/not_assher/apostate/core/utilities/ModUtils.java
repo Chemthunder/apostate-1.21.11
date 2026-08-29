@@ -1,11 +1,16 @@
 package net.not_assher.apostate.core.utilities;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.Enchantments;
+import net.minecraft.component.EnchantmentEffectComponentTypes;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
+import net.minecraft.enchantment.effect.TargetedEnchantmentEffect;
+import net.minecraft.enchantment.effect.entity.IgniteEnchantmentEffect;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleEffect;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -20,8 +25,8 @@ import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.BountyPosterItem;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
-import net.not_assher.apostate.core.utilities.records.Bounty;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -52,11 +57,16 @@ public class ModUtils {
     }
 
     public static boolean stackCreatesFire(ItemStack stack) {
-        if (stack.isOf(Items.FIRE_CHARGE) || stack.isOf(Items.FLINT_AND_STEEL)) {
-            return true;
-        }
-        if (stack.getEnchantments().getEnchantments().contains(Enchantments.FIRE_ASPECT)) {
-            return true;
+        return stack.isOf(Items.FIRE_CHARGE) || stack.isOf(Items.FLINT_AND_STEEL) || hasIgnite(stack);
+    }
+
+    public static boolean hasIgnite(ItemStack stack) {
+        for (RegistryEntry<Enchantment> enchantment : stack.getEnchantments().getEnchantments()) {
+            for (TargetedEnchantmentEffect<EnchantmentEntityEffect> targetedEnchantmentEffect : enchantment.value().getEffect(EnchantmentEffectComponentTypes.POST_ATTACK)) {
+                if (targetedEnchantmentEffect.effect() instanceof IgniteEnchantmentEffect) {
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -68,11 +78,11 @@ public class ModUtils {
         if (stack != null) {
             if (stack.getItem() instanceof BountyPosterItem) {
                 if (bountyIsRedeemable(stack, target)) {
-                    Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
+                    BountyComponent bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 
                     if (bounty != null) {
                         if (!bounty.ctx().equals(KillContext.ALIVE)) {
-                            stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+                            stack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                                     bounty.targetName(),
                                     bounty.ownerName(),
                                     bounty.ctx(),
@@ -102,7 +112,7 @@ public class ModUtils {
                                     false
                             );
                         } else {
-                            stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+                            stack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                                     bounty.targetName(),
                                     bounty.ownerName(),
                                     bounty.ctx(),
@@ -129,7 +139,7 @@ public class ModUtils {
     }
 
     public static boolean bountyIsRedeemable(ItemStack stack, PlayerEntity target) {
-        Bounty bounty = stack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY);
+        BountyComponent bounty = stack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, BountyComponent.EMPTY);
         if (!bounty.completed() && bounty.signed()) {
             return target.getNameForScoreboard().equals(bounty.targetName());
         }
@@ -140,7 +150,7 @@ public class ModUtils {
     public static ItemStack checkIfBounty(PlayerEntity player) {
         for (ItemStack slot : player.getInventory()) {
             if (slot.isOf(ModItems.BOUNTY_POSTER)) {
-                Bounty bounty = slot.get(ModDataComponentTypes.STORED_BOUNTY);
+                BountyComponent bounty = slot.get(ModDataComponentTypes.STORED_BOUNTY);
 
                 if (bounty != null) {
                     if (!bounty.completed() && bounty.signed()) {

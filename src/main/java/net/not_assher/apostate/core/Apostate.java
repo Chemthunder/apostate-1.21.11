@@ -6,15 +6,16 @@ import net.acoyt.acornlib.api.event.BetterItemTooltipEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.command.FlexCommand;
 import net.not_assher.apostate.core.command.NicknameCommand;
 import net.not_assher.apostate.core.command.StatusCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
-import net.not_assher.apostate.core.event.CovenantBellEvent;
 import net.not_assher.apostate.core.event.DebugRelogEvent;
-import net.not_assher.apostate.core.event.LightCrimsonCandleEvent;
+import net.not_assher.apostate.core.event.block.CovenantBellEvents;
+import net.not_assher.apostate.core.event.block.LightCrimsonCandleEvent;
 import net.not_assher.apostate.core.index.*;
 import net.not_assher.apostate.core.item.BountyBookItem;
 import net.not_assher.apostate.core.item.BountyPosterItem;
@@ -66,7 +67,9 @@ public class Apostate implements ModInitializer {
         ServerPlayerEvents.JOIN.register(new ApplyApostateAdvancementEvent());
 
         UseBlockCallback.EVENT.register(new LightCrimsonCandleEvent());
-        UseBlockCallback.EVENT.register(new CovenantBellEvent());
+
+        UseBlockCallback.EVENT.register(new CovenantBellEvents.UseBlock());
+        PlayerBlockBreakEvents.AFTER.register(new CovenantBellEvents.AfterBroken());
 
         // External
         ALib.registerModMenu(MOD_ID, MAIN_COLOR);

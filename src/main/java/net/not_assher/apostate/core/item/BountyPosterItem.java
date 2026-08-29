@@ -20,8 +20,8 @@ import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
-import net.not_assher.apostate.core.utilities.records.Bounty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +38,12 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
 
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
+        BountyComponent bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 
         if (bounty != null) {
             if (user.isSneaking() && !bounty.signed()) {
                 if (stack.contains(DataComponentTypes.CUSTOM_NAME)) {
-                    stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+                    stack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                             stack.get(DataComponentTypes.CUSTOM_NAME).getString(),
                             user.getNameForScoreboard(),
                             bounty.ctx(),
@@ -76,7 +76,7 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
             if (bounty.signed() && !bounty.completed() && !bounty.failed()) {
                 if ((bounty.ctx().equals(KillContext.ALIVE)) || bounty.ctx().equals(KillContext.EITHER)) {
                     if (user.getNameForScoreboard().equals(bounty.ownerName())) {
-                        stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+                        stack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                                 bounty.targetName(),
                                 bounty.ownerName(),
                                 bounty.ctx(),
@@ -108,7 +108,7 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
 
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
         if (clickType == ClickType.RIGHT) {
-            Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
+            BountyComponent bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 
             if (bounty != null) {
                 if (otherStack.isEmpty()) {
@@ -116,7 +116,7 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
                         KillContext currentCtx = bounty.ctx();
                         KillContext[] values = KillContext.values();
 
-                        stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+                        stack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                                 bounty.targetName(),
                                 bounty.ownerName(),
                                 values[(currentCtx.ordinal() + 1) % values.length],
@@ -138,7 +138,7 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
     }
 
     public Identifier getModel(ItemDisplayContext itemDisplayContext, ItemStack itemStack, HeldItemContext heldItemContext) {
-        Bounty bounty = itemStack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY);
+        BountyComponent bounty = itemStack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, BountyComponent.EMPTY);
 
         if (itemDisplayContext == ItemDisplayContext.FIXED) {
             return !bounty.signed() ? Apostate.id("bounty_unwrapped") : Apostate.id("bounty_poster_display");
@@ -159,7 +159,7 @@ public class BountyPosterItem extends Item implements ModelVaryingItem {
     public static final class Tooltip implements BetterItemTooltipEvent {
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
             if (stack.isOf(ModItems.BOUNTY_POSTER)) {
-                Bounty bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
+                BountyComponent bounty = stack.get(ModDataComponentTypes.STORED_BOUNTY);
 
                 if (bounty != null) {
                     if (bounty.signed()) {

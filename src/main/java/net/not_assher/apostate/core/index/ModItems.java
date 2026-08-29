@@ -7,8 +7,8 @@ import net.minecraft.util.Rarity;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.item.*;
 import net.not_assher.apostate.core.item.component.BookComponent;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.item.component.TabletComponent;
-import net.not_assher.apostate.core.utilities.records.Bounty;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public interface ModItems {
     ItemRegistrant plugin = new ItemRegistrant(Apostate.MOD_ID);
 
     Item BOUNTY_POSTER = plugin.register("bounty_poster", BountyPosterItem::new, new Item.Settings()
-            .component(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY)
+            .component(ModDataComponentTypes.STORED_BOUNTY, BountyComponent.EMPTY)
     );
 
     Item BOUNTY_BOOK = plugin.register("bounty_book", BountyBookItem::new, new Item.Settings()
@@ -47,6 +47,12 @@ public interface ModItems {
 
     Item FLYER = plugin.register("flyer", FlyerItem::new, new Item.Settings()
             .component(ModDataComponentTypes.STRING, "Empty")
+    );
+
+    Item CHTHONIC_GOLD_INGOT = plugin.register("chthonic_gold_ingot", ChthonicGoldItem::new, new Item.Settings()
+    );
+
+    Item CHTHONIC_GOLD_NUGGET = plugin.register("chthonic_gold_nugget", ChthonicGoldItem::new, new Item.Settings()
     );
 
     static void init() {}

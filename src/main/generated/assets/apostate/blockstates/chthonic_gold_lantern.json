@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "apostate:block/chthonic_gold_lantern"
+    },
+    "hanging=true": {
+      "model": "apostate:block/chthonic_gold_lantern_hanging"
+    }
+  }
+}

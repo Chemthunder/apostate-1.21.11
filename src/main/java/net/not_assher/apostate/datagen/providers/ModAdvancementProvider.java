@@ -12,8 +12,8 @@ import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
-import net.not_assher.apostate.core.utilities.records.Bounty;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,7 +48,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         consumer.accept(root);
 
         ItemStack placeBountyStack = new ItemStack(ModItems.BOUNTY_POSTER);
-        placeBountyStack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+        placeBountyStack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                 "",
                 "",
                 KillContext.DEAD,
@@ -58,7 +58,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         ));
 
         ItemStack collectBountyStack = new ItemStack(ModItems.BOUNTY_POSTER);
-        collectBountyStack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+        collectBountyStack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                 "",
                 "",
                 KillContext.EITHER,
@@ -114,6 +114,16 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         ModBlocks.CRIMSON_CANDLE.asItem().getDefaultStack(),
                         "crimson_candle",
                         ModCriteria.CRIMSON_CANDLE.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
+
+        AdvancementEntry bell = generateBasicAdvancement(
+                consumer,
+                signContract,
+                new AdvancementContext(
+                        ModBlocks.COVENANT_BELL.asItem().getDefaultStack(),
+                        "covenant",
+                        ModCriteria.COVENANT_BELL.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
     }

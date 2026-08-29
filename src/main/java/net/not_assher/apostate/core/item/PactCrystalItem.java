@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.data.ModDamageTypes;
-import net.not_assher.apostate.core.utilities.records.Pact;
+import net.not_assher.apostate.core.item.component.PactComponent;
 
 import java.util.function.Consumer;
 
@@ -29,12 +29,12 @@ public class PactCrystalItem extends Item {
 
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        Pact pact = stack.getOrDefault(ModDataComponentTypes.STORED_PACT, Pact.EMPTY);
+        PactComponent pact = stack.getOrDefault(ModDataComponentTypes.STORED_PACT, PactComponent.EMPTY);
 
         if (user.isSneaking() && world instanceof ServerWorld serverWorld) {
             if (!pact.completed()) {
                 if (pact.owner().isBlank() && pact.signer().isBlank()) {
-                    stack.set(ModDataComponentTypes.STORED_PACT, new Pact(
+                    stack.set(ModDataComponentTypes.STORED_PACT, new PactComponent(
                                     pact.signer(),
                                     user.getName().getString(),
                                     false
@@ -49,7 +49,7 @@ public class PactCrystalItem extends Item {
                 }
 
                 if (!pact.owner().isBlank() && pact.signer().isBlank()) {
-                    stack.set(ModDataComponentTypes.STORED_PACT, new Pact(
+                    stack.set(ModDataComponentTypes.STORED_PACT, new PactComponent(
                                     user.getName().getString(),
                                     pact.owner(),
                                     false
@@ -64,7 +64,7 @@ public class PactCrystalItem extends Item {
                 }
 
                 if (!pact.owner().isBlank() && !pact.signer().isBlank()) {
-                    stack.set(ModDataComponentTypes.STORED_PACT, new Pact(
+                    stack.set(ModDataComponentTypes.STORED_PACT, new PactComponent(
                                     pact.signer(),
                                     pact.owner(),
                                     true
@@ -88,7 +88,7 @@ public class PactCrystalItem extends Item {
 
     public static class Tooltip implements BetterItemTooltipEvent {
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
-            Pact pact = stack.get(ModDataComponentTypes.STORED_PACT);
+            PactComponent pact = stack.get(ModDataComponentTypes.STORED_PACT);
 
             if (pact != null) {
                 if (!pact.owner().isBlank() && !pact.signer().isBlank()) {

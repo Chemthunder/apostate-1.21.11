@@ -1,4 +1,4 @@
-package net.not_assher.apostate.core.event;
+package net.not_assher.apostate.core.event.block;
 
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.minecraft.block.BlockState;

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_bars_side",
+  "textures": {
+    "bars": "apostate:block/chthonic_gold_bars",
+    "edge": "apostate:block/chthonic_gold_bars"
+  }
+}

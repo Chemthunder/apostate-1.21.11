@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "chthonic_smelting",
+  "ingredient": "apostate:chthonic_gold_ingot",
+  "result": {
+    "id": "apostate:chthonic_gold_pile"
+  }
+}

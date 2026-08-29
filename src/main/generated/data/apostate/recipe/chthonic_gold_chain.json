@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "g": "apostate:chthonic_gold_ingot",
+    "n": "apostate:chthonic_gold_nugget"
+  },
+  "pattern": [
+    "n",
+    "g",
+    "n"
+  ],
+  "result": {
+    "count": 2,
+    "id": "apostate:chthonic_gold_chain"
+  }
+}

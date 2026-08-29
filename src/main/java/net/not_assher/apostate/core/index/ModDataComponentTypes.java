@@ -6,9 +6,9 @@ import net.minecraft.component.ComponentType;
 import net.minecraft.network.codec.PacketCodecs;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.item.component.BookComponent;
+import net.not_assher.apostate.core.item.component.BountyComponent;
+import net.not_assher.apostate.core.item.component.PactComponent;
 import net.not_assher.apostate.core.item.component.TabletComponent;
-import net.not_assher.apostate.core.utilities.records.Bounty;
-import net.not_assher.apostate.core.utilities.records.Pact;
 
 /**
  * @author Chemthunder
@@ -16,16 +16,16 @@ import net.not_assher.apostate.core.utilities.records.Pact;
 public interface ModDataComponentTypes {
     DataComponentTypeRegistrant plugin = new DataComponentTypeRegistrant(Apostate.MOD_ID);
 
-    ComponentType<Bounty> STORED_BOUNTY = plugin.register(
+    ComponentType<BountyComponent> STORED_BOUNTY = plugin.register(
             "stored_bounty",
-            Bounty.CODEC,
-            Bounty.PACKET
+            BountyComponent.CODEC,
+            BountyComponent.PACKET
     );
 
-    ComponentType<Pact> STORED_PACT = plugin.register(
+    ComponentType<PactComponent> STORED_PACT = plugin.register(
             "stored_pact",
-            Pact.CODEC,
-            Pact.PACKET
+            PactComponent.CODEC,
+            PactComponent.PACKET
     );
 
     ComponentType<TabletComponent> TABLET = plugin.register(

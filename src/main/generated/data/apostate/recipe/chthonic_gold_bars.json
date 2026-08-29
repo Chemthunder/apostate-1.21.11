@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "g": "apostate:chthonic_gold_ingot"
+  },
+  "pattern": [
+    "ggg",
+    "ggg"
+  ],
+  "result": {
+    "count": 16,
+    "id": "apostate:chthonic_gold_bars"
+  }
+}

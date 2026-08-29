@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "g": "apostate:chthonic_gold_ingot"
+  },
+  "pattern": [
+    "ggg"
+  ],
+  "result": {
+    "count": 1,
+    "id": "apostate:chthonic_gold_trapdoor"
+  }
+}

@@ -22,5 +22,7 @@ public interface ModCriteria {
 
     TickCriterion CRIMSON_CANDLE = plugin.register("crimson_candle", new TickCriterion());
 
+    TickCriterion COVENANT_BELL = plugin.register("covenant_bell", new TickCriterion());
+
     static void init() {}
 }

@@ -1,0 +1,25 @@
+{
+  "parent": "apostate:sign_contract",
+  "criteria": {
+    "e": {
+      "trigger": "apostate:covenant_bell"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.covenant.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostate:covenant_bell"
+    },
+    "title": {
+      "translate": "advancements.apostate.covenant.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

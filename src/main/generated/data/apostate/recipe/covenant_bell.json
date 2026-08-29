@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": "minecraft:bell",
+    "C": "apostate:chthonic_gold_block",
+    "I": "apostate:immortal_dust",
+    "N": "minecraft:nether_star"
+  },
+  "pattern": [
+    "CNC",
+    "CBC",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "apostate:covenant_bell"
+  }
+}

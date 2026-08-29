@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "apostate:item/chthonic_gold_pile"
+  }
+}

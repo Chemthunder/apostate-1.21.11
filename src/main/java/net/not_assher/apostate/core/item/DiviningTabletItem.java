@@ -26,9 +26,9 @@ import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.tag.ModItemTags;
+import net.not_assher.apostate.core.item.component.PactComponent;
 import net.not_assher.apostate.core.item.component.TabletComponent;
 import net.not_assher.apostate.core.utilities.ModUtils;
-import net.not_assher.apostate.core.utilities.records.Pact;
 
 import java.util.Optional;
 
@@ -161,7 +161,7 @@ public class DiviningTabletItem extends Item {
                 }
 
                 if (otherStack.contains(ModDataComponentTypes.STORED_PACT)) {
-                    Pact pact = otherStack.get(ModDataComponentTypes.STORED_PACT);
+                    PactComponent pact = otherStack.get(ModDataComponentTypes.STORED_PACT);
 
                     if (pact != null) {
                         String owner = pact.signer();

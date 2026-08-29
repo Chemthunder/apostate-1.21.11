@@ -15,7 +15,7 @@ import net.minecraft.util.Formatting;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.item.component.BookComponent;
-import net.not_assher.apostate.core.utilities.records.Bounty;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import org.joml.Matrix3x2fStack;
 
 import java.util.ArrayList;
@@ -81,7 +81,7 @@ public class BountyBookScreen extends Screen {
             ItemStack display = book.posters().get(currentPage);
 
             if (display.contains(ModDataComponentTypes.STORED_BOUNTY)) {
-                Bounty bounty = display.get(ModDataComponentTypes.STORED_BOUNTY);
+                BountyComponent bounty = display.get(ModDataComponentTypes.STORED_BOUNTY);
 
                 context.drawGuiTexture(
                         RenderPipelines.GUI_TEXTURED,

@@ -25,7 +25,20 @@ public class ModModelProvider extends FabricModelProvider {
         super(output);
     }
 
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {}
+    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHTHONIC_GOLD_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHISELED_CHTHONIC_GOLD_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHTHONIC_GOLD_TILES);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHTHONIC_GOLD_GRATE);
+
+        blockStateModelGenerator.registerDoor(ModBlocks.CHTHONIC_GOLD_DOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBlocks.CHTHONIC_GOLD_TRAPDOOR);
+        blockStateModelGenerator.registerBars(ModBlocks.CHTHONIC_GOLD_BARS);
+        blockStateModelGenerator.registerLantern(ModBlocks.CHTHONIC_GOLD_LANTERN);
+        blockStateModelGenerator.registerLeafLitter(ModBlocks.CHTHONIC_GOLD_PILE);
+
+        blockStateModelGenerator.registerSimpleState(ModBlocks.COVENANT_BELL);
+    }
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
         createTablet(itemModelGenerator);
@@ -34,7 +47,12 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.IMMORTAL_DUST, Models.GENERATED);
         itemModelGenerator.register(ModItems.BOUNTY_BOOK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHTHONIC_GOLD_INGOT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHTHONIC_GOLD_NUGGET, Models.GENERATED);
+
         itemModelGenerator.register(ModBlocks.CRIMSON_CANDLE.asItem(), Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.CHTHONIC_GOLD_CHAIN.asItem(), Models.GENERATED);
+        itemModelGenerator.register(ModBlocks.COVENANT_BELL.asItem(), Models.GENERATED);
     }
 
     private void createFlyer(ItemModelGenerator generator) {

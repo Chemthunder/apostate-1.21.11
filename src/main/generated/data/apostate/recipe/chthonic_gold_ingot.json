@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": "apostate:immortal_dust",
+    "G": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    " G ",
+    "GDG",
+    " G "
+  ],
+  "result": {
+    "count": 4,
+    "id": "apostate:chthonic_gold_ingot"
+  }
+}

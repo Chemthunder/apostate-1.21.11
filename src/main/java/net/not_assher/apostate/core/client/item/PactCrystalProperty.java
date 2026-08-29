@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
-import net.not_assher.apostate.core.utilities.records.Pact;
+import net.not_assher.apostate.core.item.component.PactComponent;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -25,7 +25,7 @@ public record PactCrystalProperty() implements SelectProperty<String> {
     );
 
     public String getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
-        Pact pact = stack.getOrDefault(ModDataComponentTypes.STORED_PACT, Pact.EMPTY);
+        PactComponent pact = stack.getOrDefault(ModDataComponentTypes.STORED_PACT, PactComponent.EMPTY);
 
         if (!pact.completed()) {
             if (pact.owner().isBlank() && pact.signer().isBlank()) {

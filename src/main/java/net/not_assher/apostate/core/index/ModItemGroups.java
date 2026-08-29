@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
-import net.not_assher.apostate.core.utilities.records.Bounty;
 
 import static net.not_assher.apostate.core.Apostate.MOD_ID;
 import static net.not_assher.apostate.core.Apostate.id;
@@ -38,7 +38,7 @@ public interface ModItemGroups {
     private static ItemStack createIcon() {
         ItemStack stack = new ItemStack(ModItems.BOUNTY_POSTER);
 
-        stack.set(ModDataComponentTypes.STORED_BOUNTY, new Bounty(
+        stack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
                 "",
                 "",
                 KillContext.EITHER,

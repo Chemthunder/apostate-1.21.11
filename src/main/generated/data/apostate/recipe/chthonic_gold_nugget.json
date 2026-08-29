@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "apostate:chthonic_gold_ingot"
+  ],
+  "result": {
+    "count": 9,
+    "id": "apostate:chthonic_gold_nugget"
+  }
+}

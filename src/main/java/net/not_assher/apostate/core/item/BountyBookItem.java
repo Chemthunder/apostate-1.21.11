@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.component.BookComponent;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.networking.s2c.OpenBountyBookPayload;
-import net.not_assher.apostate.core.utilities.records.Bounty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class BountyBookItem extends Item {
             if (clickType == ClickType.RIGHT) {
                 if (!otherStack.isEmpty()) {
                     if (otherStack.contains(ModDataComponentTypes.STORED_BOUNTY)) {
-                        Bounty bounty = otherStack.get(ModDataComponentTypes.STORED_BOUNTY);
+                        BountyComponent bounty = otherStack.get(ModDataComponentTypes.STORED_BOUNTY);
 
                         if (bounty != null) {
                             if (bounty.signed()) {
@@ -120,7 +120,7 @@ public class BountyBookItem extends Item {
 
                 if (book != null) {
                     for (ItemStack storedStack : book.posters()) {
-                        Bounty bounty = storedStack.get(ModDataComponentTypes.STORED_BOUNTY);
+                        BountyComponent bounty = storedStack.get(ModDataComponentTypes.STORED_BOUNTY);
 
                         if (bounty != null) {
                             consumer.accept(Text.literal(bounty.targetName() + " | " + bounty.ownerName())

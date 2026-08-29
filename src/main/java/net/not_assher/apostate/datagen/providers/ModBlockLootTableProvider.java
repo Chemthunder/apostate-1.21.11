@@ -17,5 +17,6 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
 
     public void generate() {
         addDrop(ModBlocks.CRIMSON_CANDLE);
+        addDrop(ModBlocks.COVENANT_BELL);
     }
 }

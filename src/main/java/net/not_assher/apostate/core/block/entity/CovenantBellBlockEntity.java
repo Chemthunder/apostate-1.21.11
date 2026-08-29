@@ -1,6 +1,5 @@
 package net.not_assher.apostate.core.block.entity;
 
-import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -21,7 +20,7 @@ import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.index.ModBlockEntityTypes;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
-import net.not_assher.apostate.core.utilities.records.Pact;
+import net.not_assher.apostate.core.item.component.PactComponent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,7 +44,7 @@ public class CovenantBellBlockEntity extends BlockEntity {
 
     public void tick(World world, BlockPos pos, BlockState state, @NotNull CovenantBellBlockEntity entity) {
         if (entity.active && entity.pactStack != null) {
-            Pact pact = entity.pactStack.get(ModDataComponentTypes.STORED_PACT);
+            PactComponent pact = entity.pactStack.get(ModDataComponentTypes.STORED_PACT);
 
             if (pact != null) {
                 if (entity.ticks == DURATION - 40) {
@@ -156,7 +155,7 @@ public class CovenantBellBlockEntity extends BlockEntity {
     public void activate(World world, BlockPos pos, BlockState state, ItemStack pactStack, @NotNull CovenantBellBlockEntity entity) {
         MinecraftServer server = world.getServer();
 
-        Pact pact = pactStack.get(ModDataComponentTypes.STORED_PACT);
+        PactComponent pact = pactStack.get(ModDataComponentTypes.STORED_PACT);
 
         if (pact != null) {
             if (server != null && world instanceof ServerWorld serverWorld) {
@@ -164,7 +163,6 @@ public class CovenantBellBlockEntity extends BlockEntity {
 
                 for (ServerPlayerEntity serverPlayer : manager.getPlayerList()) {
                     if (Objects.equals(serverPlayer.getName().getString(), pact.signer())) {
-
                         BlockPos upwardsPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
 
                         if (!world.getBlockState(upwardsPos).isAir()) {

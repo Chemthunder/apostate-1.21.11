@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
-import net.not_assher.apostate.core.utilities.records.Bounty;
 import org.jspecify.annotations.Nullable;
 
 /**
@@ -26,7 +26,7 @@ public record KillContextProperty() implements SelectProperty<KillContext> {
     );
 
     public @Nullable KillContext getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
-        return stack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, Bounty.EMPTY).ctx();
+        return stack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, BountyComponent.EMPTY).ctx();
     }
 
     public Codec<KillContext> valueCodec() {
