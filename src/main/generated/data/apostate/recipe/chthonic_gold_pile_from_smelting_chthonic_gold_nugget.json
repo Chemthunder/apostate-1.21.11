@@ -4,7 +4,7 @@
   "cookingtime": 200,
   "experience": 0.25,
   "group": "chthonic_smelting",
-  "ingredient": "apostate:chthonic_gold_ingot",
+  "ingredient": "apostate:chthonic_gold_nugget",
   "result": {
     "id": "apostate:chthonic_gold_pile"
   }

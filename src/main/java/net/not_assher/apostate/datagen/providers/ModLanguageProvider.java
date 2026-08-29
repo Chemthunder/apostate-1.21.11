@@ -62,6 +62,14 @@ public class ModLanguageProvider extends FabricLanguageProvider {
                 "%1$s signed away their soul whilst fighting %2$s"
         );
 
+        DataUtils.registerDamageType(
+                translationBuilder,
+                ModDamageTypes.BELL,
+                "%1$s couldn't handle the price",
+                "%1$s made an impure choice whilst fighting %2$s, wielding %3$s",
+                "%1$s made an impure choice whilst fighting %2$s"
+        );
+
         DataUtils.registerEnchantment(
                 translationBuilder,
                 ModEnchantments.LASSO,

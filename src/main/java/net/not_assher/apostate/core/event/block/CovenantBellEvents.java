@@ -20,6 +20,7 @@ import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModCriteria;
 import net.not_assher.apostate.core.index.ModDataComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
+import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.item.component.PactComponent;
 import org.jspecify.annotations.Nullable;
 
@@ -45,12 +46,11 @@ public class CovenantBellEvents {
         public ActionResult interact(PlayerEntity player, World world, Hand hand, BlockHitResult blockHitResult) {
             BlockPos pos = blockHitResult.getBlockPos();
             BlockState state = world.getBlockState(pos);
+            ItemStack stack = player.getStackInHand(hand);
 
             if (state.isOf(ModBlocks.COVENANT_BELL)) {
                 if (world.getBlockEntity(pos) instanceof CovenantBellBlockEntity bell) {
                     if (!bell.isActive()) {
-                        ItemStack stack = player.getStackInHand(hand);
-
                         if (!stack.isEmpty()) {
                             if (bell.getPactStack() == null) {
                                 if (stack.isOf(ModItems.PACT_CRYSTAL)) {
@@ -81,6 +81,8 @@ public class CovenantBellEvents {
 
                                             if (player instanceof ServerPlayerEntity serverPlayerEntity) {
                                                 ModCriteria.COVENANT_BELL.trigger(serverPlayerEntity);
+
+                                                serverPlayerEntity.damage(serverPlayerEntity.getEntityWorld(), serverPlayerEntity.getDamageSources().create(ModDamageTypes.BELL), player.getHealth() / 2);
                                             }
                                         }
                                     }
@@ -101,6 +103,10 @@ public class CovenantBellEvents {
                                 }
                                 return ActionResult.SUCCESS;
                             }
+                        }
+                    } else {
+                        if (stack.isEmpty() && bell.getPactStack() == null) {
+                            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_BELL_USE, SoundCategory.BLOCKS);
                         }
                     }
                 }

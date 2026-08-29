@@ -93,7 +93,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .offerTo(exporter);
 
 
-                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_CHAIN, 2)
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_CHAIN, 6)
                         .pattern("n")
                         .pattern("g")
                         .pattern("n")
@@ -141,7 +141,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion("has_ch", conditionsFromItem(ModItems.CHTHONIC_GOLD_INGOT))
                         .offerTo(exporter, "gold_into_ingots");
 
-                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_LANTERN)
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_LANTERN, 2)
                         .pattern("ggg")
                         .pattern("gig")
                         .pattern("ggg")
@@ -150,7 +150,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion("has_ch", conditionsFromItem(ModItems.CHTHONIC_GOLD_NUGGET))
                         .offerTo(exporter);
 
-                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_DOOR)
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_DOOR, 3)
                         .pattern("gg")
                         .pattern("gg")
                         .pattern("gg")
@@ -164,7 +164,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .criterion("has_ch", conditionsFromItem(ModItems.CHTHONIC_GOLD_INGOT))
                         .offerTo(exporter);
 
-                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_GRATE)
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_GRATE, 4)
                         .pattern(" g ")
                         .pattern("g g")
                         .pattern(" g ")
@@ -173,7 +173,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .offerTo(exporter);
 
                 offerSmelting(
-                        List.of(ModItems.CHTHONIC_GOLD_INGOT),
+                        List.of(ModItems.CHTHONIC_GOLD_NUGGET),
                         RecipeCategory.MISC,
                         ModBlocks.CHTHONIC_GOLD_PILE,
                         0.25F,

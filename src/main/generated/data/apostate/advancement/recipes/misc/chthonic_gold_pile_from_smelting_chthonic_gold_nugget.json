@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_chthonic_gold_ingot": {
+    "has_chthonic_gold_nugget": {
       "conditions": {
         "items": [
           {
-            "items": "apostate:chthonic_gold_ingot"
+            "items": "apostate:chthonic_gold_nugget"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "apostate:chthonic_gold_pile_from_smelting_chthonic_gold_ingot"
+        "recipe": "apostate:chthonic_gold_pile_from_smelting_chthonic_gold_nugget"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_chthonic_gold_ingot"
+      "has_chthonic_gold_nugget"
     ]
   ],
   "rewards": {
     "recipes": [
-      "apostate:chthonic_gold_pile_from_smelting_chthonic_gold_ingot"
+      "apostate:chthonic_gold_pile_from_smelting_chthonic_gold_nugget"
     ]
   }
 }

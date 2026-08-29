@@ -13,4 +13,5 @@ public interface ModDamageTypes {
     KeyedBuilder<DamageType> builder = new KeyedBuilder<>(Apostate.MOD_ID, RegistryKeys.DAMAGE_TYPE);
 
     RegistryKey<DamageType> PACT = builder.register("pact", new DamageType("pact", 0.0F));
+    RegistryKey<DamageType> BELL = builder.register("bell", new DamageType("bell", 0.0F));
 }
