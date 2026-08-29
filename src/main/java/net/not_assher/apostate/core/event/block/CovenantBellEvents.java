@@ -54,25 +54,27 @@ public class CovenantBellEvents {
                         if (!stack.isEmpty()) {
                             if (bell.getPactStack() == null) {
                                 if (stack.isOf(ModItems.PACT_CRYSTAL)) {
-                                    bell.setPactStack(stack.split(1));
+                                    if (player.isSneaking()) {
+                                        bell.setPactStack(stack.split(1));
 
-                                    world.playSound(
-                                            null,
-                                            pos.getX(),
-                                            pos.getY(),
-                                            pos.getZ(),
-                                            SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
-                                            SoundCategory.BLOCKS,
-                                            1,
-                                            1
-                                    );
+                                        world.playSound(
+                                                null,
+                                                pos.getX(),
+                                                pos.getY(),
+                                                pos.getZ(),
+                                                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN,
+                                                SoundCategory.BLOCKS,
+                                                1,
+                                                1
+                                        );
 
-                                    return ActionResult.SUCCESS;
+                                        return ActionResult.SUCCESS;
+                                    }
                                 }
                             }
                         } else {
                             if (bell.getPactStack() != null && player.getActiveOrMainHandStack().isEmpty()) {
-                                if (player.isSneaking()) {
+                                if (!player.isSneaking()) {
                                     PactComponent pact = bell.getPactStack().get(ModDataComponentTypes.STORED_PACT);
 
                                     if (pact != null) {

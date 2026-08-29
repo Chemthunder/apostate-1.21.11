@@ -5,9 +5,14 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -21,14 +26,21 @@ import org.jspecify.annotations.Nullable;
  */
 public class CovenantBellBlock extends BlockWithEntity implements LightEmitter {
     public static final BooleanProperty HAS_STACK = BooleanProperty.of("has_stack");
+    public static final EnumProperty<Direction> DIR = HorizontalFacingBlock.FACING;
 
     public CovenantBellBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(HAS_STACK, false));
+        this.setDefaultState(this.getDefaultState().with(HAS_STACK, false).with(DIR, Direction.NORTH));
     }
 
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HAS_STACK);
+        builder.add(DIR);
+    }
+
+    @Nullable
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(DIR, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
     protected MapCodec<? extends BlockWithEntity> getCodec() {
@@ -69,6 +81,14 @@ public class CovenantBellBlock extends BlockWithEntity implements LightEmitter {
 
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(Block.createColumnShape(6.0F, 6.0F, 13.0F), Block.createColumnShape(8.0F, 4.0F, 6.0F));
+    }
+
+    protected BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(DIR, rotation.rotate(state.get(DIR)));
+    }
+
+    protected BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(DIR)));
     }
 
     public static boolean hasEmissiveLighting(BlockState state, BlockView world, BlockPos pos) {

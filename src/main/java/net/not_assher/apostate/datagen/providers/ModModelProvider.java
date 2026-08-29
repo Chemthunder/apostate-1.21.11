@@ -36,8 +36,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerBars(ModBlocks.CHTHONIC_GOLD_BARS);
         blockStateModelGenerator.registerLantern(ModBlocks.CHTHONIC_GOLD_LANTERN);
         blockStateModelGenerator.registerLeafLitter(ModBlocks.CHTHONIC_GOLD_PILE);
-
-        blockStateModelGenerator.registerSimpleState(ModBlocks.COVENANT_BELL);
     }
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
