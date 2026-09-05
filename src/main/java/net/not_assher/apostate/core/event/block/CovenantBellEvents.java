@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -85,6 +86,18 @@ public class CovenantBellEvents {
                                                 ModCriteria.COVENANT_BELL.trigger(serverPlayerEntity);
 
                                                 serverPlayerEntity.damage(serverPlayerEntity.getEntityWorld(), serverPlayerEntity.getDamageSources().create(ModDamageTypes.BELL), player.getHealth() / 2);
+                                            }
+
+                                            if (world.getServer() != null && world.getServer().getPlayerManager() != null) {
+                                                for (ServerPlayerEntity serverPlayer : world.getServer().getPlayerManager().getPlayerList()) {
+                                                    if (Objects.equals(serverPlayer.getName().getString(), pact.signer())) {
+                                                        if (player.getDisplayName() != null) {
+                                                            serverPlayer.sendMessageToClient(Text.literal(
+                                                                    "You have been called upon by " + player.getDisplayName().getString()
+                                                            ), true);
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }

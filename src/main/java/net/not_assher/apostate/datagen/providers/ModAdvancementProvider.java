@@ -3,6 +3,7 @@ package net.not_assher.apostate.datagen.providers;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.*;
+import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.advancement.criterion.TickCriterion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryWrapper;
@@ -126,6 +127,30 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         ModCriteria.COVENANT_BELL.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
+
+        AdvancementEntry hoard = generateHiddenAdvancement(
+                consumer,
+                signContract,
+                new AdvancementContext(
+                        ModBlocks.CHISELED_CHTHONIC_GOLD_BLOCK.asItem().getDefaultStack(),
+                        "hoard",
+                        InventoryChangedCriterion.Conditions.items(
+                                ModBlocks.CHISELED_CHTHONIC_GOLD_BLOCK.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_BARS.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_BLOCK.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_CHAIN.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_DOOR.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_GRATE.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_LANTERN.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_PILE.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_TILES.asItem(),
+                                ModBlocks.CHTHONIC_GOLD_TRAPDOOR.asItem(),
+
+                                ModItems.CHTHONIC_GOLD_INGOT,
+                                ModItems.CHTHONIC_GOLD_NUGGET
+                        )
+                )
+        );
     }
 
     private AdvancementEntry generateBasicAdvancement(Consumer<AdvancementEntry> consumer, AdvancementEntry root, AdvancementContext context) {
@@ -140,6 +165,27 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         true,
                         true,
                         false
+                ).requirements(AdvancementRequirements.allOf(List.of("e")))
+                .criteriaMerger(AdvancementRequirements.CriterionMerger.AND)
+                .criterion("e", context.criterion)
+                .build(Apostate.id(context.title));
+
+        consumer.accept(generated);
+        return generated;
+    }
+
+    private AdvancementEntry generateHiddenAdvancement(Consumer<AdvancementEntry> consumer, AdvancementEntry root, AdvancementContext context) {
+        AdvancementEntry generated = Advancement.Builder.createUntelemetered()
+                .parent(root)
+                .display(
+                        context.displayStack,
+                        Text.translatable("advancements.apostate." + context.title + ".title"),
+                        Text.translatable("advancements.apostate." + context.title + ".desc"),
+                        null,
+                        AdvancementFrame.CHALLENGE,
+                        true,
+                        true,
+                        true
                 ).requirements(AdvancementRequirements.allOf(List.of("e")))
                 .criteriaMerger(AdvancementRequirements.CriterionMerger.AND)
                 .criterion("e", context.criterion)

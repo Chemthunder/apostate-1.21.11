@@ -191,6 +191,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('I', ModItems.IMMORTAL_DUST)
                         .criterion("has_ch", conditionsFromItem(Items.NETHER_STAR))
                         .offerTo(exporter);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHTHONIC_GOLD_BLOCK)
+                        .pattern("ggg")
+                        .pattern("ggg")
+                        .pattern("ggg")
+                        .input('g', ModItems.CHTHONIC_GOLD_INGOT)
+                        .criterion("has_ch", conditionsFromItem(ModItems.CHTHONIC_GOLD_INGOT))
+                        .offerTo(exporter);
             }
         };
     }

@@ -1,6 +1,15 @@
 {
   "values": [
     "apostate:covenant_bell",
-    "apostate:chthonic_gold_block"
+    "apostate:chthonic_gold_block",
+    "apostate:chiseled_chthonic_gold_block",
+    "apostate:chthonic_gold_bars",
+    "apostate:chthonic_gold_chain",
+    "apostate:chthonic_gold_door",
+    "apostate:chthonic_gold_grate",
+    "apostate:chthonic_gold_lantern",
+    "apostate:chthonic_gold_pile",
+    "apostate:chthonic_gold_tiles",
+    "apostate:chthonic_gold_trapdoor"
   ]
 }

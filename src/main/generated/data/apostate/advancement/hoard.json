@@ -1,0 +1,67 @@
+{
+  "parent": "apostate:sign_contract",
+  "criteria": {
+    "e": {
+      "conditions": {
+        "items": [
+          {
+            "items": "apostate:chiseled_chthonic_gold_block"
+          },
+          {
+            "items": "apostate:chthonic_gold_bars"
+          },
+          {
+            "items": "apostate:chthonic_gold_block"
+          },
+          {
+            "items": "apostate:chthonic_gold_chain"
+          },
+          {
+            "items": "apostate:chthonic_gold_door"
+          },
+          {
+            "items": "apostate:chthonic_gold_grate"
+          },
+          {
+            "items": "apostate:chthonic_gold_lantern"
+          },
+          {
+            "items": "apostate:chthonic_gold_pile"
+          },
+          {
+            "items": "apostate:chthonic_gold_tiles"
+          },
+          {
+            "items": "apostate:chthonic_gold_trapdoor"
+          },
+          {
+            "items": "apostate:chthonic_gold_ingot"
+          },
+          {
+            "items": "apostate:chthonic_gold_nugget"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.hoard.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "apostate:chiseled_chthonic_gold_block"
+    },
+    "title": {
+      "translate": "advancements.apostate.hoard.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

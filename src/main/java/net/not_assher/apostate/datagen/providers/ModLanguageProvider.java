@@ -47,6 +47,9 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("advancements.apostate.covenant.title", "It Tolls for Thee");
         translationBuilder.add("advancements.apostate.covenant.desc", "Ring a Covenant Bell.");
 
+        translationBuilder.add("advancements.apostate.hoard.title", "The Kraken's Hoard");
+        translationBuilder.add("advancements.apostate.hoard.desc", "All that glitters is yours, is it not? Or must you hide your fear behind dazzling gold? Questions, questions.");
+
         translationBuilder.add("itemGroup.apostate", "Apostate");
 
         translationBuilder.add("bounty.collect", "%s has collected a Bounty on %s's head");

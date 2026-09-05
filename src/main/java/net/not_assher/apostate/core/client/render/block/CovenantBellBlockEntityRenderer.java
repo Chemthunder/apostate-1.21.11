@@ -59,7 +59,4 @@ public class CovenantBellBlockEntityRenderer implements BlockEntityRenderer<Cove
 
         state.hasPact = blockEntity.getPactStack() != null;
     }
-
-    @Environment(EnvType.CLIENT)
-    public record ModelState() {}
 }

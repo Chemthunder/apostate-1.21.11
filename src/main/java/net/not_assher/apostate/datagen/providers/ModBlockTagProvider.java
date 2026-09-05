@@ -19,6 +19,17 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup registries) {
         this.valueLookupBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.COVENANT_BELL, ModBlocks.CHTHONIC_GOLD_BLOCK)
+                .add(
+                        ModBlocks.CHISELED_CHTHONIC_GOLD_BLOCK,
+                        ModBlocks.CHTHONIC_GOLD_BARS,
+                        ModBlocks.CHTHONIC_GOLD_CHAIN,
+                        ModBlocks.CHTHONIC_GOLD_DOOR,
+                        ModBlocks.CHTHONIC_GOLD_GRATE,
+                        ModBlocks.CHTHONIC_GOLD_LANTERN,
+                        ModBlocks.CHTHONIC_GOLD_PILE,
+                        ModBlocks.CHTHONIC_GOLD_TILES,
+                        ModBlocks.CHTHONIC_GOLD_TRAPDOOR
+                )
                 .setReplace(false);
     }
 }

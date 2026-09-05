@@ -1,6 +1,6 @@
 {
   "textures": {
-    "particle": "apostate:entity/covenant_bell_body",
+    "particle": "apostate:block/chthonic_gold_block",
     "bar": "minecraft:block/spruce_planks",
     "post": "minecraft:block/deepslate"
   },
