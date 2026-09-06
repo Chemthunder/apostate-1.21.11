@@ -9,8 +9,9 @@ import net.minecraft.item.ItemDisplayContext;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.not_assher.apostate.core.client.item.CordialVowProperty;
 import net.not_assher.apostate.core.client.item.PactCrystalProperty;
-import net.not_assher.apostate.core.client.item.TabletProperty;
+import net.not_assher.apostate.core.client.item.DiviningTabletProperty;
 import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.index.client.ModModelTemplates;
@@ -39,8 +40,9 @@ public class ModModelProvider extends FabricModelProvider {
     }
 
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        createTablet(itemModelGenerator);
+        createDiviningTablet(itemModelGenerator);
         createPactCrystal(itemModelGenerator);
+        createCordialVow(itemModelGenerator);
         createFlyer(itemModelGenerator);
 
         itemModelGenerator.register(ModItems.IMMORTAL_DUST, Models.GENERATED);
@@ -83,13 +85,13 @@ public class ModModelProvider extends FabricModelProvider {
                 ));
     }
 
-    private void createTablet(ItemModelGenerator generator) {
+    private void createDiviningTablet(ItemModelGenerator generator) {
         Item item = ModItems.DIVINING_TABLET;
         Identifier baseId = ModelIds.getItemModelId(item);
 
         generator.output.accept(item,
                 ItemModels.select(
-                        new TabletProperty(),
+                        new DiviningTabletProperty(),
                         ItemModels.switchCase(
                                 "tablet_empty",
                                 ItemModels.basic(
@@ -162,6 +164,47 @@ public class ModModelProvider extends FabricModelProvider {
                         ),
                         ItemModels.switchCase(
                                 "pact_full",
+                                ItemModels.basic(
+                                        Models.GENERATED.upload(
+                                                baseId.withSuffixedPath("_full"),
+                                                TextureMap.layer0(baseId.withSuffixedPath("_full")),
+                                                generator.modelCollector
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
+    private void createCordialVow(ItemModelGenerator generator) {
+        Item item = ModItems.CORDIAL_VOW;
+        Identifier baseId = ModelIds.getItemModelId(item);
+
+        generator.output.accept(item,
+                ItemModels.select(
+                        new CordialVowProperty(),
+                        ItemModels.switchCase(
+                                "empty",
+                                ItemModels.basic(
+                                        Models.GENERATED.upload(
+                                                baseId.withSuffixedPath("_empty"),
+                                                TextureMap.layer0(baseId.withSuffixedPath("_empty")),
+                                                generator.modelCollector
+                                        )
+                                )
+                        ),
+                        ItemModels.switchCase(
+                                "half",
+                                ItemModels.basic(
+                                        Models.GENERATED.upload(
+                                                baseId.withSuffixedPath("_half"),
+                                                TextureMap.layer0(baseId.withSuffixedPath("_half")),
+                                                generator.modelCollector
+                                        )
+                                )
+                        ),
+                        ItemModels.switchCase(
+                                "full",
                                 ItemModels.basic(
                                         Models.GENERATED.upload(
                                                 baseId.withSuffixedPath("_full"),

@@ -25,7 +25,7 @@ import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.BountyPosterItem;
-import net.not_assher.apostate.core.item.component.BountyComponent;
+import net.not_assher.apostate.core.item.component.BountyPosterComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
 import org.jetbrains.annotations.Nullable;
 
@@ -78,11 +78,11 @@ public class ModUtils {
         if (stack != null) {
             if (stack.getItem() instanceof BountyPosterItem) {
                 if (bountyIsRedeemable(stack, target)) {
-                    BountyComponent bounty = stack.get(ModComponentTypes.BOUNTY);
+                    BountyPosterComponent bounty = stack.get(ModComponentTypes.BOUNTY);
 
                     if (bounty != null) {
                         if (!bounty.ctx().equals(KillContext.ALIVE)) {
-                            stack.set(ModComponentTypes.BOUNTY, new BountyComponent(
+                            stack.set(ModComponentTypes.BOUNTY, new BountyPosterComponent(
                                     bounty.targetName(),
                                     bounty.ownerName(),
                                     bounty.ctx(),
@@ -112,7 +112,7 @@ public class ModUtils {
                                     false
                             );
                         } else {
-                            stack.set(ModComponentTypes.BOUNTY, new BountyComponent(
+                            stack.set(ModComponentTypes.BOUNTY, new BountyPosterComponent(
                                     bounty.targetName(),
                                     bounty.ownerName(),
                                     bounty.ctx(),
@@ -139,7 +139,7 @@ public class ModUtils {
     }
 
     public static boolean bountyIsRedeemable(ItemStack stack, PlayerEntity target) {
-        BountyComponent bounty = stack.getOrDefault(ModComponentTypes.BOUNTY, BountyComponent.EMPTY);
+        BountyPosterComponent bounty = stack.getOrDefault(ModComponentTypes.BOUNTY, BountyPosterComponent.EMPTY);
         if (!bounty.completed() && bounty.signed()) {
             return target.getNameForScoreboard().equals(bounty.targetName());
         }
@@ -150,7 +150,7 @@ public class ModUtils {
     public static ItemStack checkIfBounty(PlayerEntity player) {
         for (ItemStack slot : player.getInventory()) {
             if (slot.isOf(ModItems.BOUNTY_POSTER)) {
-                BountyComponent bounty = slot.get(ModComponentTypes.BOUNTY);
+                BountyPosterComponent bounty = slot.get(ModComponentTypes.BOUNTY);
 
                 if (bounty != null) {
                     if (!bounty.completed() && bounty.signed()) {

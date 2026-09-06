@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
-import net.not_assher.apostate.core.item.component.TabletComponent;
+import net.not_assher.apostate.core.item.component.DiviningTabletComponent;
 import org.joml.Matrix3x2fStack;
 
 /**
@@ -20,9 +20,9 @@ import org.joml.Matrix3x2fStack;
 @Environment(EnvType.CLIENT)
 public class TabletTooltipComponent implements TooltipComponent {
     private final ItemStack self;
-    private final TabletComponent component;
+    private final DiviningTabletComponent component;
 
-    public TabletTooltipComponent(ItemStack self, TabletComponent component) {
+    public TabletTooltipComponent(ItemStack self, DiviningTabletComponent component) {
         this.self = self;
         this.component = component;
     }

@@ -13,7 +13,7 @@ import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
-import net.not_assher.apostate.core.item.component.BountyComponent;
+import net.not_assher.apostate.core.item.component.BountyPosterComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
 
 import java.util.List;
@@ -49,7 +49,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         consumer.accept(root);
 
         ItemStack placeBountyStack = new ItemStack(ModItems.BOUNTY_POSTER);
-        placeBountyStack.set(ModComponentTypes.BOUNTY, new BountyComponent(
+        placeBountyStack.set(ModComponentTypes.BOUNTY, new BountyPosterComponent(
                 "",
                 "",
                 KillContext.DEAD,
@@ -59,7 +59,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         ));
 
         ItemStack collectBountyStack = new ItemStack(ModItems.BOUNTY_POSTER);
-        collectBountyStack.set(ModComponentTypes.BOUNTY, new BountyComponent(
+        collectBountyStack.set(ModComponentTypes.BOUNTY, new BountyPosterComponent(
                 "",
                 "",
                 KillContext.EITHER,
@@ -94,7 +94,17 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         ModItems.PACT_CRYSTAL.getDefaultStack(),
                         "sign_contract",
-                        ModCriterions.SIGN_CONTRACT.create(new TickCriterion.Conditions(Optional.empty()))
+                        ModCriterions.SIGN_PACT.create(new TickCriterion.Conditions(Optional.empty()))
+                )
+        );
+
+        AdvancementEntry signVow = generateBasicAdvancement(
+                consumer,
+                signContract,
+                new AdvancementContext(
+                        ModItems.CORDIAL_VOW.getDefaultStack(),
+                        "sign_vow",
+                        ModCriterions.SIGN_VOW.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 

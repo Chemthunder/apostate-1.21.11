@@ -1,0 +1,25 @@
+{
+  "parent": "apostate:sign_contract",
+  "criteria": {
+    "e": {
+      "trigger": "apostate:sign_vow"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.apostate.sign_vow.desc"
+    },
+    "icon": {
+      "count": 1,
+      "id": "apostate:cordial_vow"
+    },
+    "title": {
+      "translate": "advancements.apostate.sign_vow.title"
+    }
+  },
+  "requirements": [
+    [
+      "e"
+    ]
+  ]
+}

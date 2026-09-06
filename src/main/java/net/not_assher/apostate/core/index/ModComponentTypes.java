@@ -13,34 +13,34 @@ import net.not_assher.apostate.core.item.component.*;
 public interface ModComponentTypes {
     DataComponentTypeRegistrant plugin = new DataComponentTypeRegistrant(Apostate.MOD_ID);
 
-    ComponentType<BountyComponent> BOUNTY = plugin.register(
+    ComponentType<BountyPosterComponent> BOUNTY = plugin.register(
             "bounty",
-            BountyComponent.CODEC,
-            BountyComponent.PACKET_CODEC
+            BountyPosterComponent.CODEC,
+            BountyPosterComponent.PACKET_CODEC
     );
 
-    ComponentType<PactComponent> PACT = plugin.register(
+    ComponentType<PactCrystalComponent> PACT = plugin.register(
             "pact",
-            PactComponent.CODEC,
-            PactComponent.PACKET_CODEC
+            PactCrystalComponent.CODEC,
+            PactCrystalComponent.PACKET_CODEC
     );
 
-    ComponentType<TabletComponent> TABLET = plugin.register(
+    ComponentType<DiviningTabletComponent> TABLET = plugin.register(
             "tablet",
-            TabletComponent.CODEC,
-            TabletComponent.PACKET_CODEC
+            DiviningTabletComponent.CODEC,
+            DiviningTabletComponent.PACKET_CODEC
     );
 
-    ComponentType<BookComponent> BOOK = plugin.register(
+    ComponentType<BountyBookComponent> BOOK = plugin.register(
             "bounty_book",
-            BookComponent.CODEC,
-            BookComponent.PACKET_CODEC
+            BountyBookComponent.CODEC,
+            BountyBookComponent.PACKET_CODEC
     );
 
-    ComponentType<VowComponent> VOW = plugin.register(
+    ComponentType<CordialVowComponent> VOW = plugin.register(
             "vow",
-            VowComponent.CODEC,
-            VowComponent.PACKET_CODEC
+            CordialVowComponent.CODEC,
+            CordialVowComponent.PACKET_CODEC
     );
 
     ComponentType<Integer> INTEGER = plugin.register(

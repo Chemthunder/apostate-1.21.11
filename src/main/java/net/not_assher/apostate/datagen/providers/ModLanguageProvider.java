@@ -38,6 +38,9 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("advancements.apostate.sign_contract.title", "Fettered & Chained");
         translationBuilder.add("advancements.apostate.sign_contract.desc", "Complete a Pact Crystal, doesn't this feel familiar?");
 
+        translationBuilder.add("advancements.apostate.sign_vow.title", "Safe Harbor");
+        translationBuilder.add("advancements.apostate.sign_vow.desc", "Complete a Cordial Vow. Though, what is life without the risk of a good deal?");
+
         translationBuilder.add("advancements.apostate.use_tablet.title", "The Hunt Begins.");
         translationBuilder.add("advancements.apostate.use_tablet.desc", "Use a Divining Tablet to locate your target through several means.");
 

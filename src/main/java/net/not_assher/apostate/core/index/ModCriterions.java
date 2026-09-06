@@ -16,7 +16,8 @@ public interface ModCriterions {
     TickCriterion PLACE_BOUNTY = plugin.register("place_bounty", new TickCriterion());
     TickCriterion COLLECT_BOUNTY = plugin.register("collect_bounty", new TickCriterion());
 
-    TickCriterion SIGN_CONTRACT = plugin.register("sign_contract", new TickCriterion());
+    TickCriterion SIGN_PACT = plugin.register("sign_contract", new TickCriterion());
+    TickCriterion SIGN_VOW = plugin.register("sign_vow", new TickCriterion());
 
     TickCriterion USE_TABLET = plugin.register("use_tablet", new TickCriterion());
 

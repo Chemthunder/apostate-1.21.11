@@ -7,40 +7,27 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemDisplayContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModComponentTypes;
-import net.not_assher.apostate.core.item.component.PactCrystalComponent;
+import net.not_assher.apostate.core.item.component.DiviningTabletComponent;
 import org.jspecify.annotations.Nullable;
 
 /**
  * @author Chemthunder
  */
-public record PactCrystalProperty() implements SelectProperty<String> {
-    public static final Identifier ID = Apostate.id("pact_crystal");
+public record DiviningTabletProperty() implements SelectProperty<String> {
+    public static final Identifier ID = Apostate.id("tablet");
 
-    public static final Type<PactCrystalProperty, String> TYPE = Type.create(
-            MapCodec.unit(PactCrystalProperty::new),
+    public static final Type<DiviningTabletProperty, String> TYPE = Type.create(
+            MapCodec.unit(DiviningTabletProperty::new),
             Codec.STRING
     );
 
     public String getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
-        PactCrystalComponent pact = stack.getOrDefault(ModComponentTypes.PACT, PactCrystalComponent.EMPTY);
-
-        if (!pact.completed()) {
-            if (pact.owner().isBlank() && pact.signer().isBlank()) {
-                return "pact_clear";
-            }
-            if (!pact.owner().isBlank() && pact.signer().isBlank()) {
-                return "pact_half";
-            }
-            if (!pact.owner().isBlank() && !pact.signer().isBlank()) {
-                return "pact_full";
-            }
-        } else {
-            return "pact_full";
-        }
-        return "pact_unknown";
+        DiviningTabletComponent t = stack.getOrDefault(ModComponentTypes.TABLET, new DiviningTabletComponent(null, ItemStack.EMPTY));
+        return t.ingredient().isEmpty() ? "tablet_empty" : "tablet_" + Registries.ITEM.getId(t.ingredient().getItem()).getPath();
     }
 
     public Codec<String> valueCodec() {

@@ -17,10 +17,7 @@ import net.not_assher.apostate.core.event.DebugRelogEvent;
 import net.not_assher.apostate.core.event.block.CovenantBellEvents;
 import net.not_assher.apostate.core.event.block.LightCrimsonCandleEvent;
 import net.not_assher.apostate.core.index.*;
-import net.not_assher.apostate.core.item.BountyBookItem;
-import net.not_assher.apostate.core.item.BountyPosterItem;
-import net.not_assher.apostate.core.item.FlyerItem;
-import net.not_assher.apostate.core.item.PactCrystalItem;
+import net.not_assher.apostate.core.item.*;
 import net.not_assher.apostate.core.networking.ModNetworking;
 import net.not_assher.apostate.core.utilities.LootTableModifiers;
 import net.not_assher.apostate.ext.ModConfig;
@@ -58,6 +55,7 @@ public class Apostate implements ModInitializer {
         BetterItemTooltipEvent.EVENT.register(new PactCrystalItem.Tooltip());
         BetterItemTooltipEvent.EVENT.register(new FlyerItem.Tooltip());
         BetterItemTooltipEvent.EVENT.register(new BountyBookItem.Tooltip());
+        BetterItemTooltipEvent.EVENT.register(new CordialVowItem.Tooltip());
 
         CommandRegistrationCallback.EVENT.register(new NicknameCommand());
         CommandRegistrationCallback.EVENT.register(new StatusCommand());

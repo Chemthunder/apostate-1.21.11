@@ -26,8 +26,8 @@ import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
 import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.tag.ModItemTags;
-import net.not_assher.apostate.core.item.component.PactComponent;
-import net.not_assher.apostate.core.item.component.TabletComponent;
+import net.not_assher.apostate.core.item.component.PactCrystalComponent;
+import net.not_assher.apostate.core.item.component.DiviningTabletComponent;
 import net.not_assher.apostate.core.utilities.ModUtils;
 
 import java.util.Optional;
@@ -44,7 +44,7 @@ public class DiviningTabletItem extends Item {
 
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        TabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
+        DiviningTabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new DiviningTabletComponent(null, ItemStack.EMPTY));
 
         if (!user.getItemCooldownManager().isCoolingDown(stack)) {
             if (!tablet.isEmpty()) {
@@ -88,7 +88,7 @@ public class DiviningTabletItem extends Item {
                         track(world, user, target, stack, tablet.ingredient().getItem());
 
                         if (!user.isCreative()) {
-                            stack.set(ModComponentTypes.TABLET, new TabletComponent(tablet.hunted(), ItemStack.EMPTY));
+                            stack.set(ModComponentTypes.TABLET, new DiviningTabletComponent(tablet.hunted(), ItemStack.EMPTY));
 
                             int durability = stack.getOrDefault(ModComponentTypes.INTEGER, MAX_USES);
 
@@ -135,13 +135,13 @@ public class DiviningTabletItem extends Item {
     }
 
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        TabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
+        DiviningTabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new DiviningTabletComponent(null, ItemStack.EMPTY));
 
         if (clickType == ClickType.RIGHT) {
             if (tablet.hunted() == null && tablet.ingredient().isEmpty()) {
-                TabletComponent builtTablet = null;
+                DiviningTabletComponent builtTablet = null;
                 if (otherStack.contains(DataComponentTypes.PROFILE)) {
-                    builtTablet = new TabletComponent(
+                    builtTablet = new DiviningTabletComponent(
                             otherStack.get(DataComponentTypes.PROFILE),
                             ItemStack.EMPTY
                     );
@@ -153,7 +153,7 @@ public class DiviningTabletItem extends Item {
                     if (book != null) {
                         String author = book.author();
 
-                        builtTablet = new TabletComponent(
+                        builtTablet = new DiviningTabletComponent(
                                 ProfileComponent.ofDynamic(author),
                                 ItemStack.EMPTY
                         );
@@ -161,12 +161,12 @@ public class DiviningTabletItem extends Item {
                 }
 
                 if (otherStack.contains(ModComponentTypes.PACT)) {
-                    PactComponent pact = otherStack.get(ModComponentTypes.PACT);
+                    PactCrystalComponent pact = otherStack.get(ModComponentTypes.PACT);
 
                     if (pact != null) {
                         String owner = pact.signer();
 
-                        builtTablet = new TabletComponent(
+                        builtTablet = new DiviningTabletComponent(
                                 ProfileComponent.ofDynamic(owner),
                                 ItemStack.EMPTY
                         );
@@ -186,7 +186,7 @@ public class DiviningTabletItem extends Item {
 
             if (otherStack.isIn(ModItemTags.ACCEPTABLE) && (tablet.hunted() != null && tablet.ingredient().isEmpty())) {
                 ItemStack splitStack = otherStack.split(1);
-                TabletComponent builtTablet = new TabletComponent(tablet.hunted(), splitStack.getItem().getDefaultStack());
+                DiviningTabletComponent builtTablet = new DiviningTabletComponent(tablet.hunted(), splitStack.getItem().getDefaultStack());
 
                 stack.set(ModComponentTypes.TABLET, builtTablet);
 
@@ -202,7 +202,7 @@ public class DiviningTabletItem extends Item {
 
     public Optional<TooltipData> getTooltipData(ItemStack stack) {
         TooltipDisplayComponent display = stack.getOrDefault(DataComponentTypes.TOOLTIP_DISPLAY, TooltipDisplayComponent.DEFAULT);
-        TabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
+        DiviningTabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new DiviningTabletComponent(null, ItemStack.EMPTY));
 
         if (tablet.shouldDisplay()) {
             return !display.shouldDisplay(ModComponentTypes.TABLET)

@@ -11,7 +11,7 @@
     },
     "icon": {
       "components": {
-        "apostate:stored_bounty": {
+        "apostate:bounty": {
           "killContext": "dead",
           "signed": true
         }

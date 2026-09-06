@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Rarity;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.item.*;
-import net.not_assher.apostate.core.item.component.BookComponent;
-import net.not_assher.apostate.core.item.component.BountyComponent;
-import net.not_assher.apostate.core.item.component.TabletComponent;
+import net.not_assher.apostate.core.item.component.BountyBookComponent;
+import net.not_assher.apostate.core.item.component.BountyPosterComponent;
+import net.not_assher.apostate.core.item.component.DiviningTabletComponent;
 
 import java.util.ArrayList;
 
@@ -19,24 +19,31 @@ public interface ModItems {
     ItemRegistrant plugin = new ItemRegistrant(Apostate.MOD_ID);
 
     Item BOUNTY_POSTER = plugin.register("bounty_poster", BountyPosterItem::new, new Item.Settings()
-            .component(ModComponentTypes.BOUNTY, BountyComponent.EMPTY)
+            .component(ModComponentTypes.BOUNTY, BountyPosterComponent.EMPTY)
     );
 
     Item BOUNTY_BOOK = plugin.register("bounty_book", BountyBookItem::new, new Item.Settings()
             .maxCount(1)
             .rarity(Rarity.UNCOMMON)
-            .component(ModComponentTypes.BOOK, new BookComponent(new ArrayList<>()))
+            .component(ModComponentTypes.BOOK, new BountyBookComponent(new ArrayList<>()))
     );
 
     Item PACT_CRYSTAL = plugin.register("pact_crystal", PactCrystalItem::new, new Item.Settings()
             .maxCount(1)
+            .rarity(Rarity.RARE)
+    );
+
+    Item CORDIAL_VOW = plugin.register("cordial_vow", CordialVowItem::new, new Item.Settings()
+            .maxCount(1)
+            .fireproof()
+            .rarity(Rarity.RARE)
     );
 
     Item DIVINING_TABLET = plugin.register("divining_tablet", DiviningTabletItem::new, new Item.Settings()
             .maxCount(1)
             .fireproof()
             .rarity(Rarity.RARE)
-            .component(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY))
+            .component(ModComponentTypes.TABLET, new DiviningTabletComponent(null, ItemStack.EMPTY))
             .component(ModComponentTypes.INTEGER, DiviningTabletItem.MAX_USES)
     );
 

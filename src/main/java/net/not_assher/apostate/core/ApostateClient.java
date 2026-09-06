@@ -18,12 +18,13 @@ import net.not_assher.apostate.core.client.event.TextOverlayEvents;
 import net.not_assher.apostate.core.client.hud.EmeraldTabletElement;
 import net.not_assher.apostate.core.client.item.KillContextProperty;
 import net.not_assher.apostate.core.client.item.PactCrystalProperty;
-import net.not_assher.apostate.core.client.item.TabletProperty;
+import net.not_assher.apostate.core.client.item.DiviningTabletProperty;
+import net.not_assher.apostate.core.client.item.CordialVowProperty;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipComponent;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
 import net.not_assher.apostate.core.index.ModBlockEntityTypes;
 import net.not_assher.apostate.core.index.ModBlocks;
-import net.not_assher.apostate.core.item.component.TabletComponent;
+import net.not_assher.apostate.core.item.component.DiviningTabletComponent;
 import net.not_assher.apostate.core.networking.ModNetworking;
 
 import static net.not_assher.apostate.core.Apostate.id;
@@ -41,7 +42,8 @@ public class ApostateClient implements ClientModInitializer {
         // Models
         SelectProperties.ID_MAPPER.put(KillContextProperty.ID, KillContextProperty.TYPE);
         SelectProperties.ID_MAPPER.put(PactCrystalProperty.ID, PactCrystalProperty.TYPE);
-        SelectProperties.ID_MAPPER.put(TabletProperty.ID, TabletProperty.TYPE);
+        SelectProperties.ID_MAPPER.put(DiviningTabletProperty.ID, DiviningTabletProperty.TYPE);
+        SelectProperties.ID_MAPPER.put(CordialVowProperty.ID, CordialVowProperty.TYPE);
 
         // Hud
         HudElementRegistry.addFirst(
@@ -63,7 +65,7 @@ public class ApostateClient implements ClientModInitializer {
         ClientTickEvents.START_CLIENT_TICK.register(new TextOverlayEvents.Ticker());
 
         TooltipComponentCallback.EVENT.register(data -> {
-            if (data instanceof TabletTooltipData(ItemStack self, TabletComponent component)) {
+            if (data instanceof TabletTooltipData(ItemStack self, DiviningTabletComponent component)) {
                 return new TabletTooltipComponent(self, component);
             }
             return null;

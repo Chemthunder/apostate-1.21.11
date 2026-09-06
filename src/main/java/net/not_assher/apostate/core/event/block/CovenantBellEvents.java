@@ -22,7 +22,7 @@ import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.index.data.ModDamageTypes;
-import net.not_assher.apostate.core.item.component.PactComponent;
+import net.not_assher.apostate.core.item.component.PactCrystalComponent;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
@@ -76,7 +76,7 @@ public class CovenantBellEvents {
                         } else {
                             if (bell.getPactStack() != null && player.getActiveOrMainHandStack().isEmpty()) {
                                 if (!player.isSneaking()) {
-                                    PactComponent pact = bell.getPactStack().get(ModComponentTypes.PACT);
+                                    PactCrystalComponent pact = bell.getPactStack().get(ModComponentTypes.PACT);
 
                                     if (pact != null) {
                                         if (Objects.equals(player.getName().getString(), pact.owner())) {

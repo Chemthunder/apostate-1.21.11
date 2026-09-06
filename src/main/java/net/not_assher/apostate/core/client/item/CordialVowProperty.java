@@ -7,27 +7,40 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemDisplayContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModComponentTypes;
-import net.not_assher.apostate.core.item.component.TabletComponent;
+import net.not_assher.apostate.core.item.component.CordialVowComponent;
 import org.jspecify.annotations.Nullable;
 
 /**
  * @author Chemthunder
  */
-public record TabletProperty() implements SelectProperty<String> {
-    public static final Identifier ID = Apostate.id("tablet");
+public record CordialVowProperty() implements SelectProperty<String> {
+    public static final Identifier ID = Apostate.id("cordial_vow");
 
-    public static final Type<TabletProperty, String> TYPE = Type.create(
-            MapCodec.unit(TabletProperty::new),
+    public static final Type<CordialVowProperty, String> TYPE = Type.create(
+            MapCodec.unit(CordialVowProperty::new),
             Codec.STRING
     );
 
     public String getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
-        TabletComponent t = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
-        return t.ingredient().isEmpty() ? "tablet_empty" : "tablet_" + Registries.ITEM.getId(t.ingredient().getItem()).getPath();
+        CordialVowComponent vow = stack.getOrDefault(ModComponentTypes.VOW, CordialVowComponent.EMPTY);
+
+        if (!vow.completed()) {
+            if (vow.owner().isBlank() && vow.signer().isBlank()) {
+                return "clear";
+            }
+            if (!vow.owner().isBlank() && vow.signer().isBlank()) {
+                return "half";
+            }
+            if (!vow.owner().isBlank() && !vow.signer().isBlank()) {
+                return "full";
+            }
+        } else {
+            return "full";
+        }
+        return "unknown";
     }
 
     public Codec<String> valueCodec() {
