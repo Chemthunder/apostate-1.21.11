@@ -1,0 +1,4 @@
+// 1.21.11	-999999999-01-01T00:00:00	Apostate/Tags for minecraft:damage_type
+6c8384e042f846c5c5c7ce805cc4c427d08cbe84 data/minecraft/tags/damage_type/bypasses_armor.json
+6c8384e042f846c5c5c7ce805cc4c427d08cbe84 data/minecraft/tags/damage_type/bypasses_invulnerability.json
+081fa9e7b32afa0dc49b2b8505943824a110e028 data/minecraft/tags/damage_type/no_knockback.json

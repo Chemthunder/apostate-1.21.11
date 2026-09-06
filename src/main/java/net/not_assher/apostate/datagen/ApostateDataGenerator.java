@@ -27,6 +27,7 @@ public class ApostateDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(ModItemTagProvider::new);
         pack.addProvider(ModEnchantmentTagProvider::new);
         pack.addProvider(ModBlockTagProvider::new);
+        pack.addProvider(ModDamageTypeTagProvider::new);
 	}
 
     public void buildRegistry(RegistryBuilder registryBuilder) {

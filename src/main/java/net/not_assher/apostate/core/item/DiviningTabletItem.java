@@ -23,11 +23,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
-import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.ModComponentTypes;
+import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.tag.ModItemTags;
-import net.not_assher.apostate.core.item.component.PactCrystalComponent;
 import net.not_assher.apostate.core.item.component.DiviningTabletComponent;
+import net.not_assher.apostate.core.item.component.PactCrystalComponent;
 import net.not_assher.apostate.core.utilities.ModUtils;
 
 import java.util.Optional;

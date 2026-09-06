@@ -22,6 +22,13 @@
           "model": "apostate:item/cordial_vow_full"
         },
         "when": "full"
+      },
+      {
+        "model": {
+          "type": "minecraft:model",
+          "model": "apostate:item/cordial_vow_unknown"
+        },
+        "when": "unknown"
       }
     ],
     "property": "apostate:cordial_vow"

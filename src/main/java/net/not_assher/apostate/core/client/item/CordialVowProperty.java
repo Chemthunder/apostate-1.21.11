@@ -29,7 +29,7 @@ public record CordialVowProperty() implements SelectProperty<String> {
 
         if (!vow.completed()) {
             if (vow.owner().isBlank() && vow.signer().isBlank()) {
-                return "clear";
+                return "empty";
             }
             if (!vow.owner().isBlank() && vow.signer().isBlank()) {
                 return "half";

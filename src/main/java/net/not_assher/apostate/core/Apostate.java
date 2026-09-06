@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.command.FlexCommand;
 import net.not_assher.apostate.core.command.NicknameCommand;
 import net.not_assher.apostate.core.command.StatusCommand;
+import net.not_assher.apostate.core.command.VowbreakCommand;
 import net.not_assher.apostate.core.event.ApplyApostateAdvancementEvent;
 import net.not_assher.apostate.core.event.DebugRelogEvent;
 import net.not_assher.apostate.core.event.block.CovenantBellEvents;
@@ -60,6 +61,7 @@ public class Apostate implements ModInitializer {
         CommandRegistrationCallback.EVENT.register(new NicknameCommand());
         CommandRegistrationCallback.EVENT.register(new StatusCommand());
         CommandRegistrationCallback.EVENT.register(new FlexCommand());
+        CommandRegistrationCallback.EVENT.register(new VowbreakCommand());
 
         ServerPlayerEvents.JOIN.register(new DebugRelogEvent());
         ServerPlayerEvents.JOIN.register(new ApplyApostateAdvancementEvent());

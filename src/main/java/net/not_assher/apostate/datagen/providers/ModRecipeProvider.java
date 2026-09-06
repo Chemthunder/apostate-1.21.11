@@ -199,6 +199,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .input('g', ModItems.CHTHONIC_GOLD_INGOT)
                         .criterion("has_ch", conditionsFromItem(ModItems.CHTHONIC_GOLD_INGOT))
                         .offerTo(exporter);
+
+                createShaped(RecipeCategory.TOOLS, ModItems.CORDIAL_VOW)
+                        .pattern("fb")
+                        .pattern("gi")
+                        .input('f', Items.FEATHER)
+                        .input('b', Items.BOOK)
+                        .input('g', Items.GOLD_NUGGET)
+                        .input('i', Items.INK_SAC)
+                        .criterion("has_book", conditionsFromItem(Items.BOOK))
+                        .offerTo(exporter);
             }
         };
     }

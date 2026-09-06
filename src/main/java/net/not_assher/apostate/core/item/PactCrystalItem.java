@@ -12,8 +12,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.ModComponentTypes;
+import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.item.component.PactCrystalComponent;
 

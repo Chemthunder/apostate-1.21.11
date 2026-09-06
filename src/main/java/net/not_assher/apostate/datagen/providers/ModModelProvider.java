@@ -10,8 +10,8 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.client.item.CordialVowProperty;
-import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.client.item.DiviningTabletProperty;
+import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.index.client.ModModelTemplates;
@@ -209,6 +209,16 @@ public class ModModelProvider extends FabricModelProvider {
                                         Models.GENERATED.upload(
                                                 baseId.withSuffixedPath("_full"),
                                                 TextureMap.layer0(baseId.withSuffixedPath("_full")),
+                                                generator.modelCollector
+                                        )
+                                )
+                        ),
+                        ItemModels.switchCase(
+                                "unknown",
+                                ItemModels.basic(
+                                        Models.GENERATED.upload(
+                                                baseId.withSuffixedPath("_unknown"),
+                                                TextureMap.layer0(baseId.withSuffixedPath("_empty")),
                                                 generator.modelCollector
                                         )
                                 )

@@ -14,12 +14,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 import net.not_assher.apostate.core.client.event.BountyDisplayEvent;
+import net.not_assher.apostate.core.client.event.EmeraldTabletEvent;
 import net.not_assher.apostate.core.client.event.TextOverlayEvents;
-import net.not_assher.apostate.core.client.hud.EmeraldTabletElement;
+import net.not_assher.apostate.core.client.event.VowbreakHudEvent;
+import net.not_assher.apostate.core.client.item.CordialVowProperty;
+import net.not_assher.apostate.core.client.item.DiviningTabletProperty;
 import net.not_assher.apostate.core.client.item.KillContextProperty;
 import net.not_assher.apostate.core.client.item.PactCrystalProperty;
-import net.not_assher.apostate.core.client.item.DiviningTabletProperty;
-import net.not_assher.apostate.core.client.item.CordialVowProperty;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipComponent;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
 import net.not_assher.apostate.core.index.ModBlockEntityTypes;
@@ -48,7 +49,7 @@ public class ApostateClient implements ClientModInitializer {
         // Hud
         HudElementRegistry.addFirst(
                 id("compass"),
-                new EmeraldTabletElement()
+                new EmeraldTabletEvent()
         );
 
         HudElementRegistry.addFirst(
@@ -59,6 +60,11 @@ public class ApostateClient implements ClientModInitializer {
         HudElementRegistry.addFirst(
                 id("flyer"),
                 new TextOverlayEvents.Render()
+        );
+
+        HudElementRegistry.addFirst(
+                id("meemoo"),
+                new VowbreakHudEvent()
         );
 
         // Events

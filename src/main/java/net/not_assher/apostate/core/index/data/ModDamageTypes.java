@@ -14,4 +14,5 @@ public interface ModDamageTypes {
 
     RegistryKey<DamageType> PACT = builder.register("pact", new DamageType("pact", 0.0F));
     RegistryKey<DamageType> BELL = builder.register("bell", new DamageType("bell", 0.0F));
+    RegistryKey<DamageType> VOWBREAK = builder.register("vow", new DamageType("vow", 0.0F));
 }

@@ -5,6 +5,7 @@
   "mixins": [
     "AnvilBlockMixin",
     "CrossbowItemMixin",
+    "DamageTrackerMixin",
     "LivingEntityMixin",
     "MobEntityMixin",
     "PersistentProjectileEntityMixin",

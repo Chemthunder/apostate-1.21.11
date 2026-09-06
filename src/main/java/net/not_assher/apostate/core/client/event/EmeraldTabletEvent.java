@@ -1,4 +1,4 @@
-package net.not_assher.apostate.core.client.hud;
+package net.not_assher.apostate.core.client.event;
 
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.MinecraftClient;
@@ -19,7 +19,7 @@ import java.util.Optional;
 /**
  * @author Chemthunder
  */
-public class EmeraldTabletElement implements HudElement {
+public class EmeraldTabletEvent implements HudElement {
 
     public void render(DrawContext context, RenderTickCounter tickCounter) {
         PlayerEntity tracked = null;

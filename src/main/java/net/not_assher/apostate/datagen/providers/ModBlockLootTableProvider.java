@@ -2,8 +2,6 @@ package net.not_assher.apostate.datagen.providers;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.data.loottable.BlockLootTableGenerator;
-import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryWrapper;
 import net.not_assher.apostate.core.index.ModBlocks;
 

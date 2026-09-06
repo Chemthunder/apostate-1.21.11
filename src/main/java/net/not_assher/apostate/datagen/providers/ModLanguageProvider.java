@@ -76,6 +76,12 @@ public class ModLanguageProvider extends FabricLanguageProvider {
                 "%1$s made an impure choice whilst fighting %2$s"
         );
 
+        DataUtils.registerDamageTypeAll(
+                translationBuilder,
+                ModDamageTypes.VOWBREAK,
+                "%1$s entered a fate they shouldn't have touched"
+        );
+
         DataUtils.registerEnchantment(
                 translationBuilder,
                 ModEnchantments.LASSO,
