@@ -17,7 +17,7 @@ import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.component.BookComponent;
 import net.not_assher.apostate.core.item.component.BountyComponent;
@@ -36,22 +36,22 @@ public class BountyBookItem extends Item {
     }
 
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        BookComponent book = stack.get(ModDataComponentTypes.BOOK);
+        BookComponent book = stack.get(ModComponentTypes.BOOK);
 
         if (book != null) {
             List<ItemStack> entries = new ArrayList<>(book.posters());
 
             if (clickType == ClickType.RIGHT) {
                 if (!otherStack.isEmpty()) {
-                    if (otherStack.contains(ModDataComponentTypes.STORED_BOUNTY)) {
-                        BountyComponent bounty = otherStack.get(ModDataComponentTypes.STORED_BOUNTY);
+                    if (otherStack.contains(ModComponentTypes.BOUNTY)) {
+                        BountyComponent bounty = otherStack.get(ModComponentTypes.BOUNTY);
 
                         if (bounty != null) {
                             if (bounty.signed()) {
                                 ItemStack split = otherStack.split(1);
 
                                 entries.add(split);
-                                stack.set(ModDataComponentTypes.BOOK, new BookComponent(entries));
+                                stack.set(ModComponentTypes.BOOK, new BookComponent(entries));
                                 if (player.getEntityWorld().isClient()) {
                                     player.playSound(SoundEvents.ITEM_BUNDLE_INSERT);
                                 }
@@ -65,7 +65,7 @@ public class BountyBookItem extends Item {
                     cursorStackReference.set(top);
 
                     entries.remove(top);
-                    stack.set(ModDataComponentTypes.BOOK, new BookComponent(entries));
+                    stack.set(ModComponentTypes.BOOK, new BookComponent(entries));
                     if (player.getEntityWorld().isClient()) {
                         player.playSound(SoundEvents.ITEM_BUNDLE_REMOVE_ONE);
                     }
@@ -79,8 +79,8 @@ public class BountyBookItem extends Item {
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
 
-        if (stack.contains(ModDataComponentTypes.BOOK)) {
-            BookComponent book = stack.get(ModDataComponentTypes.BOOK);
+        if (stack.contains(ModComponentTypes.BOOK)) {
+            BookComponent book = stack.get(ModComponentTypes.BOOK);
 
             if (book != null) {
                 if (!book.posters().isEmpty()) {
@@ -100,8 +100,8 @@ public class BountyBookItem extends Item {
     public void onItemEntityDestroyed(ItemEntity entity) {
         ItemStack prime = entity.getStack();
 
-        if (prime.contains(ModDataComponentTypes.BOOK)) {
-            BookComponent book = prime.get(ModDataComponentTypes.BOOK);
+        if (prime.contains(ModComponentTypes.BOOK)) {
+            BookComponent book = prime.get(ModComponentTypes.BOOK);
 
             if (book != null) {
                 for (ItemStack stack : book.posters()) {
@@ -116,11 +116,11 @@ public class BountyBookItem extends Item {
     public static class Tooltip implements BetterItemTooltipEvent {
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
             if (stack.isOf(ModItems.BOUNTY_BOOK)) {
-                BookComponent book = stack.get(ModDataComponentTypes.BOOK);
+                BookComponent book = stack.get(ModComponentTypes.BOOK);
 
                 if (book != null) {
                     for (ItemStack storedStack : book.posters()) {
-                        BountyComponent bounty = storedStack.get(ModDataComponentTypes.STORED_BOUNTY);
+                        BountyComponent bounty = storedStack.get(ModComponentTypes.BOUNTY);
 
                         if (bounty != null) {
                             consumer.accept(Text.literal(bounty.targetName() + " | " + bounty.ownerName())

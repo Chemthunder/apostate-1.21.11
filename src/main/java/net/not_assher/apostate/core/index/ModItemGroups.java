@@ -38,7 +38,7 @@ public interface ModItemGroups {
     private static ItemStack createIcon() {
         ItemStack stack = new ItemStack(ModItems.BOUNTY_POSTER);
 
-        stack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
+        stack.set(ModComponentTypes.BOUNTY, new BountyComponent(
                 "",
                 "",
                 KillContext.EITHER,

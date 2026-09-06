@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.Apostate;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.item.component.TabletComponent;
 import org.jspecify.annotations.Nullable;
 
@@ -26,7 +26,7 @@ public record TabletProperty() implements SelectProperty<String> {
     );
 
     public String getValue(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user, int seed, ItemDisplayContext displayContext) {
-        TabletComponent t = stack.getOrDefault(ModDataComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
+        TabletComponent t = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
         return t.ingredient().isEmpty() ? "tablet_empty" : "tablet_" + Registries.ITEM.getId(t.ingredient().getItem()).getPath();
     }
 

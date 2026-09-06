@@ -13,7 +13,7 @@ import net.not_assher.apostate.core.client.item.PactCrystalProperty;
 import net.not_assher.apostate.core.client.item.TabletProperty;
 import net.not_assher.apostate.core.index.ModBlocks;
 import net.not_assher.apostate.core.index.ModItems;
-import net.not_assher.apostate.core.index.ModModels;
+import net.not_assher.apostate.core.index.client.ModModelTemplates;
 
 import java.util.Arrays;
 
@@ -73,7 +73,7 @@ public class ModModelProvider extends FabricModelProvider {
                                         ItemDisplayContext.FIXED
                                 ),
                                 ItemModels.basic(
-                                        ModModels.DISPLAYED.upload(
+                                        ModModelTemplates.DISPLAYED.upload(
                                                 baseId.withSuffixedPath("_display"),
                                                 TextureMap.layer0(baseId.withSuffixedPath("_display")),
                                                 generator.modelCollector

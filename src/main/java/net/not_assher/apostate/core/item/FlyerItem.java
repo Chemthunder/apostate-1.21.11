@@ -12,7 +12,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.networking.s2c.OpenFlyerPayload;
 
@@ -39,8 +39,8 @@ public class FlyerItem extends Item {
         @SuppressWarnings("DataFlowIssue")
         public void getTooltip(ItemStack stack, TooltipContext tooltipContext, TooltipType tooltipType, Consumer<Text> consumer) {
             if (stack.isOf(ModItems.FLYER)) {
-                if (stack.get(ModDataComponentTypes.STRING) != null) {
-                    consumer.accept(Text.literal(stack.get(ModDataComponentTypes.STRING)).formatted(Formatting.DARK_GRAY));
+                if (stack.get(ModComponentTypes.STRING) != null) {
+                    consumer.accept(Text.literal(stack.get(ModComponentTypes.STRING)).formatted(Formatting.DARK_GRAY));
                 }
             }
         }

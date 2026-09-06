@@ -8,7 +8,7 @@ import static net.not_assher.apostate.core.Apostate.MOD_ID;
 /**
  * @author Chemthunder
  */
-public interface ModCriteria {
+public interface ModCriterions {
     CriterionTriggerRegistrant plugin = new CriterionTriggerRegistrant(MOD_ID);
 
     TickCriterion ROOT = plugin.register("root", new TickCriterion());

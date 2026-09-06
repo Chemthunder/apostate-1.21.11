@@ -19,7 +19,7 @@ public record PactComponent(String signer, String owner, boolean completed) {
             Codec.BOOL.optionalFieldOf("signed", false).forGetter(PactComponent::completed)
     ).apply(codec, PactComponent::new));
 
-    public static final PacketCodec<ByteBuf, PactComponent> PACKET = PacketCodecs.codec(CODEC);
+    public static final PacketCodec<ByteBuf, PactComponent> PACKET_CODEC = PacketCodecs.codec(CODEC);
 
     public boolean isEmpty() {
         return this == EMPTY;

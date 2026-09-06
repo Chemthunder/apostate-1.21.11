@@ -19,7 +19,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.index.ModBlockEntityTypes;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.item.component.PactComponent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,7 +44,7 @@ public class CovenantBellBlockEntity extends BlockEntity {
 
     public void tick(World world, BlockPos pos, BlockState state, @NotNull CovenantBellBlockEntity entity) {
         if (entity.active && entity.pactStack != null) {
-            PactComponent pact = entity.pactStack.get(ModDataComponentTypes.STORED_PACT);
+            PactComponent pact = entity.pactStack.get(ModComponentTypes.PACT);
 
             if (pact != null) {
                 if (entity.ticks == DURATION - 40) {
@@ -155,7 +155,7 @@ public class CovenantBellBlockEntity extends BlockEntity {
     public void activate(World world, BlockPos pos, BlockState state, ItemStack pactStack, @NotNull CovenantBellBlockEntity entity) {
         MinecraftServer server = world.getServer();
 
-        PactComponent pact = pactStack.get(ModDataComponentTypes.STORED_PACT);
+        PactComponent pact = pactStack.get(ModComponentTypes.PACT);
 
         if (pact != null) {
             if (server != null && world instanceof ServerWorld serverWorld) {

@@ -25,7 +25,7 @@ public record BountyComponent(String targetName, String ownerName, KillContext c
             Codec.BOOL.optionalFieldOf("signed", false).forGetter(BountyComponent::signed)
     ).apply(codec, BountyComponent::new));
 
-    public static final PacketCodec<ByteBuf, BountyComponent> PACKET = PacketCodecs.codec(CODEC);
+    public static final PacketCodec<ByteBuf, BountyComponent> PACKET_CODEC = PacketCodecs.codec(CODEC);
 
     public boolean isEmpty() {
         return this == EMPTY;

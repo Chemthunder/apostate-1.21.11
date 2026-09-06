@@ -13,7 +13,7 @@ import net.minecraft.util.math.ColorHelper;
 import net.minecraft.util.math.Easing;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.item.FlyerItem;
 
 /**
@@ -36,7 +36,7 @@ public class TextOverlayEvents {
 
                     if (stack.getItem() instanceof FlyerItem) {
                         opacity += 0.1F;
-                        string = stack.get(ModDataComponentTypes.STRING);
+                        string = stack.get(ModComponentTypes.STRING);
                         return;
                     }
                 }

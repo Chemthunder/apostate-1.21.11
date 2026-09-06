@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.block.CrimsonCandleBlock;
 import net.not_assher.apostate.core.index.ModBlocks;
-import net.not_assher.apostate.core.index.ModCriteria;
+import net.not_assher.apostate.core.index.ModCriterions;
 import net.not_assher.apostate.core.utilities.ModUtils;
 
 /**
@@ -35,7 +35,7 @@ public class LightCrimsonCandleEvent implements UseBlockCallback {
                     world.playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1, 1);
 
                     if (playerEntity instanceof ServerPlayerEntity serverPlayer) {
-                        ModCriteria.CRIMSON_CANDLE.trigger(serverPlayer);
+                        ModCriterions.CRIMSON_CANDLE.trigger(serverPlayer);
                     }
                     return ActionResult.SUCCESS;
                 }

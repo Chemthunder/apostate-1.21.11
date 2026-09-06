@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.ColorHelper;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.ext.ModConfig;
@@ -30,7 +30,7 @@ public class BountyDisplayEvent implements HudElement {
 
                 if (client.player != null && client.player.getMainHandStack().isEmpty()) {
                     if (stack != null && stack.isOf(ModItems.BOUNTY_POSTER)) {
-                        BountyComponent bounty = stack.getOrDefault(ModDataComponentTypes.STORED_BOUNTY, BountyComponent.EMPTY);
+                        BountyComponent bounty = stack.getOrDefault(ModComponentTypes.BOUNTY, BountyComponent.EMPTY);
 
                         if (bounty.signed()) {
                             List<Text> texts = List.of(

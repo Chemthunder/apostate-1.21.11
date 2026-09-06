@@ -18,7 +18,7 @@ public record TabletComponent(@Nullable ProfileComponent hunted, ItemStack ingre
             ItemStack.CODEC.optionalFieldOf("ingredient", ItemStack.EMPTY).forGetter(TabletComponent::ingredient)
     ).apply(codec, TabletComponent::new));
 
-    public static final PacketCodec<ByteBuf, TabletComponent> PACKET = PacketCodecs.codec(CODEC);
+    public static final PacketCodec<ByteBuf, TabletComponent> PACKET_CODEC = PacketCodecs.codec(CODEC);
 
     public boolean shouldDisplay() {
         return hunted != null || !ingredient.isEmpty();

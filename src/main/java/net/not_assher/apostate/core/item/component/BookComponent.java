@@ -18,5 +18,5 @@ public record BookComponent(List<ItemStack> posters) {
             ItemStack.CODEC.listOf().optionalFieldOf("posters", new ArrayList<>()).forGetter(BookComponent::posters)
     ).apply(codec, BookComponent::new));
 
-    public static final PacketCodec<ByteBuf, BookComponent> PACKET = PacketCodecs.codec(CODEC);
+    public static final PacketCodec<ByteBuf, BookComponent> PACKET_CODEC = PacketCodecs.codec(CODEC);
 }

@@ -18,8 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.block.entity.CovenantBellBlockEntity;
 import net.not_assher.apostate.core.index.ModBlocks;
-import net.not_assher.apostate.core.index.ModCriteria;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModCriterions;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.index.data.ModDamageTypes;
 import net.not_assher.apostate.core.item.component.PactComponent;
@@ -76,14 +76,14 @@ public class CovenantBellEvents {
                         } else {
                             if (bell.getPactStack() != null && player.getActiveOrMainHandStack().isEmpty()) {
                                 if (!player.isSneaking()) {
-                                    PactComponent pact = bell.getPactStack().get(ModDataComponentTypes.STORED_PACT);
+                                    PactComponent pact = bell.getPactStack().get(ModComponentTypes.PACT);
 
                                     if (pact != null) {
                                         if (Objects.equals(player.getName().getString(), pact.owner())) {
                                             bell.trigger(bell);
 
                                             if (player instanceof ServerPlayerEntity serverPlayerEntity) {
-                                                ModCriteria.COVENANT_BELL.trigger(serverPlayerEntity);
+                                                ModCriterions.COVENANT_BELL.trigger(serverPlayerEntity);
 
                                                 serverPlayerEntity.damage(serverPlayerEntity.getEntityWorld(), serverPlayerEntity.getDamageSources().create(ModDamageTypes.BELL), player.getHealth() / 2);
                                             }

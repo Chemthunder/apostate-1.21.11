@@ -13,7 +13,7 @@ import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.not_assher.apostate.core.Apostate;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.item.component.BookComponent;
 import net.not_assher.apostate.core.item.component.BountyComponent;
 import org.joml.Matrix3x2fStack;
@@ -40,7 +40,7 @@ public class BountyBookScreen extends Screen {
         drawableFunctions.clear();
 
         PlayerEntity player = client.player;
-        BookComponent book = stack.get(ModDataComponentTypes.BOOK);
+        BookComponent book = stack.get(ModComponentTypes.BOOK);
 
         if (book != null) {
             if (player != null) {
@@ -74,14 +74,14 @@ public class BountyBookScreen extends Screen {
     }
 
     public void render(DrawContext context, int mouseX, int mouseY, float deltaTicks) {
-        BookComponent book = stack.get(ModDataComponentTypes.BOOK);
+        BookComponent book = stack.get(ModComponentTypes.BOOK);
         drawableFunctions.forEach(func -> func.apply(context).render(context, mouseX, mouseY, deltaTicks));
 
         if (book != null) {
             ItemStack display = book.posters().get(currentPage);
 
-            if (display.contains(ModDataComponentTypes.STORED_BOUNTY)) {
-                BountyComponent bounty = display.get(ModDataComponentTypes.STORED_BOUNTY);
+            if (display.contains(ModComponentTypes.BOUNTY)) {
+                BountyComponent bounty = display.get(ModComponentTypes.BOUNTY);
 
                 context.drawGuiTexture(
                         RenderPipelines.GUI_TEXTURED,

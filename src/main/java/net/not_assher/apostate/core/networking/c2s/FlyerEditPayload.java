@@ -9,7 +9,7 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.not_assher.apostate.core.Apostate;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 
 /**
  * @author Chemthunder
@@ -37,7 +37,7 @@ public record FlyerEditPayload(ItemStack stack, String string) implements Custom
 //
 //            context.server().execute(() -> payload.stack().set(ModDataComponentTypes.STRING, payload.string()));
 
-            player.getStackInHand(player.getActiveHand()).set(ModDataComponentTypes.STRING, payload.string());
+            player.getStackInHand(player.getActiveHand()).set(ModComponentTypes.STRING, payload.string());
             player.swingHand(player.getActiveHand());
         }
     }

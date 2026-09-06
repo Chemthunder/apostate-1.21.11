@@ -19,13 +19,13 @@ public interface ModItems {
     ItemRegistrant plugin = new ItemRegistrant(Apostate.MOD_ID);
 
     Item BOUNTY_POSTER = plugin.register("bounty_poster", BountyPosterItem::new, new Item.Settings()
-            .component(ModDataComponentTypes.STORED_BOUNTY, BountyComponent.EMPTY)
+            .component(ModComponentTypes.BOUNTY, BountyComponent.EMPTY)
     );
 
     Item BOUNTY_BOOK = plugin.register("bounty_book", BountyBookItem::new, new Item.Settings()
             .maxCount(1)
             .rarity(Rarity.UNCOMMON)
-            .component(ModDataComponentTypes.BOOK, new BookComponent(new ArrayList<>()))
+            .component(ModComponentTypes.BOOK, new BookComponent(new ArrayList<>()))
     );
 
     Item PACT_CRYSTAL = plugin.register("pact_crystal", PactCrystalItem::new, new Item.Settings()
@@ -36,8 +36,8 @@ public interface ModItems {
             .maxCount(1)
             .fireproof()
             .rarity(Rarity.RARE)
-            .component(ModDataComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY))
-            .component(ModDataComponentTypes.INTEGER, DiviningTabletItem.MAX_USES)
+            .component(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY))
+            .component(ModComponentTypes.INTEGER, DiviningTabletItem.MAX_USES)
     );
 
     Item IMMORTAL_DUST = plugin.register("immortal_dust", Item::new, new Item.Settings()
@@ -46,7 +46,7 @@ public interface ModItems {
     );
 
     Item FLYER = plugin.register("flyer", FlyerItem::new, new Item.Settings()
-            .component(ModDataComponentTypes.STRING, "Empty")
+            .component(ModComponentTypes.STRING, "Empty")
     );
 
     Item CHTHONIC_GOLD_INGOT = plugin.register("chthonic_gold_ingot", ChthonicGoldItem::new, new Item.Settings()

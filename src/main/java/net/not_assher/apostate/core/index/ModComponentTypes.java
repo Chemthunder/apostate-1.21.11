@@ -5,39 +5,42 @@ import net.acoyt.acornlib.api.registrants.DataComponentTypeRegistrant;
 import net.minecraft.component.ComponentType;
 import net.minecraft.network.codec.PacketCodecs;
 import net.not_assher.apostate.core.Apostate;
-import net.not_assher.apostate.core.item.component.BookComponent;
-import net.not_assher.apostate.core.item.component.BountyComponent;
-import net.not_assher.apostate.core.item.component.PactComponent;
-import net.not_assher.apostate.core.item.component.TabletComponent;
+import net.not_assher.apostate.core.item.component.*;
 
 /**
  * @author Chemthunder
  */
-public interface ModDataComponentTypes {
+public interface ModComponentTypes {
     DataComponentTypeRegistrant plugin = new DataComponentTypeRegistrant(Apostate.MOD_ID);
 
-    ComponentType<BountyComponent> STORED_BOUNTY = plugin.register(
-            "stored_bounty",
+    ComponentType<BountyComponent> BOUNTY = plugin.register(
+            "bounty",
             BountyComponent.CODEC,
-            BountyComponent.PACKET
+            BountyComponent.PACKET_CODEC
     );
 
-    ComponentType<PactComponent> STORED_PACT = plugin.register(
-            "stored_pact",
+    ComponentType<PactComponent> PACT = plugin.register(
+            "pact",
             PactComponent.CODEC,
-            PactComponent.PACKET
+            PactComponent.PACKET_CODEC
     );
 
     ComponentType<TabletComponent> TABLET = plugin.register(
-            "tablet_component",
+            "tablet",
             TabletComponent.CODEC,
-            TabletComponent.PACKET
+            TabletComponent.PACKET_CODEC
     );
 
     ComponentType<BookComponent> BOOK = plugin.register(
             "bounty_book",
             BookComponent.CODEC,
-            BookComponent.PACKET
+            BookComponent.PACKET_CODEC
+    );
+
+    ComponentType<VowComponent> VOW = plugin.register(
+            "vow",
+            VowComponent.CODEC,
+            VowComponent.PACKET_CODEC
     );
 
     ComponentType<Integer> INTEGER = plugin.register(

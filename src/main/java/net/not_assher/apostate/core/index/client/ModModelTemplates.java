@@ -1,4 +1,4 @@
-package net.not_assher.apostate.core.index;
+package net.not_assher.apostate.core.index.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -12,7 +12,7 @@ import java.util.Optional;
  * @author Chemthunder
  */
 @Environment(EnvType.CLIENT)
-public interface ModModels {
+public interface ModModelTemplates {
     Model DISPLAYED = create("template/displayed", TextureKey.LAYER0);
 
     private static Model create(String parent,  TextureKey... textureKeys) {

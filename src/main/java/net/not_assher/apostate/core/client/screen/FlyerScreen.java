@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.networking.c2s.FlyerEditPayload;
 
 /**
@@ -22,7 +22,7 @@ public class FlyerScreen extends Screen {
     }
 
     protected void init() {
-        String d = stack.get(ModDataComponentTypes.STRING);
+        String d = stack.get(ModComponentTypes.STRING);
         PlayerEntity player = client.player;
 
         if (player != null && d != null) {

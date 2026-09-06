@@ -10,8 +10,8 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.not_assher.apostate.core.Apostate;
 import net.not_assher.apostate.core.index.ModBlocks;
-import net.not_assher.apostate.core.index.ModCriteria;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModCriterions;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.ModItems;
 import net.not_assher.apostate.core.item.component.BountyComponent;
 import net.not_assher.apostate.core.utilities.enums.KillContext;
@@ -43,13 +43,13 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                         false
                 ).requirements(AdvancementRequirements.allOf(List.of("tick")))
                 .criteriaMerger(AdvancementRequirements.CriterionMerger.AND)
-                .criterion("tick", ModCriteria.ROOT.create(new TickCriterion.Conditions(Optional.empty())))
+                .criterion("tick", ModCriterions.ROOT.create(new TickCriterion.Conditions(Optional.empty())))
                 .build(Apostate.id("root"));
 
         consumer.accept(root);
 
         ItemStack placeBountyStack = new ItemStack(ModItems.BOUNTY_POSTER);
-        placeBountyStack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
+        placeBountyStack.set(ModComponentTypes.BOUNTY, new BountyComponent(
                 "",
                 "",
                 KillContext.DEAD,
@@ -59,7 +59,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
         ));
 
         ItemStack collectBountyStack = new ItemStack(ModItems.BOUNTY_POSTER);
-        collectBountyStack.set(ModDataComponentTypes.STORED_BOUNTY, new BountyComponent(
+        collectBountyStack.set(ModComponentTypes.BOUNTY, new BountyComponent(
                 "",
                 "",
                 KillContext.EITHER,
@@ -74,7 +74,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         placeBountyStack,
                         "place_bounty",
-                        ModCriteria.PLACE_BOUNTY.create(new TickCriterion.Conditions(Optional.empty()))
+                        ModCriterions.PLACE_BOUNTY.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 
@@ -84,7 +84,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         collectBountyStack,
                         "collect_bounty",
-                        ModCriteria.COLLECT_BOUNTY.create(new TickCriterion.Conditions(Optional.empty()))
+                        ModCriterions.COLLECT_BOUNTY.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 
@@ -94,7 +94,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         ModItems.PACT_CRYSTAL.getDefaultStack(),
                         "sign_contract",
-                        ModCriteria.SIGN_CONTRACT.create(new TickCriterion.Conditions(Optional.empty()))
+                        ModCriterions.SIGN_CONTRACT.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 
@@ -104,7 +104,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         ModItems.DIVINING_TABLET.getDefaultStack(),
                         "use_tablet",
-                        ModCriteria.USE_TABLET.create(new TickCriterion.Conditions(Optional.empty()))
+                        ModCriterions.USE_TABLET.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 
@@ -114,7 +114,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         ModBlocks.CRIMSON_CANDLE.asItem().getDefaultStack(),
                         "crimson_candle",
-                        ModCriteria.CRIMSON_CANDLE.create(new TickCriterion.Conditions(Optional.empty()))
+                        ModCriterions.CRIMSON_CANDLE.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 
@@ -124,7 +124,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
                 new AdvancementContext(
                         ModBlocks.COVENANT_BELL.asItem().getDefaultStack(),
                         "covenant",
-                        ModCriteria.COVENANT_BELL.create(new TickCriterion.Conditions(Optional.empty()))
+                        ModCriterions.COVENANT_BELL.create(new TickCriterion.Conditions(Optional.empty()))
                 )
         );
 

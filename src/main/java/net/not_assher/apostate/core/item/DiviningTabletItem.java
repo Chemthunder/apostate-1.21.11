@@ -23,8 +23,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.not_assher.apostate.core.cca.entity.PlayerComponent;
 import net.not_assher.apostate.core.client.tooltip.TabletTooltipData;
-import net.not_assher.apostate.core.index.ModCriteria;
-import net.not_assher.apostate.core.index.ModDataComponentTypes;
+import net.not_assher.apostate.core.index.ModCriterions;
+import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.index.tag.ModItemTags;
 import net.not_assher.apostate.core.item.component.PactComponent;
 import net.not_assher.apostate.core.item.component.TabletComponent;
@@ -44,7 +44,7 @@ public class DiviningTabletItem extends Item {
 
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
-        TabletComponent tablet = stack.getOrDefault(ModDataComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
+        TabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
 
         if (!user.getItemCooldownManager().isCoolingDown(stack)) {
             if (!tablet.isEmpty()) {
@@ -82,18 +82,18 @@ public class DiviningTabletItem extends Item {
                         );
 
                         if (user instanceof ServerPlayerEntity serverPlayer) {
-                            ModCriteria.USE_TABLET.trigger(serverPlayer);
+                            ModCriterions.USE_TABLET.trigger(serverPlayer);
                         }
 
                         track(world, user, target, stack, tablet.ingredient().getItem());
 
                         if (!user.isCreative()) {
-                            stack.set(ModDataComponentTypes.TABLET, new TabletComponent(tablet.hunted(), ItemStack.EMPTY));
+                            stack.set(ModComponentTypes.TABLET, new TabletComponent(tablet.hunted(), ItemStack.EMPTY));
 
-                            int durability = stack.getOrDefault(ModDataComponentTypes.INTEGER, MAX_USES);
+                            int durability = stack.getOrDefault(ModComponentTypes.INTEGER, MAX_USES);
 
                             if (durability > 1) {
-                                stack.set(ModDataComponentTypes.INTEGER, durability - 1);
+                                stack.set(ModComponentTypes.INTEGER, durability - 1);
                             } else {
                                 stack.decrement(1);
                             }
@@ -135,7 +135,7 @@ public class DiviningTabletItem extends Item {
     }
 
     public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        TabletComponent tablet = stack.getOrDefault(ModDataComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
+        TabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
 
         if (clickType == ClickType.RIGHT) {
             if (tablet.hunted() == null && tablet.ingredient().isEmpty()) {
@@ -160,8 +160,8 @@ public class DiviningTabletItem extends Item {
                     }
                 }
 
-                if (otherStack.contains(ModDataComponentTypes.STORED_PACT)) {
-                    PactComponent pact = otherStack.get(ModDataComponentTypes.STORED_PACT);
+                if (otherStack.contains(ModComponentTypes.PACT)) {
+                    PactComponent pact = otherStack.get(ModComponentTypes.PACT);
 
                     if (pact != null) {
                         String owner = pact.signer();
@@ -174,7 +174,7 @@ public class DiviningTabletItem extends Item {
                 }
 
                 if (builtTablet != null) {
-                    stack.set(ModDataComponentTypes.TABLET, builtTablet);
+                    stack.set(ModComponentTypes.TABLET, builtTablet);
                 }
 
                 if (player.getEntityWorld().isClient()) {
@@ -188,7 +188,7 @@ public class DiviningTabletItem extends Item {
                 ItemStack splitStack = otherStack.split(1);
                 TabletComponent builtTablet = new TabletComponent(tablet.hunted(), splitStack.getItem().getDefaultStack());
 
-                stack.set(ModDataComponentTypes.TABLET, builtTablet);
+                stack.set(ModComponentTypes.TABLET, builtTablet);
 
                 if (player.getEntityWorld().isClient()) {
                     player.playSound(SoundEvents.BLOCK_IRON_TRAPDOOR_CLOSE, 1, 0.2F);
@@ -202,10 +202,10 @@ public class DiviningTabletItem extends Item {
 
     public Optional<TooltipData> getTooltipData(ItemStack stack) {
         TooltipDisplayComponent display = stack.getOrDefault(DataComponentTypes.TOOLTIP_DISPLAY, TooltipDisplayComponent.DEFAULT);
-        TabletComponent tablet = stack.getOrDefault(ModDataComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
+        TabletComponent tablet = stack.getOrDefault(ModComponentTypes.TABLET, new TabletComponent(null, ItemStack.EMPTY));
 
         if (tablet.shouldDisplay()) {
-            return !display.shouldDisplay(ModDataComponentTypes.TABLET)
+            return !display.shouldDisplay(ModComponentTypes.TABLET)
                     ? Optional.empty()
                     : Optional.of(tablet).map(component -> new TabletTooltipData(stack, tablet)
             );
@@ -215,7 +215,7 @@ public class DiviningTabletItem extends Item {
     }
 
     public int getItemBarStep(ItemStack stack) {
-        return Math.clamp(Math.round((float) stack.getOrDefault(ModDataComponentTypes.INTEGER, MAX_USES) / MAX_USES * 13), 0, 13);
+        return Math.clamp(Math.round((float) stack.getOrDefault(ModComponentTypes.INTEGER, MAX_USES) / MAX_USES * 13), 0, 13);
     }
 
     public int getItemBarColor(ItemStack stack) {
@@ -223,6 +223,6 @@ public class DiviningTabletItem extends Item {
     }
 
     public boolean isItemBarVisible(ItemStack stack) {
-        return stack.getOrDefault(ModDataComponentTypes.INTEGER, MAX_USES) < MAX_USES;
+        return stack.getOrDefault(ModComponentTypes.INTEGER, MAX_USES) < MAX_USES;
     }
 }
