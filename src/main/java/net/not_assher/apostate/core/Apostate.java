@@ -8,6 +8,10 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.util.Identifier;
 import net.not_assher.apostate.core.command.FlexCommand;
 import net.not_assher.apostate.core.command.NicknameCommand;
@@ -25,6 +29,8 @@ import net.not_assher.apostate.ext.ModConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+
 /**
  * @author Chemthunder
  */
@@ -35,9 +41,11 @@ public class Apostate implements ModInitializer {
     public static final int MAIN_COLOR = 0xFF621414;
 
     public void onInitialize() {
+        FabricLoader loader = FabricLoader.getInstance();
+        Optional<ModContainer> container = loader.getModContainer(MOD_ID);
+
         LOGGER.info("Apostate Init");
 
-        // Registries
         ModItems.init();
         ModComponentTypes.init();
         ModItemGroups.init();
@@ -51,7 +59,6 @@ public class Apostate implements ModInitializer {
 
         LootTableModifiers.init();
 
-        // Events
         BetterItemTooltipEvent.EVENT.register(new BountyPosterItem.Tooltip());
         BetterItemTooltipEvent.EVENT.register(new PactCrystalItem.Tooltip());
         BetterItemTooltipEvent.EVENT.register(new FlyerItem.Tooltip());
@@ -71,7 +78,14 @@ public class Apostate implements ModInitializer {
         UseBlockCallback.EVENT.register(new CovenantBellEvents.UseBlock());
         PlayerBlockBreakEvents.AFTER.register(new CovenantBellEvents.AfterBroken());
 
-        // External
+        container.ifPresent(mod ->
+                ResourceLoader.registerBuiltinPack(
+                        id("old_pact_crystal"),
+                        mod,
+                        PackActivationType.NORMAL
+                )
+        );
+
         ALib.registerModMenu(MOD_ID, MAIN_COLOR);
 
         MidnightConfig.init(MOD_ID, ModConfig.class);

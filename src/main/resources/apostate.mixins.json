@@ -11,7 +11,9 @@
     "PersistentProjectileEntityMixin",
     "PlayerEntityMixin",
     "ServerPlayerEntityMixin",
-    "WrittenBookItemMixin"
+    "WrittenBookItemMixin",
+    "compat.enchancement.EnchancementUtilMixin",
+    "compat.enchancement.RebalanceEquipmentEventTickMixin"
   ],
   "injectors": {
     "defaultRequire": 1
