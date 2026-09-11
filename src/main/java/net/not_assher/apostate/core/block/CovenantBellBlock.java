@@ -59,12 +59,12 @@ public class CovenantBellBlock extends BlockWithEntity implements LightEmitter {
                 bell.tick(world1, pos, state1, bell);
 
                 if (bell.getPactStack() != null) {
-                    if (!world.getBlockState(pos).get(HAS_STACK)) {
-                        world.setBlockState(pos, state.with(HAS_STACK, true));
+                    if (!world1.getBlockState(pos).get(HAS_STACK)) {
+                        world1.setBlockState(pos, state1.with(HAS_STACK, true));
                     }
                 } else {
-                    if (world.getBlockState(pos).get(HAS_STACK)) {
-                        world.setBlockState(pos, state.with(HAS_STACK, false));
+                    if (world1.getBlockState(pos).get(HAS_STACK)) {
+                        world1.setBlockState(pos, state1.with(HAS_STACK, false));
                     }
                 }
             }

@@ -35,7 +35,7 @@ public class CovenantBellEvents {
         public void afterBlockBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity) {
             if (state.isOf(ModBlocks.COVENANT_BELL)) {
                 if (blockEntity instanceof CovenantBellBlockEntity bell) {
-                    if (bell.getPactStack() != null) {
+                    if (!bell.getPactStack().isEmpty()) {
                         ItemScatterer.spawn(world, pos.toCenterPos().x, pos.toCenterPos().y, pos.toCenterPos().z, bell.getPactStack());
                     }
                 }
@@ -53,7 +53,7 @@ public class CovenantBellEvents {
                 if (world.getBlockEntity(pos) instanceof CovenantBellBlockEntity bell) {
                     if (!bell.isActive()) {
                         if (!stack.isEmpty()) {
-                            if (bell.getPactStack() == null) {
+                            if (bell.getPactStack().isEmpty()) {
                                 if (stack.isOf(ModItems.PACT_CRYSTAL)) {
                                     if (player.isSneaking()) {
                                         bell.setPactStack(stack.split(1));
@@ -74,7 +74,7 @@ public class CovenantBellEvents {
                                 }
                             }
                         } else {
-                            if (bell.getPactStack() != null && player.getActiveOrMainHandStack().isEmpty()) {
+                            if (!bell.getPactStack().isEmpty() && player.getActiveOrMainHandStack().isEmpty()) {
                                 if (!player.isSneaking()) {
                                     PactCrystalComponent pact = bell.getPactStack().get(ModComponentTypes.PACT);
 
@@ -103,7 +103,7 @@ public class CovenantBellEvents {
                                     }
                                 } else {
                                     player.giveItemStack(bell.getPactStack());
-                                    bell.setPactStack(null);
+                                    bell.setPactStack(ItemStack.EMPTY);
 
                                     world.playSound(
                                             null,
@@ -120,7 +120,7 @@ public class CovenantBellEvents {
                             }
                         }
                     } else {
-                        if (stack.isEmpty() && bell.getPactStack() == null) {
+                        if (stack.isEmpty() && bell.getPactStack().isEmpty()) {
                             world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_BELL_USE, SoundCategory.BLOCKS);
                         }
                     }

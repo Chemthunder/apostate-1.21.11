@@ -22,7 +22,6 @@ import net.not_assher.apostate.core.index.ModBlockEntityTypes;
 import net.not_assher.apostate.core.index.ModComponentTypes;
 import net.not_assher.apostate.core.item.component.PactCrystalComponent;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.Random;
@@ -33,7 +32,7 @@ import java.util.Random;
 public class CovenantBellBlockEntity extends BlockEntity {
     public static final int DURATION = (5 * 20);
 
-    private @Nullable ItemStack pactStack = null;
+    private ItemStack pactStack = ItemStack.EMPTY;
 
     private boolean active = false;
     private int ticks = 0;
@@ -43,7 +42,7 @@ public class CovenantBellBlockEntity extends BlockEntity {
     }
 
     public void tick(World world, BlockPos pos, BlockState state, @NotNull CovenantBellBlockEntity entity) {
-        if (entity.active && entity.pactStack != null) {
+        if (entity.active && !entity.pactStack.isEmpty()) {
             PactCrystalComponent pact = entity.pactStack.get(ModComponentTypes.PACT);
 
             if (pact != null) {
@@ -87,22 +86,22 @@ public class CovenantBellBlockEntity extends BlockEntity {
                         );
                     }
 
-                    for (PlayerEntity serverPlayer : world.getPlayers()) {
-                        if (Objects.equals(serverPlayer.getName().getString(), pact.signer())) {
+                    for (PlayerEntity player : world.getPlayers()) {
+                        if (Objects.equals(player.getName().getString(), pact.signer())) {
                             for (int i = 0; i < ticks / 12; i++) {
                                 float bound = 1.6F;
 
                                 Random random = new Random();
 
                                 Vec3d spawnPos = new Vec3d(
-                                        serverPlayer.getX() + random.nextFloat(-bound, bound),
-                                        (serverPlayer.getY() + 1.0F) + random.nextFloat(-bound, bound),
-                                        serverPlayer.getZ() + random.nextFloat(-bound, bound)
+                                        player.getX() + random.nextFloat(-bound, bound),
+                                        (player.getY() + 1.0F) + random.nextFloat(-bound, bound),
+                                        player.getZ() + random.nextFloat(-bound, bound)
                                 );
 
-                                Vec3d velocity = serverPlayer.getEntityPos().subtract(spawnPos).normalize().negate().multiply(-0.1F);
+                                Vec3d velocity = player.getEntityPos().subtract(spawnPos).normalize().negate().multiply(-0.1F);
 
-                                world.addParticleClient(
+                                player.getEntityWorld().addParticleClient(
                                         ParticleTypes.SOUL,
                                         spawnPos.x,
                                         spawnPos.y,
@@ -155,49 +154,51 @@ public class CovenantBellBlockEntity extends BlockEntity {
     public void activate(World world, BlockPos pos, BlockState state, ItemStack pactStack, @NotNull CovenantBellBlockEntity entity) {
         MinecraftServer server = world.getServer();
 
-        PactCrystalComponent pact = pactStack.get(ModComponentTypes.PACT);
+        if (!pactStack.isEmpty()) {
+            PactCrystalComponent pact = pactStack.get(ModComponentTypes.PACT);
 
-        if (pact != null) {
-            if (server != null && world instanceof ServerWorld serverWorld) {
-                PlayerManager manager = server.getPlayerManager();
+            if (pact != null) {
+                if (server != null && world instanceof ServerWorld serverWorld) {
+                    PlayerManager manager = server.getPlayerManager();
 
-                for (ServerPlayerEntity serverPlayer : manager.getPlayerList()) {
-                    if (Objects.equals(serverPlayer.getName().getString(), pact.signer())) {
-                        BlockPos upwardsPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
-
-                        if (!world.getBlockState(upwardsPos).isAir()) {
-                            upwardsPos = new BlockPos(pos.getX(), pos.getY() - 3, pos.getZ());
+                    for (ServerPlayerEntity serverPlayer : manager.getPlayerList()) {
+                        if (Objects.equals(serverPlayer.getName().getString(), pact.signer())) {
+                            BlockPos upwardsPos = new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ());
 
                             if (!world.getBlockState(upwardsPos).isAir()) {
-                                upwardsPos = null;
+                                upwardsPos = new BlockPos(pos.getX(), pos.getY() - 3, pos.getZ());
+
+                                if (!world.getBlockState(upwardsPos).isAir()) {
+                                    upwardsPos = null;
+                                }
                             }
-                        }
 
-                        if (upwardsPos != null) {
-                            serverPlayer.teleportTo(new TeleportTarget(
-                                    serverWorld,
-                                    upwardsPos.toCenterPos(),
-                                    Vec3d.ZERO,
-                                    serverPlayer.getYaw(),
-                                    serverPlayer.getPitch(),
-                                    TeleportTarget.NO_OP
-                            ));
+                            if (upwardsPos != null) {
+                                serverPlayer.teleportTo(new TeleportTarget(
+                                        serverWorld,
+                                        upwardsPos.toCenterPos(),
+                                        Vec3d.ZERO,
+                                        serverPlayer.getYaw(),
+                                        serverPlayer.getPitch(),
+                                        TeleportTarget.NO_OP
+                                ));
 
-                            serverWorld.spawnParticles(
-                                    ParticleTypes.SOUL_FIRE_FLAME,
-                                    upwardsPos.toCenterPos().x,
-                                    upwardsPos.toCenterPos().y,
-                                    upwardsPos.toCenterPos().z,
-                                    25,
-                                    0,
-                                    0,
-                                    0,
-                                    0.2F
-                            );
-                        } else {
-                            world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WITHER_HURT, SoundCategory.BLOCKS, 1, 1);
+                                serverWorld.spawnParticles(
+                                        ParticleTypes.SOUL_FIRE_FLAME,
+                                        upwardsPos.toCenterPos().x,
+                                        upwardsPos.toCenterPos().y,
+                                        upwardsPos.toCenterPos().z,
+                                        25,
+                                        0,
+                                        0,
+                                        0,
+                                        0.2F
+                                );
+                            } else {
+                                world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_WITHER_HURT, SoundCategory.BLOCKS, 1, 1);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
             }
@@ -205,14 +206,14 @@ public class CovenantBellBlockEntity extends BlockEntity {
     }
 
     protected void readData(ReadView view) {
-        pactStack = view.read("Pact", ItemStack.CODEC).orElse(null);
+        pactStack = view.read("Pact", ItemStack.CODEC).orElse(ItemStack.EMPTY);
 
         active = view.getBoolean("Active", false);
         ticks = view.getInt("Ticks", 0);
     }
 
     protected void writeData(WriteView view) {
-        if (pactStack != null) {
+        if (!pactStack.isEmpty()) {
             view.put("Pact", ItemStack.CODEC, pactStack);
         }
 
@@ -220,12 +221,11 @@ public class CovenantBellBlockEntity extends BlockEntity {
         view.putInt("Ticks", ticks);
     }
 
-    @Nullable
     public ItemStack getPactStack() {
         return pactStack;
     }
 
-    public void setPactStack(@Nullable ItemStack pactStack) {
+    public void setPactStack(ItemStack pactStack) {
         this.pactStack = pactStack;
         this.updateListeners();
     }

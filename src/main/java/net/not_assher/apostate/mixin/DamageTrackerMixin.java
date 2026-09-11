@@ -26,12 +26,12 @@ public abstract class DamageTrackerMixin {
     @Shadow @Final private List<DamageRecord> recentDamage;
 
     @WrapMethod(method = "getDeathMessage")
-    private Text apostate$initiateCradleProtocol(Operation<Text> original) {
+    private Text apostate$pickleStuff(Operation<Text> original) {
         LivingEntity livingEntity = this.entity;
 
         if (livingEntity instanceof PlayerEntity player) {
             if (VowbreakComponent.KEY.get(player).isActive()) {
-                DamageRecord damageRecord = this.recentDamage.get(this.recentDamage.size() - 1);
+                DamageRecord damageRecord = this.recentDamage.getLast();
                 DamageSource damageSource = damageRecord.damageSource();
 
                 if (damageSource.isOf(ModDamageTypes.VOWBREAK)) {

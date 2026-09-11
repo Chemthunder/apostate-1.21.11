@@ -48,13 +48,13 @@ public class CovenantBellBlockEntityRenderer implements BlockEntityRenderer<Cove
                 state.hasPact ? LightmapTextureManager.MAX_LIGHT_COORDINATE : state.lightmapCoordinates,
                 OverlayTexture.DEFAULT_UV,
                 0x000000,
-                null
+                state.crumblingOverlay
         );
     }
 
     public void updateRenderState(CovenantBellBlockEntity blockEntity, CovenantBellBlockEntityRenderState state, float tickProgress, Vec3d cameraPos, ModelCommandRenderer.@Nullable CrumblingOverlayCommand crumblingOverlay) {
         BlockEntityRenderer.super.updateRenderState(blockEntity, state, tickProgress, cameraPos, crumblingOverlay);
 
-        state.hasPact = blockEntity.getPactStack() != null;
+        state.hasPact = !blockEntity.getPactStack().isEmpty();
     }
 }
